@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlobalSelect Wholesale | Premium B2B Food & Grocery Supply</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              green: '#00C801',
+              red: '#EB184F',
+              dark: '#024804',
+              lime: '#C4FF03',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    .font-serif {
+      font-family: 'Playfair+Display', serif;
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in {
+      animation: fade-in 0.6s ease-out forwards;
+    }
+
+    .sticky-sub-nav {
+      scrollbar-width: none;
+    }
+
+    .sticky-sub-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .brand-gradient {
+      background: linear-gradient(to top right, #024804, #C4FF03);
+    }
+
+    .brand-green {
+      color: #00c801;
+    }
+
+    .logo-text-green {
+      color: #00C801;
+    }
+
+    .logo-text-red {
+      color: #EB184F;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+      /* Chrome, Safari, Edge */
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      /* IE & old Edge */
+      scrollbar-width: none;
+      /* Firefox */
+    }
+
+    .parallax-bg {
+      transform: translate3d(0, var(--scroll), 0);
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+  </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.11.0"
+  }
+}
+</script>
+  <script>
+    let current = 0;
+    let target = 0;
+
+    function smoothParallax() {
+      target = window.scrollY * 0.3;
+      current += (target - current) * 0.8;
+
+      document.documentElement.style.setProperty(
+        "--scroll",
+        `${current}px`
+      );
+
+      requestAnimationFrame(smoothParallax);
+    }
+
+    smoothParallax(); 
+  </script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+
+<body class="bg-slate-50 text-slate-900 overflow-x-hidden">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+
+</html>

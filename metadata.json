@@ -1,0 +1,8 @@
+{
+  "name": "GlobalSelect Wholesale - B2B Food & Grocery Distribution",
+  "description": "A conversion-focused B2B wholesale platform for professional food and grocery suppliers, designed for lead generation and inquiry-based procurement.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
