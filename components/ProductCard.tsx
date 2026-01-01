@@ -4,15 +4,16 @@ import { Product } from '../types';
 
 interface Props {
   product: Product;
+  layout?: 'grid' | 'list';
 }
 
-const ProductCard: React.FC<Props> = ({ product }) => {
+const ProductCard: React.FC<Props> = ({ product, layout = 'grid' }) => {
   // Mock logic for badges to match Bacola look
   const isRecommended = parseInt(product.id.slice(-1)) % 3 === 0;
   const discount = Math.floor(Math.random() * 20) + 10;
 
   return (
-    <div className="bg-white rounded-[2rem] border border-slate-100 overflow-hidden hover:shadow-2xl transition-all duration-500 flex flex-col h-full group relative">
+    <div className={`bg-white rounded-[2rem] border border-slate-100 overflow-hidden hover:shadow-2xl transition-all duration-500 flex ${layout === 'grid' ? 'flex-col ' : 'flex-row'} h-full group relative`}>
 
       {/* Retail Style Badges */}
       <div className="absolute top-5 left-5 z-20 flex flex-col gap-2">
@@ -57,23 +58,23 @@ const ProductCard: React.FC<Props> = ({ product }) => {
           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Grade A Certified</span>
         </div>
 
-        <p className="text-[12px] text-slate-500 mb-8 font-medium leading-relaxed line-clamp-2">
+        <p className="text-[12px] text-slate-500 mb-4 font-medium leading-relaxed line-clamp-2">
           {product.description}
         </p>
 
         {/* Footer Actions */}
-        <div className="mt-auto pt-6 border-t border-slate-50">
+        <div className="mt-auto pt-1 border-t border-slate-50">
           <Link
             to="/contact"
             state={{ product: product.name }}
-            className="w-full bg-white border-2 border-slate-100 hover:border-brand-green hover:bg-brand-green hover:text-white text-slate-900 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center space-x-3 shadow-sm hover:shadow-brand-green/20"
+            className="w-full bg-white border border-slate-200 hover:border-brand-red hover:bg-brand-red hover:text-white text-slate-900 py-3 rounded-xl transition-all flex items-center justify-center space-x-2 shadow-sm"
           >
-            <span className="font-black text-[12px]"  >Request Wholesale Price</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 4v16m8-8H4" /></svg>
+            <span className="font-black text-[11px] tracking-widest">Request Wholesale Price</span>
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 4v16m8-8H4" /></svg>
           </Link>
           <div className="mt-4 flex justify-between items-center px-1">
             <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">MOQ: 1 Pallet</span>
-            <Link to={`/category/${product.categoryId}`} className="text-[10px] font-black text-brand-green hover:underline uppercase tracking-widest">View Details</Link>
+            <Link to={`/category/${product.categoryId}`} className="text-[10px] font-black text-brand-red hover:underline uppercase tracking-widest">View Details</Link>
           </div>
         </div>
       </div>

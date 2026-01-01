@@ -49,7 +49,7 @@ const Tags: React.FC<TagProps> = ({ tags }) => (
     {tags.map((tag) => (
       <span
         key={tag}
-        className="px-5 py-2 bg-brand-green/10 text-brand-green rounded-lg text-xs font-extrabold uppercase tracking-[0.3em] select-none"
+        className="px-5 py-2 bg-brand-green/10 text-brand-green rounded-lg text-xs font-extrabold uppercase tracking-[0.1em] select-none"
       >
         {tag}
       </span>
@@ -64,8 +64,8 @@ interface FAQProps {
 const FAQSection: React.FC<FAQProps> = ({ faqs }) => (
   <section className="bg-white border-t border-slate-100">
     <div className="py-28 px-6">
-      <h2 className="text-4xl font-extrabold text-slate-900 uppercase tracking-tight text-center mb-20">
-        Buyer Frequently Asked <span className="text-brand-green">Questions</span>
+      <h2 className="text-4xl font-extrabold text-slate-900 text-center mb-20">
+        Buyer Frequently Asked Questions
       </h2>
 
       <dl className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
@@ -74,7 +74,7 @@ const FAQSection: React.FC<FAQProps> = ({ faqs }) => (
             key={i}
             className="p-6 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow"
           >
-            <dt className="text-lg font-bold text-slate-900 uppercase tracking-tight mb-2">
+            <dt className="text-lg font-bold text-slate-900 mb-2">
               {faq.q}
             </dt>
             <dd className="text-slate-600 font-medium leading-relaxed text-sm">{faq.a}</dd>
@@ -92,7 +92,7 @@ const FAQSection: React.FC<FAQProps> = ({ faqs }) => (
         </Link>
       </div>
     </div>
-  </section>
+  </section >
 );
 
 const CategoryDetail: React.FC = () => {
@@ -158,7 +158,7 @@ const CategoryDetail: React.FC = () => {
             <div className="lg:col-span-8 space-y-24">
               {/* Overview */}
               <div>
-                <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tight mb-10 flex items-center">
+                <h2 className="text-3xl font-black text-slate-900 mb-10 flex items-center">
                   <span className="w-10 h-1 bg-brand-green mr-5 rounded-full"></span>
                   Wholesale {category.name} Overview
                 </h2>
@@ -170,7 +170,7 @@ const CategoryDetail: React.FC = () => {
 
               {/* Products & Variants */}
               <div>
-                <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight mb-12">
+                <h2 className="text-2xl font-black text-slate-900 mb-12">
                   Available Range & Formats
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -224,7 +224,7 @@ const CategoryDetail: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div>
-              <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tight mb-3">
+              <h2 className="text-3xl font-black text-slate-900 mb-3">
                 Featured Wholesale Products
               </h2>
               <p className="text-slate-600 text-sm max-w-md">
@@ -254,8 +254,7 @@ const CategoryDetail: React.FC = () => {
               </p>
               <Link
                 to="/contact"
-                className="inline-block bg-brand-red text-white px-10 py-4 rounded-xl font-black uppercase tracking-widest text-sm hover:brightness-110 transition-all shadow-xl"
-              >
+                className="inline-block bg-brand-red text-white px-10 py-4 rounded-xl font-black  tracking-widest text-sm hover:brightness-110 transition-all shadow-xl">
                 Request Full Catalog
               </Link>
               <p className="mt-6 text-xs text-slate-400 uppercase tracking-wider font-semibold">
@@ -271,14 +270,14 @@ const CategoryDetail: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
             <div className="space-y-12">
-              <h2 className="text-3xl font-extrabold text-slate-900 uppercase tracking-wide">Packaging & Formats</h2>
+              <h2 className="text-3xl font-extrabold text-slate-900 tracking-wide">Packaging & Formats</h2>
               <div className="bg-brand-green/10 p-12 rounded-[2.75rem] border border-brand-green/30 shadow-md">
                 <p className="text-slate-700 font-semibold leading-relaxed mb-10 italic text-lg max-w-lg">
                   "{content.packaging}"
                 </p>
                 <div className="grid grid-cols-2 gap-8">
                   <div className="p-6 bg-white rounded-3xl shadow-sm border border-slate-200">
-                    <p className="text-[11px] font-extrabold text-brand-green uppercase tracking-[0.3em] mb-2">
+                    <p className="text-[11px] font-extrabold text-brand-green uppercase tracking-[0.1em] mb-2">
                       Standard Shelf Life
                     </p>
                     <p className="text-sm font-bold text-slate-900">Industry Optimized</p>
@@ -294,7 +293,7 @@ const CategoryDetail: React.FC = () => {
             </div>
 
             <div className="space-y-12">
-              <h2 className="text-3xl font-extrabold text-slate-900 uppercase tracking-wide">Industry Use Cases</h2>
+              <h2 className="text-3xl font-extrabold text-slate-900 tracking-wide">Industry Use Cases</h2>
               <p className="text-slate-700 font-semibold leading-relaxed max-w-xl">{content.industries}</p>
               <Tags tags={['Supermarkets', 'Restaurants', 'Hotels', 'Caterers', 'Wholesalers']} />
             </div>
@@ -330,7 +329,7 @@ const CategoryDetail: React.FC = () => {
                 </p>
                 <Link
                   to="/contact"
-                  className="inline-block bg-white text-emerald-600 px-10 py-4 rounded-xl font-bold text-lg hover:bg-emerald-50 transition-colors shadow-lg"
+                  className="inline-block bg-white text-slate-800 px-10 py-4 rounded-xl font-bold text-lg hover:bg-emerald-50 transition-colors shadow-lg"
                 >
                   Get Wholesale Pricing
                 </Link>

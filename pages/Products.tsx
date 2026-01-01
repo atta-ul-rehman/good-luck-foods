@@ -124,11 +124,11 @@ const Products: React.FC = () => {
               <h3 className="text-[13px] font-black text-slate-900 uppercase tracking-widest mb-8 border-b border-slate-100 pb-4">Product Status</h3>
               <div className="space-y-4">
                 <label className="flex items-center space-x-3 cursor-pointer group">
-                  <input type="checkbox" className="w-5 h-5 rounded border-slate-200 text-brand-green focus:ring-brand-green transition-all" defaultChecked />
+                  <input type="checkbox" className="w-5 h-5 accent-brand-green rounded border-slate-200 text-white focus:ring-brand-green transition-all" defaultChecked />
                   <span className="text-[13px] font-bold text-slate-500 group-hover:text-slate-900">In Stock</span>
                 </label>
                 <label className="flex items-center space-x-3 cursor-pointer group">
-                  <input type="checkbox" className="w-5 h-5 rounded border-slate-200 text-brand-green focus:ring-brand-green transition-all" />
+                  <input type="checkbox" className="w-5 h-5 accent-brand-green rounded border-slate-200 text-white focus:ring-brand-green transition-all" />
                   <span className="text-[13px] font-bold text-slate-500 group-hover:text-slate-900">Contract Item</span>
                 </label>
               </div>
@@ -159,7 +159,7 @@ const Products: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
               <div className="relative z-10">
                 <p className="text-brand-green font-black uppercase tracking-[0.2em] text-[10px] mb-2">Exclusive Partner</p>
-                <h4 className="text-2xl font-black text-white mb-4 leading-tight uppercase tracking-tighter">Bulk Sourcing <br />Simplified.</h4>
+                <h4 className="text-2xl font-black text-white mb-4 leading-tight uppercase tracking-[0.05em]">Bulk Sourcing <br />Simplified.</h4>
                 <button className="bg-white text-slate-900 px-6 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-brand-green hover:text-white transition-all">Download Guide</button>
               </div>
             </div>
@@ -169,14 +169,14 @@ const Products: React.FC = () => {
           <div className="flex-grow">
 
             {/* Organic/Promo Banner */}
-            <div className="relative rounded-[3rem] overflow-hidden bg-emerald-50 mb-12 min-h-[340px] flex items-center p-12 lg:p-20">
+            <div className="relative rounded-[3rem] overflow-hidden bg-brand-red50 mb-12 min-h-[340px] flex items-center p-12 lg:p-20">
               <div className="absolute top-0 right-0 w-1/2 h-full hidden md:block">
                 <img
                   src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=1200"
                   className="w-full h-full object-cover rounded-l-[5rem]"
                   alt="Organic Banner"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-50 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-brand-red50 via-transparent to-transparent"></div>
               </div>
               <div className="relative z-10 max-w-lg">
                 <span className="text-brand-green font-black text-[11px] uppercase tracking-[0.3em] mb-4 block">Seasonal Freshness</span>
@@ -199,13 +199,13 @@ const Products: React.FC = () => {
                 <div className="flex items-center space-x-2">
                   <button
                     onClick={() => setViewMode('grid')}
-                    className={`p-2.5 rounded-xl transition-all ${viewMode === 'grid' ? 'bg-white shadow-md text-brand-green' : 'text-slate-400 hover:text-brand-green'}`}
+                    className={`p-2.5 rounded-xl transition-all ${viewMode === 'grid' ? 'bg-white shadow-md text-brand-red' : 'text-slate-400 hover:text-brand-red'}`}
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>
                   </button>
                   <button
                     onClick={() => setViewMode('list')}
-                    className={`p-2.5 rounded-xl transition-all ${viewMode === 'list' ? 'bg-white shadow-md text-brand-green' : 'text-slate-400 hover:text-brand-green'}`}
+                    className={`p-2.5 rounded-xl transition-all ${viewMode === 'list' ? 'bg-white shadow-md text-brand-red' : 'text-slate-400 hover:text-brand-red'}`}
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
                   </button>
@@ -237,7 +237,7 @@ const Products: React.FC = () => {
             {filteredProducts.length > 0 ? (
               <div className={`grid gap-8 ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 xl:grid-cols-3' : 'grid-cols-1'}`}>
                 {filteredProducts.map(product => (
-                  <ProductCard key={product.id} product={product} />
+                  <ProductCard key={product.id} product={product} layout={viewMode === 'list' ? 'list' : 'grid'} />
                 ))}
               </div>
             ) : (

@@ -45,6 +45,12 @@ const Header: React.FC = () => {
               </Link>
             ))}
             <Link
+              to="/login"
+              className="text-sm font-bold text-slate-600 hover:logo-text-green transition-colors mr-2"
+            >
+              Sign In
+            </Link>
+            <Link
               to="/contact"
               className="bg-brand-red text-white px-8 py-2.5 rounded-full text-sm font-black uppercase tracking-widest hover:brightness-110 transition-all shadow-md active:scale-95"
             >
@@ -102,6 +108,13 @@ const Header: React.FC = () => {
                 {link.name}
               </Link>
             ))}
+            <Link
+              to="/login"
+              onClick={() => setIsOpen(false)}
+              className="block px-3 py-4 text-base font-bold text-slate-600 hover:bg-slate-50 rounded-md"
+            >
+              Sign In
+            </Link>
             <div className="pt-4">
               <Link
                 to="/contact"
