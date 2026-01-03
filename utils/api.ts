@@ -41,6 +41,7 @@ export const authAPI = {
     login: async (credentials: any) => api.post('/auth/login', credentials),
     signup: async (userData: any) => api.post('/auth/signup', userData),
     getUser: async (token: string) => api.get('/auth/user', token),
+    forgotPassword: async (email: string) => api.post('/auth/forgot-password', { email }),
 };
 
 // Product API helpers
@@ -50,4 +51,9 @@ export const productAPI = {
     create: async (data: any, token: string) => api.post('/products', data, token),
     update: async (id: string, data: any, token: string) => api.put(`/products/${id}`, data, token),
     delete: async (id: string, token: string) => api.delete(`/products/${id}`, token),
+};
+
+// Contact API helpers
+export const contactAPI = {
+    submitInquiry: async (data: any) => api.post('/contact', data),
 };

@@ -18,7 +18,7 @@ const About: React.FC = () => {
             Feeding the Industry Since 2008
           </h1>
           <p className="text-white/70 max-w-2xl mx-auto font-light">
-            GlobalSelect Wholesale is a premier B2B distribution partner dedicated to supplying
+            Good Luck Foods Ltd. is a premier B2B distribution partner dedicated to supplying
             high-quality food products to businesses across the region.
           </p>
         </div>
@@ -41,7 +41,7 @@ const About: React.FC = () => {
               <div className="space-y-4 text-slate-600 font-light">
                 <p>
                   What started as a small local supplier of fresh produce has evolved into a
-                  multi-category wholesale powerhouse. Today, GlobalSelect manages over 5,000
+                  multi-category wholesale powerhouse. Today, Good Luck Foods manages over 5,000
                   product lines across 11 key categories.
                 </p>
                 <p>

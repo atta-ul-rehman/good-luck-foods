@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { AuthProvider } from './context/AuthContext';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -37,26 +38,28 @@ const WhatsAppButton = () => (
 
 const App: React.FC = () => {
   return (
-    <HashRouter>
-      <div className="flex flex-col min-h-screen selection:bg-emerald-100 selection:text-emerald-900">
-        <ScrollToTop />
-        <Header />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/category/:slug" element={<CategoryDetail />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-          </Routes>
-        </main>
-        <WhatsAppButton />
-        <Footer />
-      </div>
-    </HashRouter>
+    <AuthProvider>
+      <HashRouter>
+        <div className="flex flex-col min-h-screen selection:bg-emerald-100 selection:text-emerald-900">
+          <ScrollToTop />
+          <Header />
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/category/:slug" element={<CategoryDetail />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+            </Routes>
+          </main>
+          <WhatsAppButton />
+          <Footer />
+        </div>
+      </HashRouter>
+    </AuthProvider>
   );
 };
 

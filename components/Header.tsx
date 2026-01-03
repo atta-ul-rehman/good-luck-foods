@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { CATEGORIES } from '../constants';
+import { useAuth } from '../context/AuthContext';
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { isAuthenticated, user, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -17,19 +25,11 @@ const Header: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 ">
         <div className="flex justify-between items-center h-20">
           {/* Logo Section - Reflecting the provided Image */}
           <Link to="/" className="flex items-center group">
-            <div className="brand-gradient w-12 h-12 rounded-tl-[20px] rounded-br-[20px] flex items-center justify-center text-white mr-4 shadow-md overflow-hidden relative">
-              <div className="absolute inset-0 bg-white opacity-10 rotate-45 transform translate-y-6"></div>
-              <span className="font-black text-xl italic leading-none">G</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-2xl font-black tracking-tighter leading-none logo-text-green uppercase">Good</span>
-              <span className="text-2xl font-black tracking-tighter leading-none logo-text-red uppercase">Luck</span>
-              <span className="text-[10px] font-bold tracking-[0.3em] text-slate-800 uppercase leading-tight">Foods LTD</span>
-            </div>
+            <img src="/assets/logo1.jpg" alt="Good Luck Foods" className="h-14 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
           </Link>
 
           {/* Desktop Nav */}
@@ -44,15 +44,31 @@ const Header: React.FC = () => {
                 {link.name}
               </Link>
             ))}
-            <Link
-              to="/login"
-              className="text-sm font-bold text-slate-600 hover:logo-text-green transition-colors mr-2"
-            >
-              Sign In
-            </Link>
+
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-4">
+                <span className="text-sm font-bold text-slate-800">
+                  Hi, {user?.fullName.split(' ')[0]}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  className="text-sm font-bold text-slate-600 hover:text-red-500 transition-colors mr-2"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <Link
+                to="/login"
+                className="text-sm font-bold text-slate-600 hover:logo-text-green transition-colors mr-2"
+              >
+                Sign In
+              </Link>
+            )}
+
             <Link
               to="/contact"
-              className="bg-brand-red text-white px-8 py-2.5 rounded-full text-sm font-black uppercase tracking-widest hover:brightness-110 transition-all shadow-md active:scale-95"
+              className="bg-brand-red text-white px-8 py-2.5 rounded-full text-sm font-black tracking-widest hover:brightness-110 transition-all shadow-md active:scale-95"
             >
               Request Quote
             </Link>
@@ -108,18 +124,35 @@ const Header: React.FC = () => {
                 {link.name}
               </Link>
             ))}
-            <Link
-              to="/login"
-              onClick={() => setIsOpen(false)}
-              className="block px-3 py-4 text-base font-bold text-slate-600 hover:bg-slate-50 rounded-md"
-            >
-              Sign In
-            </Link>
+            {isAuthenticated ? (
+              <>
+                <div className="block px-3 py-4 text-base font-bold text-slate-800 bg-slate-50 border-b border-slate-100">
+                  Hi, {user?.fullName}
+                </div>
+                <button
+                  onClick={() => {
+                    handleLogout();
+                    setIsOpen(false);
+                  }}
+                  className="block w-full text-left px-3 py-4 text-base font-bold text-slate-600 hover:bg-slate-50 rounded-md"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <Link
+                to="/login"
+                onClick={() => setIsOpen(false)}
+                className="block px-3 py-4 text-base font-bold text-slate-600 hover:bg-slate-50 rounded-md"
+              >
+                Sign In
+              </Link>
+            )}
             <div className="pt-4">
               <Link
                 to="/contact"
                 onClick={() => setIsOpen(false)}
-                className="block w-full text-center bg-brand-green text-white px-6 py-4 rounded-lg font-black uppercase tracking-widest"
+                className="block w-full text-center bg-brand-green text-white px-6 py-4 rounded-lg font-black"
               >
                 Request Quote
               </Link>

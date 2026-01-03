@@ -1,14 +1,33 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { authAPI } from '../utils/api';
 
 const ForgotPassword: React.FC = () => {
     const [email, setEmail] = useState('');
     const [submitted, setSubmitted] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setSubmitted(true);
-        // Simulate API call
+        setError('');
+        setLoading(true);
+
+        try {
+            await authAPI.forgotPassword(email);
+            setSubmitted(true);
+        } catch (err: any) {
+            console.error('Forgot password error:', err);
+            // Even if email fails, for security we often pretend it worked or show a generic message.
+            // But for now let's show the error if it's a server error, otherwise simulate success
+            if (err && err.status === 500) {
+                setError('Something went wrong. Please try again.');
+            } else {
+                setSubmitted(true); // Treat as success to avoid user enumeration if possible, or just for simple UX here
+            }
+        } finally {
+            setLoading(false);
+        }
     };
 
     if (submitted) {
@@ -95,6 +114,15 @@ const ForgotPassword: React.FC = () => {
                         <p className="text-[#6B7280] text-sm font-medium">Verify your identity</p>
                     </div>
 
+                    {error && (
+                        <div className="mb-6 bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm font-medium flex items-center">
+                            <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            {error}
+                        </div>
+                    )}
+
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="space-y-2">
                             <label className="text-xs font-bold text-[#374151] uppercase tracking-wider" htmlFor="email">Email Address</label>
@@ -106,14 +134,26 @@ const ForgotPassword: React.FC = () => {
                                 placeholder="name@company.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                disabled={loading}
                             />
                         </div>
 
                         <button
                             type="submit"
-                            className="w-full bg-[#FF3B6D] text-white py-3.5 rounded-xl font-bold uppercase tracking-wider text-sm hover:brightness-110 transition-all shadow-md active:scale-[0.98]"
+                            disabled={loading}
+                            className="w-full bg-[#FF3B6D] text-white py-3.5 rounded-xl font-bold uppercase tracking-wider text-sm hover:brightness-110 transition-all shadow-md active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center"
                         >
-                            Send Reset Link
+                            {loading ? (
+                                <>
+                                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    Sending...
+                                </>
+                            ) : (
+                                'Send Reset Link'
+                            )}
                         </button>
                     </form>
 

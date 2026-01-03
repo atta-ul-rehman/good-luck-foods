@@ -49,7 +49,7 @@ router.post('/signup', async (req, res) => {
         );
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('Server error');
+        res.status(500).json({ msg: 'Server error', error: err.message });
     }
 });
 
@@ -89,7 +89,7 @@ router.post('/login', async (req, res) => {
         );
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('Server error');
+        res.status(500).json({ msg: 'Server error', error: err.message });
     }
 });
 
@@ -100,6 +100,22 @@ router.get('/user', auth, async (req, res) => {
     try {
         const user = await User.findById(req.user.id).select('-password');
         res.json(user);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+// @route   POST api/auth/forgot-password
+// @desc    Simulate sending forgot password email
+// @access  Public
+router.post('/forgot-password', async (req, res) => {
+    try {
+        // In a real app, you would generate a token and email it to the user
+        // For now, we just simulate a success response
+        setTimeout(() => {
+            res.json({ msg: 'Email sent' });
+        }, 1000);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');

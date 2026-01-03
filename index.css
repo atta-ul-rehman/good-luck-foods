@@ -69,7 +69,7 @@ button,
 /* 3. Letter Spacing (Tracking) */
 h1,
 h2 {
-  letter-spacing: 0.05em;
+  letter-spacing: 0.01em;
   /* tracking-wider */
 }
 

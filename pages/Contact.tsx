@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CATEGORIES } from '../constants';
+import { contactAPI } from '../utils/api';
 
 const Contact: React.FC = () => {
   const location = useLocation();
   const preSelectedProduct = location.state?.product || '';
 
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const [formData, setFormData] = useState({
     fullName: '',
     businessName: '',
@@ -16,16 +19,26 @@ const Contact: React.FC = () => {
     message: preSelectedProduct ? `Inquiry regarding: ${preSelectedProduct}` : ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    // Simulate API call
+    setLoading(true);
+    setError('');
+
+    try {
+      await contactAPI.submitInquiry(formData);
+      setSubmitted(true);
+    } catch (err: any) {
+      console.error('Contact error:', err);
+      setError('Failed to submit inquiry. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
     return (
       <div className="min-h-[80vh] flex items-center justify-center px-4 animate-fade-in">
-        <div className="max-w-md w-full text-center p-12 bg-white rounded-[2.5rem] shadow-3xl border border-slate-100">
+        <div className="max-w-md w-full text-center p-12 bg-white rounded-[2rem] shadow-3xl border border-slate-100">
           <div className="w-24 h-24 bg-emerald-100 text-brand-green rounded-full flex items-center justify-center text-5xl mx-auto mb-8 shadow-inner">
             ✓
           </div>
@@ -100,7 +113,7 @@ const Contact: React.FC = () => {
 
           {/* Form Card */}
           <div className="lg:col-span-8">
-            <div className="bg-white rounded-[2.5rem] shadow-2xl p-10 md:p-14 border border-slate-100">
+            <div className="bg-white rounded-[2rem] shadow-2xl p-10 md:p-14 border border-slate-100">
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-2">
@@ -182,11 +195,25 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div className="pt-4">
+                  {error && (
+                    <div className="mb-4 text-red-500 text-sm font-bold bg-red-50 p-3 rounded-lg">
+                      {error}
+                    </div>
+                  )}
                   <button
                     type="submit"
-                    className="w-full bg-brand-red text-white py-6 rounded-[1.25rem] font-bold text-2xl hover:bg-brand-red/90 transition-all shadow-2xl hover:shadow-brand-red/30 active:scale-[0.98]"
+                    disabled={loading}
+                    className="w-full bg-brand-red text-white py-6 rounded-[1.25rem] font-bold text-xl hover:bg-brand-red/90 transition-all shadow-lg hover:shadow-brand-red/30 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center"
                   >
-                    Request Wholesale Access
+                    {loading ? (
+                      <>
+                        <svg className="animate-spin -ml-1 mr-3 h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Sending...
+                      </>
+                    ) : 'Request Wholesale Access'}
                   </button>
                   <p className="text-center mt-6 text-xs text-slate-400 font-medium">
                     Protected by 256-bit SSL encryption. We never share your data with third parties.

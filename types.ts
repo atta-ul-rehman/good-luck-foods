@@ -25,3 +25,11 @@ export interface InquiryFormData {
   category: string;
   message: string;
 }
+
+export interface User {
+  _id: string;
+  fullName: string;
+  companyName: string;
+  email: string;
+  phone: string;
+}

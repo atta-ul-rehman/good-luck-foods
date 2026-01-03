@@ -194,7 +194,7 @@ const CategoryDetail: React.FC = () => {
 
             {/* Right: Quality & Standards */}
             <div className="lg:col-span-4">
-              <div className="sticky top-32 p-12 bg-slate-900 text-white rounded-[2.75rem] shadow-2xl">
+              <div className="sticky top-32 p-12 bg-slate-900 text-white rounded-[2rem] shadow-2xl">
                 <h2 className="text-xl font-black uppercase tracking-widest mb-10 text-brand-green">
                   Sourcing & Standards
                 </h2>

@@ -26,8 +26,9 @@ const Home: React.FC = () => {
           <img
             src="https://storage.googleapis.com/uxpilot-auth.appspot.com/d4f4feb3f5-43b4b6cdb2412b2e117f.png"
             alt="Wholesale Logistics"
-            className="w-full h-full object-cover opacity-25"
+            className="w-full h-[120%] object-cover opacity-25 parallax-bg will-change-transform"
             loading="lazy"
+            style={{ transform: 'translate3d(0, var(--scroll), 0)' }}
           />
         </div>
 
@@ -36,7 +37,7 @@ const Home: React.FC = () => {
             <div className="flex items-center gap-3 mb-6">
               <span className="w-10 h-px bg-brand-green"></span>
               <span className="text-brand-green text-xs font-semibold uppercase tracking-[0.25em] opacity-80">
-                Good Luck Foods LTD.
+                Good Luck Foods Ltd.
               </span>
             </div>
 
@@ -88,7 +89,7 @@ const Home: React.FC = () => {
               <span className="text-brand-red text-[11px] font-semibold uppercase tracking-[0.3em]">
                 High Demand Stock
               </span>
-              <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mt-4">
+              <h2 className="text-2xl md:text-4xl font-extrabold text-slate-900 mt-4">
                 Featured Wholesale Items
               </h2>
               <p className="text-slate-500 mt-4 max-w-xl leading-relaxed">
@@ -122,7 +123,7 @@ const Home: React.FC = () => {
             <p className="text-white/85 max-w-xl mb-6 leading-relaxed">
               Premium organic products for health-conscious businesses looking to lead the market with quality.
             </p>
-            <Link className="inline-block border border-white px-8 py-4 rounded-xl font-semibold text-sm hover:bg-white hover:text-brand-dark-green transition-all" to="/contact">
+            <Link className="inline-block border border-white px-8 py-4 rounded-xl font-semibold text-sm hover:bg-brand-green/90 hover:text-brand-dark transition-all" to="/contact">
               Learn More
             </Link>
           </div>
@@ -151,7 +152,7 @@ const Home: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-6  py-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
 
         {/* BLOCK 1: Organic & Sustainable (RED COLOR) */}
-        <div className="relative group rounded-[2.5rem] overflow-hidden flex flex-col justify-center p-12 text-white bg-brand-red transition-all duration-500 hover:shadow-2xl">
+        <div className="relative group rounded-[2rem] overflow-hidden flex flex-col justify-center p-12 text-white bg-brand-red transition-all duration-500 hover:shadow-2xl">
           {/* Abstract Organic Background Shapes */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             <svg
@@ -214,7 +215,7 @@ const Home: React.FC = () => {
               Premium organic products for health-conscious businesses looking to lead the market with quality.
             </p>
             <Link
-              className="inline-block border border-white px-8 py-4 rounded-xl font-semibold text-sm hover:bg-white hover:text-brand-dark-green transition-all"
+              className="inline-block border border-white px-8 py-4 rounded-xl font-semibold text-sm hover:bg-white hover:text-brand-red transition-all"
               to="/contact"
             >
               Learn More
@@ -223,7 +224,7 @@ const Home: React.FC = () => {
         </div>
 
         {/* BLOCK 2: Bulk Ordering Made Easy (DARK GREEN COLOR) */}
-        <div className="relative group rounded-[2.5rem] overflow-hidden flex flex-col justify-center p-12 text-white bg-brand-dark transition-all duration-500 hover:shadow-2xl">
+        <div className="relative group rounded-[2rem] overflow-hidden flex flex-col justify-center p-12 text-white bg-brand-dark transition-all duration-500 hover:shadow-2xl">
           {/* Geometric Shape (The Sharp Triangle Accents) */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {/* Sharp Large Triangle */}
@@ -254,27 +255,6 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Featured Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <span className="w-2 h-2 rounded-full bg-brand-red"></span>
-                <span className="text-brand-red text-[11px] font-black uppercase tracking-[0.2em]">High Demand Stock</span>
-              </div>
-              <h2 className="text-3xl md:text-5xl font-black text-[#0f172a] uppercase tracking-tighter">Featured Wholesale Items</h2>
-              <p className="text-slate-500 mt-4 font-medium">Curated selection of our best-moving product lines for professional kitchens and retail shelves.</p>
-            </div>
-            <Link to="/products" className="text-brand-green font-black uppercase tracking-widest text-[11px] hover:underline">View Full Catalog</Link>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {PRODUCTS.slice(0, 4).map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Supply */}
       <section className="py-24 bg-white">
@@ -313,9 +293,9 @@ const Home: React.FC = () => {
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <span className="w-4 h-4 rounded-full bg-brand-green"></span>
-                <span className="text-brand-green text-xs font-black uppercase tracking-[0.2em]">Why choose us</span>
+                <span className="text-brand-green text-xs font-black tracking-[0.1em]">Why choose us</span>
               </div>
-              <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mt-4 mb-8 md:leading-[1.15]">Why Choose Good Luck Foods ltd.</h2>
+              <h2 className="text-2xl md:text-4xl font-extrabold text-slate-900 mt-4 mb-8 md:leading-[1.15]">Why Choose Good Luck Foods ltd.</h2>
               <div className="space-y-10">
                 {[
                   { title: 'Volume-Optimized Pricing', desc: 'Our price tiers grow with your business. The more you buy, the more you save on unit costs.' },
@@ -356,7 +336,7 @@ const Home: React.FC = () => {
       </section>
       {/* Final CTA */}
       <section className="py-24 bg-brand-dark text-white text-center">
-        <div className="max-w-[1400px] mx-auto px-4 flex flex-col lg:flex-row justify-between items-center gap-12 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row justify-between items-center gap-12 relative z-10">
           <div className="text-white text-center lg:text-left">
             <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 italic underline decoration-brand-green decoration-4 underline-offset-8">Grow Your Margins</h2>
             <p className="text-slate-400 font-medium text-lg leading-relaxed">

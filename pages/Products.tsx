@@ -19,7 +19,7 @@ const Products: React.FC = () => {
     <div className="bg-white min-h-screen">
       {/* Top Shop Bar */}
       <div className="bg-slate-50 border-b border-slate-200 hidden md:block">
-        <div className="max-w-[1400px] mx-auto px-4 py-2 flex justify-between items-center text-[11px] font-bold text-slate-500 uppercase tracking-widest">
+        <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center text-[11px] font-bold text-slate-500 uppercase tracking-widest">
           <div className="flex space-x-6">
             <span className="flex items-center"><span className="text-brand-green mr-2">✓</span> 100% Secure B2B Sourcing</span>
             <span className="flex items-center"><span className="text-brand-green mr-2">✓</span> Direct Manufacturer Pricing</span>
@@ -33,7 +33,7 @@ const Products: React.FC = () => {
 
       {/* Main Shop Header */}
       <div className="bg-white border-b border-slate-100 py-6 sticky top-24 z-40 shadow-sm">
-        <div className="max-w-[1400px] mx-auto px-4 flex flex-col lg:flex-row items-center gap-6">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row items-center gap-6">
           <div className="w-full lg:w-64">
             <button className="w-full bg-brand-green text-white px-6 py-4 rounded-xl font-black uppercase tracking-widest text-[11px] flex items-center justify-between group shadow-lg shadow-brand-green/20">
               <div className="flex items-center">
@@ -75,7 +75,7 @@ const Products: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-[1400px] mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-10">
 
           {/* SIDEBAR - Exactly like the image */}
@@ -150,7 +150,7 @@ const Products: React.FC = () => {
             </div>
 
             {/* Side Ad Card */}
-            <div className="relative rounded-[2.5rem] overflow-hidden group aspect-[4/5] bg-slate-900 flex flex-col justify-end p-8">
+            <div className="relative rounded-[2rem] overflow-hidden group aspect-[4/5] bg-slate-900 flex flex-col justify-end p-8">
               <img
                 src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=800"
                 className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-1000"
@@ -270,7 +270,7 @@ const Products: React.FC = () => {
 
       {/* Bottom Newsletter (Bacola Style) */}
       <section className="bg-brand-dark py-24 mt-24 relative overflow-hidden dot-pattern">
-        <div className="max-w-[1400px] mx-auto px-4 flex flex-col lg:flex-row justify-between items-center gap-12 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row justify-between items-center gap-12 relative z-10">
           <div className="text-white text-center lg:text-left">
             <h2 className="text-4xl font-black uppercase tracking-tighter mb-4 leading-none italic underline decoration-brand-green decoration-4 underline-offset-8">Join the Supply Network</h2>
             <p className="text-slate-400 font-medium text-lg">Subscribe to our wholesale inventory alerts and regional market reports.</p>
