@@ -219,3 +219,95 @@ button {
 
   /* text-sm */
 }
+
+/* ===== Splash Screen Animations ===== */
+
+/* Logo entrance animation */
+.splash-logo {
+  animation: logoEntrance 1s ease-out forwards, logoPulse 1.5s ease-in-out 1s infinite;
+}
+
+.splash-logo-exit {
+  animation: logoExit 0.5s ease-in forwards;
+}
+
+@keyframes logoEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-10deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1) rotate(5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes logoPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes logoExit {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* Loading dots animation */
+.loading-dot-1,
+.loading-dot-2,
+.loading-dot-3 {
+  animation: dotBounce 1.4s infinite ease-in-out both;
+}
+
+.loading-dot-1 {
+  animation-delay: 0s;
+}
+
+.loading-dot-2 {
+  animation-delay: 0.2s;
+}
+
+.loading-dot-3 {
+  animation-delay: 0.4s;
+}
+
+@keyframes dotBounce {
+  0%, 80%, 100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+}
+
+/* Main content reveal animation */
+.main-content-reveal {
+  animation: contentReveal 0.8s ease-out forwards;
+}
+
+@keyframes contentReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

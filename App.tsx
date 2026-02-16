@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AuthProvider } from './context/AuthContext';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
@@ -11,6 +11,7 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ForgotPassword from './pages/ForgotPassword';
+import SplashScreen from './components/SplashScreen';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -37,8 +38,15 @@ const WhatsAppButton = () => (
 );
 
 const App: React.FC = () => {
+  const [showSplash, setShowSplash] = useState(true);
+
+  const handleSplashComplete = () => {
+    setShowSplash(false);
+  };
+
   return (
     <AuthProvider>
+      {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
       <HashRouter>
         <div className="flex flex-col min-h-screen selection:bg-emerald-100 selection:text-emerald-900">
           <ScrollToTop />
