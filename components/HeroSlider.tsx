@@ -124,7 +124,7 @@ const HeroSlider: React.FC = () => {
               {/* CTA Button */}
               <Link
                 to={slides[currentSlide].buttonLink}
-                className="inline-block bg-brand-red text-white px-8 py-4 rounded-xl font-semibold tracking-wide text-sm hover:brightness-110 transition-all active:scale-95"
+                className="inline-block bg-brand-red text-white px-8 py-4 font-semibold tracking-wide text-sm hover:brightness-110 transition-all active:scale-95"
               >
                 {slides[currentSlide].buttonText}
               </Link>

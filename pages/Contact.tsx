@@ -72,26 +72,35 @@ const Contact: React.FC = () => {
           <div className="lg:col-span-4 space-y-6">
             <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
               <h3 className="text-xl font-bold text-slate-900 mb-6">Direct Channels</h3>
-              <div className="space-y-8">
+              <div className="space-y-6">
                 <div className="flex items-center space-x-4">
                   <div className="w-10 h-10 bg-brand-green/10 rounded-lg flex items-center justify-center text-brand-green font-bold">P</div>
                   <div>
-                    <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">Phone Sourcing</p>
-                    <p className="text-slate-900 font-bold">+1 (800) 555-FOOD</p>
+                    <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">Phone</p>
+                    <p className="text-slate-900 font-bold">+44 161 273 1399</p>
+                    <p className="text-slate-900 font-bold">+44 745 937 9180</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
                   <div className="w-10 h-10 bg-brand-green/10 rounded-lg flex items-center justify-center text-brand-green font-bold">E</div>
                   <div>
                     <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">Sales Email</p>
-                    <p className="text-slate-900 font-bold">sales@globalselect.com</p>
+                    <p className="text-slate-900 font-bold">sales@goodluckfoods.com</p>
                   </div>
                 </div>
-                <div className="flex items-center space-x-4">
-                  <div className="w-10 h-10 bg-brand-green/10 rounded-lg flex items-center justify-center text-brand-green font-bold">W</div>
+                <div className="flex items-start space-x-4">
+                  <div className="w-10 h-10 bg-brand-green/10 rounded-lg flex items-center justify-center text-brand-green font-bold">A</div>
                   <div>
-                    <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">WhatsApp</p>
-                    <p className="text-slate-900 font-bold">+1 (555) 987-6543</p>
+                    <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">Address</p>
+                    <p className="text-slate-900 font-bold">Unit 5, Viva Centre,<br />Coverdale Cres, Manchester M12 4AP</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="w-10 h-10 bg-brand-green/10 rounded-lg flex items-center justify-center text-brand-green font-bold">H</div>
+                  <div>
+                    <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">Opening Hours</p>
+                    <p className="text-slate-700 text-sm">Mon - Sat: 9 am – 7 pm</p>
+                    <p className="text-slate-700 text-sm">Sunday: 10:30 am – 4 pm</p>
                   </div>
                 </div>
               </div>

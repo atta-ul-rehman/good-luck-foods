@@ -68,7 +68,7 @@ const Header: React.FC = () => {
 
             <Link
               to="/contact"
-              className="bg-brand-red text-white px-8 py-2.5 rounded-full text-sm font-black tracking-widest hover:brightness-110 transition-all shadow-md active:scale-95"
+              className="bg-brand-red text-white px-8 py-2.5 text-sm font-black tracking-widest hover:brightness-110 transition-all active:scale-95"
             >
               Request Quote
             </Link>
