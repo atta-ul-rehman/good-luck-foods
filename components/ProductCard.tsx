@@ -13,7 +13,7 @@ const ProductCard: React.FC<Props> = ({ product, layout = 'grid' }) => {
   const discount = Math.floor(Math.random() * 20) + 10;
 
   return (
-    <div className={`bg-white rounded-[2rem] border border-slate-100 overflow-hidden hover:shadow-2xl transition-all duration-500 flex ${layout === 'grid' ? 'flex-col ' : 'flex-row'} h-full group relative`}>
+    <div className={`bg-white border border-slate-100 overflow-hidden hover:shadow-2xl transition-all duration-500 flex ${layout === 'grid' ? 'flex-col ' : 'flex-row'} h-full group relative`}>
 
       {/* Retail Style Badges */}
       <div className="absolute top-5 left-5 z-20 flex flex-col gap-2">
@@ -67,7 +67,7 @@ const ProductCard: React.FC<Props> = ({ product, layout = 'grid' }) => {
           <Link
             to="/contact"
             state={{ product: product.name }}
-            className="w-full bg-white border border-slate-200 hover:border-brand-red hover:bg-brand-red hover:text-white text-slate-900 py-3 rounded-xl transition-all flex items-center justify-center space-x-2 shadow-sm"
+            className="w-full bg-white border border-slate-200 hover:border-brand-red hover:bg-brand-red hover:text-white text-slate-900 py-3 transition-all flex items-center justify-center space-x-2 shadow-sm"
           >
             <span className="font-black text-[11px] tracking-widest">Request Wholesale Price</span>
             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 4v16m8-8H4" /></svg>

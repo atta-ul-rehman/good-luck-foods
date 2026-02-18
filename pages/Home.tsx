@@ -150,34 +150,6 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Featured Products - Hidden */}
-      <section className="hidden py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-            <div>
-              <span className="text-brand-red text-[11px] font-semibold uppercase tracking-[0.3em]">
-                High Demand Stock
-              </span>
-              <h2 className="text-2xl md:text-4xl font-extrabold text-slate-900 mt-4">
-                Featured Wholesale Items
-              </h2>
-              <p className="text-slate-500 mt-4 max-w-xl leading-relaxed">
-                Curated selection of our best-moving product lines for professional kitchens and retail shelves.
-              </p>
-            </div>
-            <Link to="/products" className="text-brand-green font-semibold tracking-wide text-sm hover:underline">
-              View Full Catalog
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {PRODUCTS.slice(0, 4).map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Category Showcase Section */}
       <section className="py-20 bg-slate-100 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
@@ -400,8 +372,39 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Supply */}
-      <section className="py-20 bg-white overflow-hidden">
+      {/* Featured Products */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <AnimatedSection animation="fadeSlideUp">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+              <div>
+                <span className="text-brand-red text-[11px] font-semibold uppercase tracking-[0.3em]">
+                  High Demand Stock
+                </span>
+                <h2 className="text-2xl md:text-4xl font-extrabold text-slate-900 mt-4">
+                  Featured Wholesale Items
+                </h2>
+                <p className="text-slate-500 mt-4 max-w-xl leading-relaxed">
+                  Curated selection of our best-moving product lines for professional kitchens and retail shelves.
+                </p>
+              </div>
+              <Link to="/products" className="text-brand-green font-semibold tracking-wide text-sm hover:underline">
+                View Full Catalog
+              </Link>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {PRODUCTS.slice(0, 4).map((product, index) => (
+              <AnimatedSection key={product.id} animation="scaleUp" delay={index * 100}>
+                <ProductCard product={product} />
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* Supply - hidden*/}
+      <section className="hidden py-20 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection animation="fadeSlideUp">
             <SectionHeader

@@ -48,9 +48,11 @@ const slides: Slide[] = [
 const HeroSlider: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [direction, setDirection] = useState<'next' | 'prev'>('next');
 
-  const goToSlide = useCallback((index: number) => {
+  const goToSlide = useCallback((index: number, dir: 'next' | 'prev' = 'next') => {
     if (isAnimating || index === currentSlide) return;
+    setDirection(dir);
     setIsAnimating(true);
     setCurrentSlide(index);
     setTimeout(() => setIsAnimating(false), 700);
@@ -58,12 +60,12 @@ const HeroSlider: React.FC = () => {
 
   const nextSlide = useCallback(() => {
     const next = (currentSlide + 1) % slides.length;
-    goToSlide(next);
+    goToSlide(next, 'next');
   }, [currentSlide, goToSlide]);
 
   const prevSlide = useCallback(() => {
     const prev = (currentSlide - 1 + slides.length) % slides.length;
-    goToSlide(prev);
+    goToSlide(prev, 'prev');
   }, [currentSlide, goToSlide]);
 
   // Auto-slide every 5 seconds
@@ -77,27 +79,40 @@ const HeroSlider: React.FC = () => {
   return (
     <section className="relative h-[560px] md:h-[620px] overflow-hidden">
       {/* Slides */}
-      {slides.map((slide, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-            index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
-          }`}
-        >
-          {/* Background Image */}
-          <img
-            src={slide.image}
-            alt={slide.title}
-            className="w-full h-full object-cover"
-            loading={index === 0 ? 'eager' : 'lazy'}
-          />
-          
-          {/* Light overlay for readability */}
-          <div className="absolute inset-0 bg-black/30"></div>
-        </div>
-      ))}
+      {slides.map((slide, index) => {
+        const isActive = index === currentSlide;
+        const isPrev = index === (currentSlide - 1 + slides.length) % slides.length;
+        const isNext = index === (currentSlide + 1) % slides.length;
+        
+        let translateClass = 'translate-x-full';
+        if (isActive) {
+          translateClass = 'translate-x-0';
+        } else if (isPrev) {
+          translateClass = '-translate-x-full';
+        }
+        
+        return (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-transform duration-700 ease-in-out ${
+              isActive ? 'z-10' : 'z-0'
+            } ${translateClass}`}
+          >
+            {/* Background Image */}
+            <img
+              src={slide.image}
+              alt={slide.title}
+              className="w-full h-full object-cover"
+              loading={index === 0 ? 'eager' : 'lazy'}
+            />
+            
+            {/* Light overlay for readability */}
+            <div className="absolute inset-0 bg-black/30"></div>
+          </div>
+        );
+      })}
 
-      {/* Content Box - Left Side */}
+      {/* Content Box - Left Side (Static) */}
       <div className="absolute inset-0 z-20 flex items-center">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <div className="max-w-lg">
@@ -107,26 +122,21 @@ const HeroSlider: React.FC = () => {
               <div className="flex items-center gap-3 mb-4">
                 <span className="w-10 h-1 bg-brand-red"></span>
                 <span className="text-[#444] text-xs font-semibold uppercase tracking-[0.2em]">
-                  {slides[currentSlide].subtitle}
+                  Good Luck Foods Ltd.
                 </span>
               </div>
 
-              {/* Title */}
-              <h1 className="text-2xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight leading-tight">
-                {slides[currentSlide].title}
+              {/* Static Title */}
+              <h1 className="text-2xl md:text-4xl font-extrabold text-slate-900 mb-8 tracking-tight leading-tight">
+                Delivering a Premium Wholesale Food Experience for Catering & Retail
               </h1>
-
-              {/* Description */}
-              <p className="text-slate-600 mb-8 leading-relaxed text-sm md:text-base">
-                {slides[currentSlide].description}
-              </p>
 
               {/* CTA Button */}
               <Link
-                to={slides[currentSlide].buttonLink}
+                to="/products"
                 className="inline-block bg-brand-red text-white px-8 py-4 font-semibold tracking-wide text-sm hover:brightness-110 transition-all active:scale-95"
               >
-                {slides[currentSlide].buttonText}
+                Browse Our Catalog
               </Link>
             </div>
           </div>
@@ -155,7 +165,7 @@ const HeroSlider: React.FC = () => {
       </button>
 
       {/* Dot Navigation */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:left-[calc(6rem+2rem)] z-30 flex items-center gap-3">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 md:left-1/5 md:translate-x-0 md:left-[calc(6rem+2rem)] z-30 flex items-center gap-3">
         {slides.map((_, index) => (
           <button
             key={index}
