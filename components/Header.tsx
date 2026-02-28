@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { CATEGORIES } from '../constants';
 import { useAuth } from '../context/AuthContext';
@@ -6,9 +6,39 @@ import { useAuth } from '../context/AuthContext';
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+  const [dropdownPosition, setDropdownPosition] = useState<{ left: number; top: number }>({ left: 0, top: 0 });
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
   const { isAuthenticated, user, logout } = useAuth();
+
+  const handleCategoryHover = (catId: string, event: React.MouseEvent<HTMLDivElement>) => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+    const rect = event.currentTarget.getBoundingClientRect();
+    setDropdownPosition({ left: rect.left, top: rect.bottom });
+    setHoveredCategory(catId);
+  };
+
+  const handleCategoryLeave = () => {
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHoveredCategory(null);
+    }, 150);
+  };
+
+  const handleDropdownEnter = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+  };
+
+  const handleDropdownLeave = () => {
+    setHoveredCategory(null);
+  };
 
   const handleLogout = () => {
     logout();
@@ -24,21 +54,22 @@ const Header: React.FC = () => {
   };
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Products', path: '/products' },
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' },
+    { name: 'HOME', path: '/' },
+    { name: 'PRODUCTS', path: '/products' },
+    { name: 'OFFERS', path: '/offers' },
+    { name: 'ABOUT', path: '/about' },
+    { name: 'CONTACT', path: '/contact' },
   ];
 
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
+    <header className="sticky top-0 z-[100] bg-white shadow-sm">
       <div className="max-w-7xl mx-auto px-4 ">
         <div className="flex justify-between items-center h-20">
           {/* Logo Section - Reflecting the provided Image */}
           <Link to="/" className="flex items-center group">
-            <img src="/assets/logo1.jpg" alt="Good Luck Foods" className="h-14 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
+            <img src="/assets/logo1.jpg" alt="Good Luck Foods" className="h-20 md:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
           </Link>
 
           {/* Right Side: Search, Button, and Menu */}
@@ -88,34 +119,69 @@ const Header: React.FC = () => {
       </div>
 
       {/* Sticky Product Sub-Nav */}
-      <div className="bg-slate-50 border-t border-b border-slate-200 overflow-x-auto sticky-sub-nav">
+      <div className="bg-brand-red border-t border-b border-red-700 sticky-sub-nav">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex space-x-8 py-3 whitespace-nowrap overflow-x-auto no-scrollbar overscroll-x-contain">
             {CATEGORIES.map((cat) => (
-              <Link
+              <div
                 key={cat.id}
-                to={`/category/${cat.slug}`}
-                className="text-[10px] font-black text-slate-400 hover:logo-text-green transition-colors uppercase tracking-[0.15em]"
+                className="relative group"
+                onMouseEnter={(e) => handleCategoryHover(cat.id, e)}
+                onMouseLeave={handleCategoryLeave}
               >
-                {cat.name}
-              </Link>
+                <Link
+                  to={`/category/${cat.slug}`}
+                  className="text-[10px] font-black text-white hover:text-[#333] transition-colors uppercase tracking-[0.15em] flex items-center gap-1"
+                >
+                  {cat.name}
+                  {cat.subcategories && cat.subcategories.length > 0 && (
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  )}
+                </Link>
+              </div>
             ))}
           </div>
         </div>
       </div>
 
+      {/* Dropdown rendered outside overflow container */}
+      {hoveredCategory && (() => {
+        const cat = CATEGORIES.find(c => c.id === hoveredCategory);
+        if (!cat?.subcategories?.length) return null;
+        return (
+          <div 
+            className="fixed z-[9999] bg-white rounded-lg shadow-xl pt-2 pb-2 min-w-[180px]"
+            style={{ left: `${dropdownPosition.left}px`, top: `${dropdownPosition.top}px`, paddingTop: '10px', marginTop: '-2px' }}
+            onMouseEnter={handleDropdownEnter}
+            onMouseLeave={handleDropdownLeave}
+          >
+            {cat.subcategories.map((sub, idx) => (
+              <Link
+                key={idx}
+                to={`/category/${cat.slug}?sub=${encodeURIComponent(sub)}`}
+                className="block px-4 py-2 text-xs font-medium text-slate-700 hover:bg-red-50 hover:text-red-600 transition-colors"
+              >
+                {sub}
+              </Link>
+            ))}
+          </div>
+        );
+      })()}
+
       {/* Side Drawer Navigation */}
       {/* Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300"
+          className="fixed inset-0 bg-black bg-opacity-50 z-[99998] transition-opacity duration-300"
           onClick={() => setIsOpen(false)}
         />
       )}
 
       {/* Side Drawer */}
       <div
-        className={`fixed top-0 right-0 h-screen w-80 bg-white z-50 transform transition-transform duration-300 ease-in-out shadow-2xl ${
+        className={`fixed top-0 right-0 h-screen w-80 bg-white z-[99999] transform transition-transform duration-300 ease-in-out shadow-2xl ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >

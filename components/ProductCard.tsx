@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Product } from '../types';
+import { CATEGORIES } from '../constants';
 
 interface Props {
   product: Product;
@@ -8,74 +9,77 @@ interface Props {
 }
 
 const ProductCard: React.FC<Props> = ({ product, layout = 'grid' }) => {
-  // Mock logic for badges to match Bacola look
-  const isRecommended = parseInt(product.id.slice(-1)) % 3 === 0;
-  const discount = Math.floor(Math.random() * 20) + 10;
+  const category = CATEGORIES.find(c => c.id === product.categoryId);
 
   return (
-    <div className={`bg-white border border-slate-100 overflow-hidden hover:shadow-2xl transition-all duration-500 flex ${layout === 'grid' ? 'flex-col ' : 'flex-row'} h-full group relative`}>
-
-      {/* Retail Style Badges */}
-      <div className="absolute top-5 left-5 z-20 flex flex-col gap-2">
-        <div className="bg-brand-lime text-brand-dark px-3 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest shadow-sm">
-          {discount}% OFF BULK
-        </div>
-        {isRecommended && (
-          <div className="bg-brand-red text-white px-3 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest shadow-sm">
-            RECOMMENDED
-          </div>
-        )}
-      </div>
-
+    <div className={`bg-white rounded-xl overflow-hidden transition-all duration-300 flex ${layout === 'grid' ? 'flex-col' : 'flex-row'} h-full group relative border border-slate-200 hover:border-brand-green hover:shadow-lg`}>
+      
       {/* Image Area */}
-      <div className="aspect-square overflow-hidden bg-slate-50 relative p-6 h-[250px]">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
-        />
-        <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-          <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+      <div className="relative overflow-hidden bg-slate-50">
+        <div className="aspect-[4/3] p-4">
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-500"
+          />
+        </div>
+        
+        {/* Category Badge */}
+        <div className="absolute top-3 left-3">
+          <span className="bg-brand-green text-white px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wide">
+            {category?.name || 'Wholesale'}
+          </span>
+        </div>
+
+        {/* Quick View Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
+          <span className="text-white text-xs font-semibold bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+            Quick View
+          </span>
         </div>
       </div>
 
       {/* Content Area */}
-      <div className="p-8 flex flex-col flex-grow">
-        {/* Rating/Trust */}
-        <div className="flex items-center space-x-1 mb-4">
-          {[1, 2, 3, 4, 5].map(star => (
-            <svg key={star} className={`w-3 h-3 ${star <= 4 ? 'text-yellow-400' : 'text-slate-200'}`} fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-          ))}
-          <span className="text-[10px] font-black text-slate-300 ml-2">4.0 (12 Reviews)</span>
+      <div className="p-5 flex flex-col flex-grow">
+        {/* Stock Status */}
+        <div className="flex items-center gap-2 mb-3">
+          <span className="flex items-center gap-1.5">
+            <span className="w-2 h-2 bg-brand-green rounded-full animate-pulse"></span>
+            <span className="text-[11px] font-semibold text-brand-green">In Stock</span>
+          </span>
+          <span className="text-slate-300">•</span>
+          <span className="text-[11px] text-slate-400 font-medium">Bulk Available</span>
         </div>
 
-        <h3 className="font-black text-[#0f172a] text-[17px] mb-2 uppercase tracking-tighter leading-tight group-hover:text-brand-green transition-colors">
+        {/* Product Name */}
+        <h3 className="font-bold text-slate-900 text-base mb-2 leading-snug group-hover:text-brand-green transition-colors line-clamp-2">
           {product.name}
         </h3>
 
-        <div className="flex items-center space-x-2 mb-4">
-          <span className="text-[10px] font-black text-brand-green bg-brand-green/5 px-2 py-0.5 rounded uppercase tracking-widest">IN STOCK</span>
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Grade A Certified</span>
-        </div>
-
-        <p className="text-[12px] text-slate-500 mb-4 font-medium leading-relaxed line-clamp-2">
+        {/* Description */}
+        <p className="text-[13px] text-slate-500 mb-4 leading-relaxed line-clamp-2 flex-grow">
           {product.description}
         </p>
 
-        {/* Footer Actions */}
-        <div className="mt-auto pt-1 border-t border-slate-50">
+        {/* Footer */}
+        <div className="mt-auto space-y-3">
+          {/* MOQ Info */}
+          <div className="flex items-center justify-between text-[11px] text-slate-400">
+            <span className="font-medium">MOQ: Case/Pallet</span>
+            <span className="font-medium">Grade A Quality</span>
+          </div>
+
+          {/* CTA Button */}
           <Link
             to="/contact"
             state={{ product: product.name }}
-            className="w-full bg-white border border-slate-200 hover:border-brand-red hover:bg-brand-red hover:text-white text-slate-900 py-3 transition-all flex items-center justify-center space-x-2 shadow-sm"
+            className="w-full bg-brand-red hover:bg-brand-red/90 text-white py-3 px-4 rounded-lg transition-all flex items-center justify-center gap-2 font-semibold text-sm shadow-sm hover:shadow-md"
           >
-            <span className="font-black text-[11px] tracking-widest">Request Wholesale Price</span>
-            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 4v16m8-8H4" /></svg>
+            <span>Get Wholesale Price</span>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
           </Link>
-          <div className="mt-4 flex justify-between items-center px-1">
-            <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">MOQ: 1 Pallet</span>
-            <Link to={`/category/${product.categoryId}`} className="text-[10px] font-black text-brand-red hover:underline uppercase tracking-widest">View Details</Link>
-          </div>
         </div>
       </div>
     </div>

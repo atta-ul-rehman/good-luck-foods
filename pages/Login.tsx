@@ -75,7 +75,7 @@ const Login: React.FC = () => {
                 <div className="max-w-md w-full bg-white rounded-3xl shadow-xl border border-[#E5E7EB] p-8 md:p-10 z-10 -mt-20">
                     <div className="text-center mb-8">
                         <h2 className="text-2xl font-bold text-[#0A1428] mb-2">Access Your Account</h2>
-                        <p className="text-[#6B7280] text-sm font-medium">Secure login for partners</p>
+                        <p className="text-[#6B7280] text-sm font-medium">Secure login for customers</p>
                     </div>
 
                     {error && (

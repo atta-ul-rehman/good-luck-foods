@@ -135,7 +135,7 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection animation="fadeSlideUp">
             <p className="text-center text-xs font-black text-white uppercase tracking-[0.3em] mb-8">
-              Trusted by 1,200+ Industry Leaders
+              Well known brands
             </p>
           </AnimatedSection>
           <div className="flex flex-wrap justify-center gap-x-16 gap-y-6">
@@ -156,8 +156,8 @@ const Home: React.FC = () => {
           {/* Section Header */}
           <AnimatedSection animation="fadeSlideUp">
             <SectionHeader
-              subtitle="What We Offer"
-              title="OUR PRODUCT CATEGORIES"
+              // subtitle="What We Offer"
+              title="WHAT WE OFFER"
               description="We specialise in all aspects of the fast food and food service sector, from packaging products to key ingredients."
             />
           </AnimatedSection>
@@ -201,7 +201,7 @@ const Home: React.FC = () => {
               <div className="h-[320px] overflow-hidden">
                 <img 
                   src="https://images.unsplash.com/photo-1631010231888-777b6285ef84?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  alt="Packaging"
+                  alt="Bespoke Packaging"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
@@ -209,7 +209,7 @@ const Home: React.FC = () => {
                 <span className="inline-block px-4 py-1.5 bg-brand-red text-white text-xs font-black uppercase tracking-widest mb-4 w-fit">
                   Category
                 </span>
-                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-wide">Packaging</h3>
+                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-wide">Bespoke Packaging</h3>
                 <p className="text-slate-400 leading-relaxed mb-6">
                   Premium food packaging solutions including containers, disposables, and eco-friendly options. Perfect for takeaways, catering services, and food businesses.
                 </p>
@@ -337,94 +337,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Partner Your Brand Banner - Full Width */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0" 
-            alt="Warehouse" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-emerald-700 via-emerald-700/95 to-emerald-700/80"></div>
-        </div>
-        <div className="relative z-10 py-16 md:py-20">
-          <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight">
-                Partner Your Brand
-              </h2>
-              <div className="w-24 h-1 bg-white mt-4"></div>
-              <p className="text-white/80 mt-6 max-w-xl text-lg">
-                Looking for bespoke wholesale solutions? We offer white-label products, custom packaging, and tailored distribution for your business needs.
-              </p>
-            </div>
-            <Link 
-              to="/contact" 
-              className="flex-shrink-0 bg-white text-emerald-700 px-10 py-5 font-black uppercase tracking-widest text-sm hover:bg-slate-100 transition-all"
-            >
-              Get Started
-            </Link>
-          </div>
-        </div>
-        {/* Diagonal accent */}
-        <div className="absolute top-0 right-0 w-1/3 h-full overflow-hidden pointer-events-none hidden lg:block">
-          <div className="absolute -right-20 top-0 w-full h-full bg-white/10 transform skew-x-12"></div>
-        </div>
-      </section>
-
-      {/* Featured Products */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <AnimatedSection animation="fadeSlideUp">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-              <div>
-                <span className="text-brand-red text-[11px] font-semibold uppercase tracking-[0.3em]">
-                  High Demand Stock
-                </span>
-                <h2 className="text-2xl md:text-4xl font-extrabold text-slate-900 mt-4">
-                  Featured Wholesale Items
-                </h2>
-                <p className="text-slate-500 mt-4 max-w-xl leading-relaxed">
-                  Curated selection of our best-moving product lines for professional kitchens and retail shelves.
-                </p>
-              </div>
-              <Link to="/products" className="text-brand-green font-semibold tracking-wide text-sm hover:underline">
-                View Full Catalog
-              </Link>
-            </div>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {PRODUCTS.slice(0, 4).map((product, index) => (
-              <AnimatedSection key={product.id} animation="scaleUp" delay={index * 100}>
-                <ProductCard product={product} />
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-      {/* Supply - hidden*/}
-      <section className="hidden py-20 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
-          <AnimatedSection animation="fadeSlideUp">
-            <SectionHeader
-              subtitle="Browse Categories"
-              title="SUPPLY WITHOUT THE OVERHEAD"
-              description="Direct manufacturer relationships mean better pricing without intermediary markup."
-            />
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {CATEGORIES.slice(0, 8).map((cat, index) => (
-              <AnimatedSection key={cat.id} animation="scaleUp" delay={index * 80}>
-                <CategoryCard category={cat} />
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Section */}
+      {/* Why Choose us Section */}
       <section className="py-20 bg-slate-100 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -460,11 +373,101 @@ const Home: React.FC = () => {
                     to="/contact"
                     className="inline-block bg-brand-red text-white px-10 py-4 font-black uppercase tracking-widest text-xs hover:bg-brand-red/90 transition-all"
                   >
-                    Request Partner Proposal
+                    Request Proposal
                   </Link>
                 </div>
               </div>
             </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Your Brand Banner - Full Width */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0" 
+            alt="Warehouse" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-emerald-700 via-emerald-700/95 to-emerald-700/80"></div>
+        </div>
+        <div className="relative z-10 py-16 md:py-20">
+          <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight">
+                Your Brand
+              </h2>
+              <div className="w-24 h-1 bg-white mt-4"></div>
+              <p className="text-white/80 mt-6 max-w-xl text-lg">
+                Looking for bespoke wholesale solutions? We offer white-label products, custom packaging, and tailored distribution for your business needs.
+              </p>
+            </div>
+            <Link 
+              to="/contact" 
+              className="flex-shrink-0 bg-white text-emerald-700 px-10 py-5 font-black uppercase tracking-widest text-sm hover:bg-slate-100 transition-all"
+            >
+              Get Started
+            </Link>
+          </div>
+        </div>
+        {/* Diagonal accent */}
+        <div className="absolute top-0 right-0 w-1/3 h-full overflow-hidden pointer-events-none hidden lg:block">
+          <div className="absolute -right-20 top-0 w-full h-full bg-white/10 transform skew-x-12"></div>
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <AnimatedSection animation="fadeSlideUp">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
+              <div>
+                <span className="text-brand-green text-[11px] font-semibold uppercase tracking-[0.25em] mb-3 block">
+                  High Demand Stock
+                </span>
+                <h2 className="text-2xl md:text-4xl font-bold text-slate-900">
+                  Featured Wholesale Items
+                </h2>
+                <p className="text-slate-500 mt-3 max-w-xl text-sm leading-relaxed">
+                  Curated selection of our best-moving product lines for professional kitchens and retail shelves.
+                </p>
+              </div>
+              <Link to="/products" className="text-brand-red font-semibold text-sm hover:underline flex items-center gap-2">
+                View Full Catalog
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {PRODUCTS.slice(0, 4).map((product, index) => (
+              <AnimatedSection key={product.id} animation="scaleUp" delay={index * 100}>
+                <ProductCard product={product} />
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* Supply - hidden*/}
+      <section className="hidden py-20 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <AnimatedSection animation="fadeSlideUp">
+            <SectionHeader
+              subtitle="Browse Categories"
+              title="SUPPLY WITHOUT THE OVERHEAD"
+              description="Direct manufacturer relationships mean better pricing without intermediary markup."
+            />
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {CATEGORIES.slice(0, 8).map((cat, index) => (
+              <AnimatedSection key={cat.id} animation="scaleUp" delay={index * 80}>
+                <CategoryCard category={cat} />
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>

@@ -18,7 +18,7 @@ const About: React.FC = () => {
             Feeding the Industry Since 2008
           </h1>
           <p className="text-white/70 max-w-2xl mx-auto font-light">
-            Good Luck Foods Ltd. is a premier B2B distribution partner dedicated to supplying
+            Good Luck Foods Ltd. is a premier B2B distributor dedicated to supplying
             high-quality food products to businesses across the region.
           </p>
         </div>
@@ -50,7 +50,7 @@ const About: React.FC = () => {
                 </p>
                 <p>
                   Operating from three regional hubs, we use advanced logistics technology to
-                  ensure uninterrupted supply for our partners.
+                  ensure uninterrupted supply for our customers.
                 </p>
               </div>
 
@@ -109,7 +109,7 @@ const About: React.FC = () => {
             {[
               { title: 'Integrity', desc: 'Transparent sourcing and honest pricing across every transaction.' },
               { title: 'Excellence', desc: 'Uncompromising standards in product quality and logistics execution.' },
-              { title: 'Partnership', desc: 'We grow alongside our clients. Your success is our KPI.' }
+              { title: 'Collaboration', desc: 'We grow alongside our clients. Your success is our KPI.' }
             ].map((v, i) => (
               <div
                 key={i}
@@ -131,7 +131,7 @@ const About: React.FC = () => {
       <section className="py-28 bg-white text-center">
         <div className="max-w-2xl mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-black mb-6">
-            Partner with the Leaders
+            Work with the Leaders
           </h2>
           <p className="text-slate-600 mb-12 font-light">
             Experience the difference that professional wholesale management makes to your bottom line.
@@ -140,7 +140,7 @@ const About: React.FC = () => {
             to="/contact"
             className="inline-block bg-brand-red text-white px-12 py-5 rounded-xl font-black uppercase tracking-widest text-sm hover:bg-brand-red/90 transition-all shadow-2xl"
           >
-            Start Your Partnership
+            Get Started
           </Link>
         </div>
       </section>
