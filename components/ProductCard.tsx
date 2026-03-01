@@ -16,11 +16,11 @@ const ProductCard: React.FC<Props> = ({ product, layout = 'grid' }) => {
       
       {/* Image Area */}
       <div className="relative overflow-hidden bg-slate-50">
-        <div className="aspect-[4/3] p-4">
+        <div className="aspect-[4/3]">
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
         </div>
         
@@ -40,42 +40,37 @@ const ProductCard: React.FC<Props> = ({ product, layout = 'grid' }) => {
       </div>
 
       {/* Content Area */}
-      <div className="p-5 flex flex-col flex-grow">
+      <div className="p-5 flex flex-col flex-grow bg-slate-900">
         {/* Stock Status */}
         <div className="flex items-center gap-2 mb-3">
           <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 bg-brand-green rounded-full animate-pulse"></span>
-            <span className="text-[11px] font-semibold text-brand-green">In Stock</span>
+            <span className="w-2 h-2 bg-brand-red rounded-full animate-pulse"></span>
+            <span className="text-[11px] font-semibold text-white">In Stock</span>
           </span>
           <span className="text-slate-300">•</span>
-          <span className="text-[11px] text-slate-400 font-medium">Bulk Available</span>
+          <span className="text-[11px] text-slate-200 font-medium">Bulk Available</span>
         </div>
 
         {/* Product Name */}
-        <h3 className="font-bold text-slate-900 text-base mb-2 leading-snug group-hover:text-brand-green transition-colors line-clamp-2">
+        <h3 className="font-bold text-white text-base mb-2 leading-snug group-hover:text-slate-100 transition-colors line-clamp-2">
           {product.name}
         </h3>
 
         {/* Description */}
-        <p className="text-[13px] text-slate-500 mb-4 leading-relaxed line-clamp-2 flex-grow">
+        <p className="text-[13px] text-slate-50 mb-4 leading-relaxed line-clamp-2 flex-grow">
           {product.description}
         </p>
 
         {/* Footer */}
         <div className="mt-auto space-y-3">
-          {/* MOQ Info */}
-          <div className="flex items-center justify-between text-[11px] text-slate-400">
-            <span className="font-medium">MOQ: Case/Pallet</span>
-            <span className="font-medium">Grade A Quality</span>
-          </div>
 
           {/* CTA Button */}
           <Link
             to="/contact"
             state={{ product: product.name }}
-            className="w-full bg-brand-red hover:bg-brand-red/90 text-white py-3 px-4 rounded-lg transition-all flex items-center justify-center gap-2 font-semibold text-sm shadow-sm hover:shadow-md"
+            className="w-full bg-slate-100 hover:bg-slate-200 text-white py-3 px-4 rounded-lg transition-all flex items-center justify-center gap-2 font-semibold text-sm shadow-sm hover:shadow-md"
           >
-            <span>Get Wholesale Price</span>
+            <span className="text-black ">Get Wholesale Price</span>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

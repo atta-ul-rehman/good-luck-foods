@@ -177,7 +177,7 @@ const Home: React.FC = () => {
                 </p>
                 <Link 
                   to="/products" 
-                  className="inline-flex items-center gap-2 bg-emerald-600 text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-emerald-700 transition-all w-fit"
+                  className="inline-flex rounded-lg items-center gap-2 bg-emerald-600 text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-emerald-700 transition-all w-fit"
                 >
                   Explore Products
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -200,7 +200,7 @@ const Home: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch bg-slate-900 overflow-hidden group transition-all duration-500 hover:shadow-2xl">
               <div className="h-[320px] overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1631010231888-777b6285ef84?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  src="/assets/packaging.png"
                   alt="Bespoke Packaging"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
@@ -215,7 +215,7 @@ const Home: React.FC = () => {
                 </p>
                 <Link 
                   to="/products" 
-                  className="inline-flex items-center gap-2 bg-brand-red text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-brand-red/80 transition-all w-fit"
+                  className="inline-flex rounded-lg items-center gap-2 bg-brand-red text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-brand-red/80 transition-all w-fit"
                 >
                   Explore Products
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -239,7 +239,7 @@ const Home: React.FC = () => {
                 </p>
                 <Link 
                   to="/products" 
-                  className="inline-flex items-center gap-2 bg-emerald-600 text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-emerald-700 transition-all w-fit"
+                  className="inline-flex rounded-lg items-center gap-2 bg-emerald-600 text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-emerald-700 transition-all w-fit"
                 >
                   Explore Products
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -249,7 +249,7 @@ const Home: React.FC = () => {
               </div>
               <div className="order-1 lg:order-2 h-[320px] overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1601599561213-832382fd07ba?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  src="/assets/frozen-products.png"
                   alt="Frozen Products"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
@@ -262,7 +262,7 @@ const Home: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch bg-slate-900 overflow-hidden group transition-all duration-500 hover:shadow-2xl">
               <div className="h-[320px] overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1593290531149-0773a6426e44?q=80&w=685&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  src="/assets/spices.png"
                   alt="Spices"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
@@ -277,7 +277,7 @@ const Home: React.FC = () => {
                 </p>
                 <Link 
                   to="/products" 
-                  className="inline-flex items-center gap-2 bg-brand-red text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-brand-red/80 transition-all w-fit"
+                  className="inline-flex rounded-lg items-center gap-2 bg-brand-red text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-brand-red/80 transition-all w-fit"
                 >
                   Explore Products
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -301,7 +301,7 @@ const Home: React.FC = () => {
                 </p>
                 <Link 
                   to="/products" 
-                  className="inline-flex items-center gap-2 bg-emerald-600 text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-emerald-700 transition-all w-fit"
+                  className="inline-flex rounded-lg items-center gap-2 bg-emerald-600 text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-emerald-700 transition-all w-fit"
                 >
                   Explore Products
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -325,7 +325,7 @@ const Home: React.FC = () => {
             <div className="text-center mt-12">
               <Link 
                 to="/products" 
-                className="inline-flex items-center gap-3 bg-emerald-600 text-white px-10 py-4 font-black text-sm uppercase tracking-widest hover:bg-emerald-700 transition-all border-2 border-emerald-600 hover:border-emerald-700"
+                className="inline-flex rounded-lg items-center gap-3 bg-emerald-600 text-white px-10 py-4 font-black text-sm uppercase tracking-widest hover:bg-emerald-700 transition-all border-2 border-emerald-600 hover:border-emerald-700"
               >
                 View All Products
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -348,7 +348,7 @@ const Home: React.FC = () => {
                   className="w-full shadow-2xl relative z-10"
                   alt="Operations"
                 />
-                <div className="absolute -bottom-6 -right-6 bg-slate-900 text-white p-6 shadow-2xl hidden md:block z-20">
+                <div className="absolute -bottom-6 -right-6 bg-slate-900 text-white p-6  rounded-lg shadow-2xl hidden md:block z-20">
                   <p className="text-4xl font-black mb-1">99.8%</p>
                   <p className="text-white/80 text-xs font-black uppercase tracking-widest">Accuracy Rate</p>
                 </div>
@@ -371,7 +371,7 @@ const Home: React.FC = () => {
                 <div className="mt-10">
                   <Link
                     to="/contact"
-                    className="inline-block bg-brand-red text-white px-10 py-4 font-black uppercase tracking-widest text-xs hover:bg-brand-red/90 transition-all"
+                    className="inline-block rounded-lg bg-brand-red text-white px-10 py-4 font-black uppercase tracking-widest text-xs hover:bg-brand-red/90 transition-all"
                   >
                     Request Proposal
                   </Link>
@@ -405,7 +405,7 @@ const Home: React.FC = () => {
             </div>
             <Link 
               to="/contact" 
-              className="flex-shrink-0 bg-white text-emerald-700 px-10 py-5 font-black uppercase tracking-widest text-sm hover:bg-slate-100 transition-all"
+              className="flex-shrink-0 rounded-lg bg-white text-emerald-700 px-10 py-5 font-black uppercase tracking-widest text-sm hover:bg-slate-100 transition-all"
             >
               Get Started
             </Link>

@@ -117,7 +117,7 @@ const HeroSlider: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6 w-full">
           <div className="max-w-lg">
             {/* White content box */}
-            <div className="bg-white/95 backdrop-blur-sm p-8 md:p-10 shadow-2xl">
+            <div className="bg-white/95 backdrop-blur-sm p-8 md:p-10 shadow-2xl rounded-lg">
               {/* Subtitle with accent line */}
               <div className="flex items-center gap-3 mb-4">
                 <span className="w-10 h-1 bg-brand-red"></span>
@@ -134,7 +134,7 @@ const HeroSlider: React.FC = () => {
               {/* CTA Button */}
               <Link
                 to="/products"
-                className="inline-block bg-brand-red text-white px-8 py-4 font-semibold tracking-wide text-sm hover:brightness-110 transition-all active:scale-95"
+                className="inline-block rounded-lg bg-brand-red text-white px-8 py-4 font-semibold tracking-wide text-sm hover:brightness-110 transition-all active:scale-95"
               >
                 Browse Our Catalog
               </Link>

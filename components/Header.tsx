@@ -73,15 +73,15 @@ const Header: React.FC = () => {
           </Link>
 
           {/* Right Side: Search, Button, and Menu */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 w-[50%]">
             {/* Search Bar */}
-            <form onSubmit={handleSearch} className="relative hidden md:block">
+            <form onSubmit={handleSearch} className="relative hidden md:block w-[100%]">
               <input
                 type="search"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search products..."
-                className="w-48 px-4 py-2 text-sm border border-slate-300 focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 transition-all"
+                className="w-full rounded-lg px-4 py-2 text-sm border border-slate-300 focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 transition-all"
               />
               <button
                 type="submit"
@@ -96,7 +96,7 @@ const Header: React.FC = () => {
             {/* Request Quote Button */}
             <Link
               to="/contact"
-              className="hidden md:block bg-brand-red text-white px-6 py-2.5 text-sm font-black tracking-widest hover:brightness-110 transition-all active:scale-95"
+              className="hidden md:block bg-brand-red text-white px-6 py-2 rounded-lg text-sm font-black tracking-widest hover:brightness-110 transition-all active:scale-95"
             >
               Login
             </Link>
