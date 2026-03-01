@@ -72,7 +72,7 @@ const Signup: React.FC = () => {
 
                 {/* Hero Text */}
                 <div className="relative z-10 px-4">
-                    <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">Partner Application</h1>
+                    <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">Business Application</h1>
                     <p className="text-[#9CA3AF] text-lg max-w-xl mx-auto">Join our network of 1,200+ industry leaders</p>
                 </div>
             </div>
@@ -224,7 +224,7 @@ const Signup: React.FC = () => {
 
                     <div className="mt-10 text-center pt-8 border-t border-[#E5E7EB]">
                         <p className="text-[#6B7280] text-sm font-medium">
-                            Already have a Partner ID?{' '}
+                            Already have an account?{' '}
                             <Link to="/login" className="text-[#FF3B6D] font-bold hover:underline">Sign In</Link>
                         </p>
                     </div>

@@ -135,7 +135,7 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection animation="fadeSlideUp">
             <p className="text-center text-xs font-black text-white uppercase tracking-[0.3em] mb-8">
-              Trusted by 1,200+ Industry Leaders
+              Well known brands
             </p>
           </AnimatedSection>
           <div className="flex flex-wrap justify-center gap-x-16 gap-y-6">
@@ -156,8 +156,8 @@ const Home: React.FC = () => {
           {/* Section Header */}
           <AnimatedSection animation="fadeSlideUp">
             <SectionHeader
-              subtitle="What We Offer"
-              title="OUR PRODUCT CATEGORIES"
+              // subtitle="What We Offer"
+              title="WHAT WE OFFER"
               description="We specialise in all aspects of the fast food and food service sector, from packaging products to key ingredients."
             />
           </AnimatedSection>
@@ -177,7 +177,7 @@ const Home: React.FC = () => {
                 </p>
                 <Link 
                   to="/products" 
-                  className="inline-flex items-center gap-2 bg-emerald-600 text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-emerald-700 transition-all w-fit"
+                  className="inline-flex rounded-lg items-center gap-2 bg-emerald-600 text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-emerald-700 transition-all w-fit"
                 >
                   Explore Products
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -200,8 +200,8 @@ const Home: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch bg-slate-900 overflow-hidden group transition-all duration-500 hover:shadow-2xl">
               <div className="h-[320px] overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1631010231888-777b6285ef84?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  alt="Packaging"
+                  src="/assets/packaging.png"
+                  alt="Bespoke Packaging"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
@@ -209,13 +209,13 @@ const Home: React.FC = () => {
                 <span className="inline-block px-4 py-1.5 bg-brand-red text-white text-xs font-black uppercase tracking-widest mb-4 w-fit">
                   Category
                 </span>
-                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-wide">Packaging</h3>
+                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-wide">Bespoke Packaging</h3>
                 <p className="text-slate-400 leading-relaxed mb-6">
                   Premium food packaging solutions including containers, disposables, and eco-friendly options. Perfect for takeaways, catering services, and food businesses.
                 </p>
                 <Link 
                   to="/products" 
-                  className="inline-flex items-center gap-2 bg-brand-red text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-brand-red/80 transition-all w-fit"
+                  className="inline-flex rounded-lg items-center gap-2 bg-brand-red text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-brand-red/80 transition-all w-fit"
                 >
                   Explore Products
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -239,7 +239,7 @@ const Home: React.FC = () => {
                 </p>
                 <Link 
                   to="/products" 
-                  className="inline-flex items-center gap-2 bg-emerald-600 text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-emerald-700 transition-all w-fit"
+                  className="inline-flex rounded-lg items-center gap-2 bg-emerald-600 text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-emerald-700 transition-all w-fit"
                 >
                   Explore Products
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -249,7 +249,7 @@ const Home: React.FC = () => {
               </div>
               <div className="order-1 lg:order-2 h-[320px] overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1601599561213-832382fd07ba?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  src="/assets/frozen-products.png"
                   alt="Frozen Products"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
@@ -262,7 +262,7 @@ const Home: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch bg-slate-900 overflow-hidden group transition-all duration-500 hover:shadow-2xl">
               <div className="h-[320px] overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1593290531149-0773a6426e44?q=80&w=685&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  src="/assets/spices.png"
                   alt="Spices"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
@@ -277,7 +277,7 @@ const Home: React.FC = () => {
                 </p>
                 <Link 
                   to="/products" 
-                  className="inline-flex items-center gap-2 bg-brand-red text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-brand-red/80 transition-all w-fit"
+                  className="inline-flex rounded-lg items-center gap-2 bg-brand-red text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-brand-red/80 transition-all w-fit"
                 >
                   Explore Products
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -301,7 +301,7 @@ const Home: React.FC = () => {
                 </p>
                 <Link 
                   to="/products" 
-                  className="inline-flex items-center gap-2 bg-emerald-600 text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-emerald-700 transition-all w-fit"
+                  className="inline-flex rounded-lg items-center gap-2 bg-emerald-600 text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-emerald-700 transition-all w-fit"
                 >
                   Explore Products
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -325,7 +325,7 @@ const Home: React.FC = () => {
             <div className="text-center mt-12">
               <Link 
                 to="/products" 
-                className="inline-flex items-center gap-3 bg-emerald-600 text-white px-10 py-4 font-black text-sm uppercase tracking-widest hover:bg-emerald-700 transition-all border-2 border-emerald-600 hover:border-emerald-700"
+                className="inline-flex rounded-lg items-center gap-3 bg-emerald-600 text-white px-10 py-4 font-black text-sm uppercase tracking-widest hover:bg-emerald-700 transition-all border-2 border-emerald-600 hover:border-emerald-700"
               >
                 View All Products
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -337,7 +337,52 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Partner Your Brand Banner - Full Width */}
+      {/* Why Choose us Section */}
+      <section className="py-20 bg-slate-100 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <AnimatedSection animation="slideRight">
+              <div className="relative">
+                <img
+                  src="https://images.unsplash.com/photo-1590650153855-d9e808231d41?auto=format&fit=crop&q=80&w=800"
+                  className="w-full shadow-2xl relative z-10"
+                  alt="Operations"
+                />
+                <div className="absolute -bottom-6 -right-6 bg-slate-900 text-white p-6  rounded-lg shadow-2xl hidden md:block z-20">
+                  <p className="text-4xl font-black mb-1">99.8%</p>
+                  <p className="text-white/80 text-xs font-black uppercase tracking-widest">Accuracy Rate</p>
+                </div>
+                {/* Accent line */}
+                <div className="absolute top-0 left-0 w-2 h-full bg-brand-red"></div>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection animation="slideLeft" delay={200}>
+              <div>
+                <span className="text-emerald-600 text-xs font-black uppercase tracking-[0.3em]">Why Choose Us</span>
+                <h2 className="text-2xl md:text-4xl font-black text-slate-900 mt-3 mb-2 uppercase tracking-tight">Why Choose Good Luck Foods Ltd.</h2>
+                <div className="w-24 h-1 bg-brand-red mb-8"></div>
+                <div className="space-y-8">
+                  {[
+                    { title: 'Volume-Optimized Pricing', desc: 'Our price tiers grow with your business. The more you buy, the more you save on unit costs.' },
+                    { title: 'Predictable Logistics', desc: 'Real-time tracking and dedicated account managers ensure you know exactly when your stock arrives.' },
+                    { title: 'Sourcing Sovereignty', desc: 'Direct relationships with farms and manufacturers mean we bypass global supply chain volatility.' }
+                  ].map((item, i) => <InfoCard key={i} number={i + 1} title={item.title} desc={item.desc} />)}
+                </div>
+                <div className="mt-10">
+                  <Link
+                    to="/contact"
+                    className="inline-block rounded-lg bg-brand-red text-white px-10 py-4 font-black uppercase tracking-widest text-xs hover:bg-brand-red/90 transition-all"
+                  >
+                    Request Proposal
+                  </Link>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Your Brand Banner - Full Width */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <img 
@@ -351,7 +396,7 @@ const Home: React.FC = () => {
           <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
               <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight">
-                Partner Your Brand
+                Your Brand
               </h2>
               <div className="w-24 h-1 bg-white mt-4"></div>
               <p className="text-white/80 mt-6 max-w-xl text-lg">
@@ -360,7 +405,7 @@ const Home: React.FC = () => {
             </div>
             <Link 
               to="/contact" 
-              className="flex-shrink-0 bg-white text-emerald-700 px-10 py-5 font-black uppercase tracking-widest text-sm hover:bg-slate-100 transition-all"
+              className="flex-shrink-0 rounded-lg bg-white text-emerald-700 px-10 py-5 font-black uppercase tracking-widest text-sm hover:bg-slate-100 transition-all"
             >
               Get Started
             </Link>
@@ -373,28 +418,31 @@ const Home: React.FC = () => {
       </section>
 
       {/* Featured Products */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection animation="fadeSlideUp">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
               <div>
-                <span className="text-brand-red text-[11px] font-semibold uppercase tracking-[0.3em]">
+                <span className="text-brand-green text-[11px] font-semibold uppercase tracking-[0.25em] mb-3 block">
                   High Demand Stock
                 </span>
-                <h2 className="text-2xl md:text-4xl font-extrabold text-slate-900 mt-4">
+                <h2 className="text-2xl md:text-4xl font-bold text-slate-900">
                   Featured Wholesale Items
                 </h2>
-                <p className="text-slate-500 mt-4 max-w-xl leading-relaxed">
+                <p className="text-slate-500 mt-3 max-w-xl text-sm leading-relaxed">
                   Curated selection of our best-moving product lines for professional kitchens and retail shelves.
                 </p>
               </div>
-              <Link to="/products" className="text-brand-green font-semibold tracking-wide text-sm hover:underline">
+              <Link to="/products" className="text-brand-red font-semibold text-sm hover:underline flex items-center gap-2">
                 View Full Catalog
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </Link>
             </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {PRODUCTS.slice(0, 4).map((product, index) => (
               <AnimatedSection key={product.id} animation="scaleUp" delay={index * 100}>
                 <ProductCard product={product} />
@@ -420,51 +468,6 @@ const Home: React.FC = () => {
                 <CategoryCard category={cat} />
               </AnimatedSection>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Section */}
-      <section className="py-20 bg-slate-100 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <AnimatedSection animation="slideRight">
-              <div className="relative">
-                <img
-                  src="https://images.unsplash.com/photo-1590650153855-d9e808231d41?auto=format&fit=crop&q=80&w=800"
-                  className="w-full shadow-2xl relative z-10"
-                  alt="Operations"
-                />
-                <div className="absolute -bottom-6 -right-6 bg-slate-900 text-white p-6 shadow-2xl hidden md:block z-20">
-                  <p className="text-4xl font-black mb-1">99.8%</p>
-                  <p className="text-white/80 text-xs font-black uppercase tracking-widest">Accuracy Rate</p>
-                </div>
-                {/* Accent line */}
-                <div className="absolute top-0 left-0 w-2 h-full bg-brand-red"></div>
-              </div>
-            </AnimatedSection>
-            <AnimatedSection animation="slideLeft" delay={200}>
-              <div>
-                <span className="text-emerald-600 text-xs font-black uppercase tracking-[0.3em]">Why Choose Us</span>
-                <h2 className="text-2xl md:text-4xl font-black text-slate-900 mt-3 mb-2 uppercase tracking-tight">Why Choose Good Luck Foods Ltd.</h2>
-                <div className="w-24 h-1 bg-brand-red mb-8"></div>
-                <div className="space-y-8">
-                  {[
-                    { title: 'Volume-Optimized Pricing', desc: 'Our price tiers grow with your business. The more you buy, the more you save on unit costs.' },
-                    { title: 'Predictable Logistics', desc: 'Real-time tracking and dedicated account managers ensure you know exactly when your stock arrives.' },
-                    { title: 'Sourcing Sovereignty', desc: 'Direct relationships with farms and manufacturers mean we bypass global supply chain volatility.' }
-                  ].map((item, i) => <InfoCard key={i} number={i + 1} title={item.title} desc={item.desc} />)}
-                </div>
-                <div className="mt-10">
-                  <Link
-                    to="/contact"
-                    className="inline-block bg-brand-red text-white px-10 py-4 font-black uppercase tracking-widest text-xs hover:bg-brand-red/90 transition-all"
-                  >
-                    Request Partner Proposal
-                  </Link>
-                </div>
-              </div>
-            </AnimatedSection>
           </div>
         </div>
       </section>

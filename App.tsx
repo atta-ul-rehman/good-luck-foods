@@ -8,6 +8,7 @@ import Products from './pages/Products';
 import CategoryDetail from './pages/CategoryDetail';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Offers from './pages/Offers';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ForgotPassword from './pages/ForgotPassword';
@@ -56,6 +57,7 @@ const App: React.FC = () => {
               <Route path="/" element={<Home />} />
               <Route path="/products" element={<Products />} />
               <Route path="/category/:slug" element={<CategoryDetail />} />
+              <Route path="/offers" element={<Offers />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/login" element={<Login />} />

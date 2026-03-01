@@ -6,6 +6,7 @@ export interface Category {
   description: string;
   image: string;
   icon: string;
+  subcategories?: string[];
 }
 
 export interface Product {
