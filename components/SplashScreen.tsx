@@ -34,7 +34,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
         {/* Animated Logo */}
         <div className={`splash-logo ${isAnimating ? 'splash-logo-exit' : ''}`}>
           <img
-            src="/assets/logo-gif.gif"
+            src="/assets/logo-gif.avif"
             alt="Good Luck Foods"
             className="w-48 h-48 md:w-64 md:h-64 object-contain"
           />
