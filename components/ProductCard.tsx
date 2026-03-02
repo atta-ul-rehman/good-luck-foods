@@ -68,12 +68,12 @@ const ProductCard: React.FC<Props> = ({ product, layout = 'grid' }) => {
           <Link
             to="/contact"
             state={{ product: product.name }}
-            className="w-full bg-slate-100 hover:bg-slate-200 text-white py-3 px-4 rounded-lg transition-all flex items-center justify-center gap-2 font-semibold text-sm shadow-sm hover:shadow-md"
+            className="w-full bg-slate-100 hover:bg-slate-200 text-center py-3 px-4 rounded-lg transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
           >
-            <span className="text-black ">Get Wholesale Price</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <span className="text-center text-black font-bold text-sm">Get Wholesale Price</span>
+            {/* <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
+            </svg> */}
           </Link>
         </div>
       </div>

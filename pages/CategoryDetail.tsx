@@ -117,7 +117,7 @@ const CategoryDetail: React.FC = () => {
   return (
     <div className="animate-in fade-in duration-500">
       {/* Hero */}
-      <section className="relative h-[400px] bg-slate-900 flex items-center overflow-hidden">
+      <section className="relative h-[200px] bg-slate-900 flex items-center overflow-hidden">
         <img
           src={category.image}
           alt={`Wholesale ${category.name} products`}
@@ -128,7 +128,7 @@ const CategoryDetail: React.FC = () => {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <Link
             to="/products"
-            className="text-brand-green text-sm font-semibold tracking-widest flex items-center mb-6 hover:-translate-x-1 transition-transform"
+            className="text-brand-green text-xs font-semibold tracking-widest flex items-center mb-6 hover:-translate-x-1 transition-transform"
           >
             <svg
               className="w-4 h-4 mr-2"
@@ -142,11 +142,11 @@ const CategoryDetail: React.FC = () => {
           </Link>
           <div className="flex items-center mb-4">
             <span className="text-4xl mr-4">{category.icon}</span>
-            <h1 className="text-4xl md:text-6xl font-black tracking-widest text-white">
+            <h1 className="text-2xl md:text-4xl font-black tracking-widest text-white">
               {category.name}
             </h1>
           </div>
-          <p className="text-xl text-slate-200 max-w-2xl leading-relaxed">{category.description}</p>
+          <p className="text-lg text-slate-200 max-w-2xl leading-relaxed">{category.description}</p>
         </div>
       </section>
 
@@ -171,12 +171,12 @@ const CategoryDetail: React.FC = () => {
               {/* Featured Wholesale Products */}
               <div>
                 <h2 className="text-2xl font-black text-slate-900 mb-12">
-                  Featured Wholesale Products
+                  Featured Products
                 </h2>
                 {categoryProducts.length > 0 ? (
                   <>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                      {categoryProducts.slice(0, 2).map((product) => (
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                      {categoryProducts.slice(0, 3).map((product) => (
                         <ProductCard key={product.id} product={product} />
                       ))}
                     </div>

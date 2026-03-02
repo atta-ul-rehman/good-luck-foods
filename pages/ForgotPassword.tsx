@@ -18,12 +18,10 @@ const ForgotPassword: React.FC = () => {
             setSubmitted(true);
         } catch (err: any) {
             console.error('Forgot password error:', err);
-            // Even if email fails, for security we often pretend it worked or show a generic message.
-            // But for now let's show the error if it's a server error, otherwise simulate success
             if (err && err.status === 500) {
                 setError('Something went wrong. Please try again.');
             } else {
-                setSubmitted(true); // Treat as success to avoid user enumeration if possible, or just for simple UX here
+                setSubmitted(true);
             }
         } finally {
             setLoading(false);
@@ -34,43 +32,42 @@ const ForgotPassword: React.FC = () => {
         return (
             <div className="animate-fade-in">
                 {/* Hero Header */}
-                <div className="relative bg-[#0A1428] py-14 text-center overflow-hidden">
-                    {/* Background Shapes */}
+                <div className="relative bg-slate-900 py-20 text-center overflow-hidden">
                     <div className="absolute inset-0 opacity-10">
-                        <svg className="absolute top-10 right-10 w-40 h-40 text-[#00C853]" viewBox="0 0 100 100" fill="currentColor">
+                        <svg className="absolute top-10 right-10 w-40 h-40 text-emerald-600" viewBox="0 0 100 100" fill="currentColor">
                             <path d="M30,20 Q50,5 70,20 Q75,50 50,75 Q25,50 30,20 Z" />
                         </svg>
-                        <svg className="absolute bottom-10 left-10 w-36 h-36 text-[#FF3B6D]" viewBox="0 0 100 100" fill="currentColor">
+                        <svg className="absolute bottom-10 left-10 w-36 h-36 text-brand-red" viewBox="0 0 100 100" fill="currentColor">
                             <path d="M20,50 Q50,80 80,50 L80,60 Q50,90 20,60 Z" />
                         </svg>
-                        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#00C853]/5 to-transparent"></div>
                     </div>
                     <div className="relative z-10 px-4">
-                        <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">Password Recovery</h1>
-                        <p className="text-[#9CA3AF] text-lg max-w-xl mx-auto">We're here to help you regain access</p>
+                        <span className="text-emerald-500 text-xs font-black uppercase tracking-[0.3em] mb-4 block">Email Sent</span>
+                        <h1 className="text-3xl md:text-4xl font-black text-white mb-4 uppercase tracking-tight">Password Recovery</h1>
+                        <div className="w-24 h-1 bg-brand-red mx-auto"></div>
+                        <p className="text-slate-400 text-lg max-w-xl mx-auto mt-6">We're here to help you regain access</p>
                     </div>
                 </div>
 
-                <div className="min-h-screen flex items-center justify-center bg-[#F9FAFB] px-4 pt-10 pb-20 relative">
-                    {/* Floating Shapes */}
-                    <div className="absolute inset-0 pointer-events-none">
-                        <svg className="absolute top-1/3 left-1/4 w-16 h-16 text-[#00C853]/5" viewBox="0 0 100 100" fill="currentColor">
+                <div className="flex items-center justify-center bg-slate-100 px-4 py-16 relative">
+                    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                        <svg className="absolute top-1/3 left-1/4 w-16 h-16 text-emerald-600/5" viewBox="0 0 100 100" fill="currentColor">
                             <path d="M50,15 C65,5 85,20 80,40 C75,60 60,75 40,70 C20,65 15,45 25,30 C35,15 40,20 50,15 Z" />
                         </svg>
                     </div>
 
-                    <div className="max-w-md w-full bg-white rounded-3xl shadow-xl border border-[#E5E7EB] p-8 md:p-10 text-center z-10">
-                        <div className="w-16 h-16 bg-[#FF3B6D]/10 text-[#FF3B6D] rounded-full flex items-center justify-center text-2xl mx-auto mb-6 shadow-sm">
+                    <div className="max-w-md w-full bg-white rounded-lg shadow-xl border border-slate-200 p-8 md:p-10 text-center z-10">
+                        <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-6 shadow-sm">
                             ✉️
                         </div>
-                        <h2 className="text-2xl font-bold text-[#0A1428] mb-4">Check your inbox</h2>
-                        <p className="text-[#6B7280] text-sm font-medium mb-8 leading-relaxed">
+                        <h2 className="text-2xl font-black text-slate-900 mb-4 uppercase tracking-tight">Check your inbox</h2>
+                        <p className="text-slate-500 text-sm mb-8 leading-relaxed">
                             We've sent a password reset link to{' '}
-                            <span className="text-[#0A1428] font-bold">{email}</span>. Please follow the instructions to regain access.
+                            <span className="text-slate-900 font-bold">{email}</span>. Please follow the instructions to regain access.
                         </p>
                         <Link
                             to="/login"
-                            className="block w-full bg-[#FF3B6D] text-white py-3.5 rounded-xl font-bold uppercase tracking-wider text-sm hover:brightness-110 transition-all shadow-md"
+                            className="block w-full bg-emerald-600 text-white py-3.5 rounded-lg font-black uppercase tracking-widest text-sm hover:bg-emerald-700 transition-all shadow-md"
                         >
                             Back to Sign In
                         </Link>
@@ -83,39 +80,38 @@ const ForgotPassword: React.FC = () => {
     return (
         <div className="animate-fade-in">
             {/* Hero Header */}
-            <div className="relative bg-slate-900 py-14 text-center overflow-hidden">
-                {/* Background Shapes */}
+            <div className="relative bg-slate-900 py-20 text-center overflow-hidden">
                 <div className="absolute inset-0 opacity-10">
-                    <svg className="absolute top-10 right-10 w-40 h-40 text-[#00C853]" viewBox="0 0 100 100" fill="currentColor">
+                    <svg className="absolute top-10 right-10 w-40 h-40 text-emerald-600" viewBox="0 0 100 100" fill="currentColor">
                         <path d="M30,20 Q50,5 70,20 Q75,50 50,75 Q25,50 30,20 Z" />
                     </svg>
-                    <svg className="absolute bottom-10 left-10 w-36 h-36 text-[#FF3B6D]" viewBox="0 0 100 100" fill="currentColor">
+                    <svg className="absolute bottom-10 left-10 w-36 h-36 text-brand-red" viewBox="0 0 100 100" fill="currentColor">
                         <path d="M20,50 Q50,80 80,50 L80,60 Q50,90 20,60 Z" />
                     </svg>
-                    <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#00C853]/5 to-transparent"></div>
                 </div>
                 <div className="relative z-10 px-4">
-                    <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">Reset Password</h1>
-                    <p className="text-[#9CA3AF] text-lg max-w-xl mx-auto">Enter your email to receive recovery instructions</p>
+                    <span className="text-emerald-500 text-xs font-black uppercase tracking-[0.3em] mb-4 block">Account Recovery</span>
+                    <h1 className="text-3xl md:text-4xl font-black text-white mb-4 uppercase tracking-tight">Reset Password</h1>
+                    <div className="w-24 h-1 bg-brand-red mx-auto"></div>
+                    <p className="text-slate-400 text-lg max-w-xl mx-auto mt-6">Enter your email to receive recovery instructions</p>
                 </div>
             </div>
 
-            <div className="flex items-center justify-center bg-[#F9FAFB] px-4 pt-10 pb-20 relative">
-                {/* Floating Shapes */}
-                <div className="absolute inset-0 pointer-events-none">
-                    <svg className="absolute top-1/3 left-1/4 w-16 h-16 text-[#00C853]/5" viewBox="0 0 100 100" fill="currentColor">
+            <div className="flex items-center justify-center bg-slate-100 px-4 py-16 relative">
+                <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                    <svg className="absolute top-1/3 left-1/4 w-16 h-16 text-emerald-600/5" viewBox="0 0 100 100" fill="currentColor">
                         <path d="M50,15 C65,5 85,20 80,40 C75,60 60,75 40,70 C20,65 15,45 25,30 C35,15 40,20 50,15 Z" />
                     </svg>
                 </div>
 
-                <div className="max-w-md w-full bg-white rounded-3xl shadow-xl border border-[#E5E7EB] p-8 md:p-10 z-10 -mt-20">
+                <div className="max-w-md w-full bg-white rounded-lg shadow-xl border border-slate-200 p-8 md:p-10 z-10">
                     <div className="text-center mb-8">
-                        <h2 className="text-2xl font-bold text-[#0A1428] mb-2">Password Recovery</h2>
-                        <p className="text-[#6B7280] text-sm font-medium">Verify your identity</p>
+                        <h2 className="text-2xl font-black text-slate-900 mb-2 uppercase tracking-tight">Password Recovery</h2>
+                        <p className="text-slate-500 text-sm">Verify your identity</p>
                     </div>
 
                     {error && (
-                        <div className="mb-6 bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm font-medium flex items-center">
+                        <div className="mb-6 bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm font-medium flex items-center">
                             <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
@@ -125,12 +121,12 @@ const ForgotPassword: React.FC = () => {
 
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="space-y-2">
-                            <label className="text-xs font-bold text-[#374151] uppercase tracking-wider" htmlFor="email">Email Address</label>
+                            <label className="text-xs font-black text-slate-700 uppercase tracking-wider" htmlFor="email">Email Address</label>
                             <input
                                 id="email"
                                 type="email"
                                 required
-                                className="w-full px-4 py-3 bg-[#F3F4F6] border border-[#D1D5DB] rounded-xl focus:ring-4 focus:ring-[#FF3B6D]/20 focus:border-[#FF3B6D] transition-all outline-none font-medium"
+                                className="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-600/20 focus:border-emerald-600 transition-all outline-none"
                                 placeholder="name@company.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -141,7 +137,7 @@ const ForgotPassword: React.FC = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full bg-[#FF3B6D] text-white py-3.5 rounded-xl font-bold uppercase tracking-wider text-sm hover:brightness-110 transition-all shadow-md active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center"
+                            className="w-full bg-brand-green text-white py-3.5 rounded-lg font-black uppercase tracking-widest text-sm hover:bg-emerald-700 transition-all shadow-md active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center"
                         >
                             {loading ? (
                                 <>
@@ -158,7 +154,7 @@ const ForgotPassword: React.FC = () => {
                     </form>
 
                     <div className="mt-8 text-center">
-                        <Link to="/login" className="text-[#6B7280] font-bold text-xs hover:text-[#0A1428] uppercase tracking-wider">
+                        <Link to="/login" className="text-slate-500 font-bold text-xs hover:text-slate-900 uppercase tracking-wider">
                             ← Back to Sign In
                         </Link>
                     </div>

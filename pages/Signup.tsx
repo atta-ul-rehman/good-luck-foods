@@ -39,7 +39,6 @@ const Signup: React.FC = () => {
         setLoading(true);
 
         try {
-            // Remove confirmPassword from API call
             const { confirmPassword, ...signupData } = formData;
             const data = await authAPI.signup(signupData);
             await login(data.token);
@@ -54,56 +53,46 @@ const Signup: React.FC = () => {
 
     return (
         <div className="animate-fade-in">
-            {/* Hero Header with Food-Inspired Abstract Shapes */}
-            <div className="relative bg-slate-900 py-16 text-center overflow-hidden">
-                {/* Background Decorative Shapes */}
+            {/* Hero Section */}
+            <div className="relative bg-slate-900 py-20 text-center overflow-hidden">
+                {/* Background Decorations */}
                 <div className="absolute inset-0 opacity-10">
-                    {/* Stylized Leaf (Vegetables) - Top Right */}
-                    <svg className="absolute top-10 right-10 w-48 h-48 text-[#00C853]" viewBox="0 0 100 100" fill="currentColor">
+                    <svg className="absolute top-10 right-10 w-48 h-48 text-emerald-600" viewBox="0 0 100 100" fill="currentColor">
                         <path d="M50,15 C65,5 85,20 80,40 C75,60 60,75 40,70 C20,65 15,45 25,30 C35,15 40,20 50,15 Z" />
                     </svg>
-                    {/* Stylized Bowl (Meals) - Bottom Left */}
-                    <svg className="absolute bottom-10 left-10 w-40 h-40 text-[#FF3B6D]" viewBox="0 0 100 100" fill="currentColor">
+                    <svg className="absolute bottom-10 left-10 w-40 h-40 text-brand-red" viewBox="0 0 100 100" fill="currentColor">
                         <path d="M20,50 Q50,80 80,50 L80,60 Q50,90 20,60 Z" />
                     </svg>
-                    {/* Organic Curve Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#00C853]/5 to-transparent"></div>
                 </div>
-
-                {/* Hero Text */}
                 <div className="relative z-10 px-4">
-                    <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">Business Application</h1>
-                    <p className="text-[#9CA3AF] text-lg max-w-xl mx-auto">Join our network of 1,200+ industry leaders</p>
+                    <span className="text-emerald-500 text-xs font-black uppercase tracking-[0.3em] mb-4 block">Join Us</span>
+                    <h1 className="text-3xl md:text-5xl font-black text-white mb-4 uppercase tracking-tight">Business Application</h1>
+                    <div className="w-24 h-1 bg-brand-red mx-auto"></div>
+                    <p className="text-slate-400 text-lg max-w-xl mx-auto mt-6">Join our network of 1,200+ industry leaders</p>
                 </div>
             </div>
 
-            {/* Signup Form with Thematic Background Elements */}
-            <div className="flex items-center justify-center bg-[#F9FAFB] px-4 pt-10 pb-20 relative">
-                {/* Floating Food-Inspired Shapes Behind Form */}
-                <div className="absolute inset-0 pointer-events-none">
-                    {/* Tiny Carrot (Bottom Right) */}
-                    <svg className="absolute bottom-1/3 right-1/4 w-20 h-20 text-[#FF3B6D]/5" viewBox="0 0 100 100" fill="currentColor">
+            {/* Signup Form */}
+            <div className="flex items-center justify-center bg-slate-100 px-4 pt-16 pb-20 relative">
+                {/* Floating Shapes */}
+                <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                    <svg className="absolute bottom-1/3 right-1/4 w-20 h-20 text-brand-red/5" viewBox="0 0 100 100" fill="currentColor">
                         <path d="M50,0 L60,30 L50,90 L40,30 Z M45,85 L55,85 M40,75 L60,75" />
                     </svg>
-                    {/* Small Leaf (Top Left) */}
-                    <svg className="absolute top-1/3 left-1/4 w-16 h-16 text-[#00C853]/5" viewBox="0 0 100 100" fill="currentColor">
+                    <svg className="absolute top-1/3 left-1/4 w-16 h-16 text-emerald-600/5" viewBox="0 0 100 100" fill="currentColor">
                         <path d="M30,20 Q50,5 70,20 Q75,50 50,75 Q25,50 30,20 Z" />
-                    </svg>
-                    {/* Minimal Butcher's Hook (Meat - Top Right) */}
-                    <svg className="absolute top-1/4 right-1/3 w-12 h-12 text-[#0A1428]/5" viewBox="0 0 100 100" fill="currentColor">
-                        <path d="M20,50 Q20,20 50,20 Q80,20 80,50 Q80,80 50,80 Q40,80 35,70" stroke="currentColor" strokeWidth="10" fill="none" />
                     </svg>
                 </div>
 
                 {/* Signup Card */}
-                <div className="max-w-xl w-full bg-white rounded-3xl shadow-xl border border-[#E5E7EB] p-8 md:p-10 z-10 -mt-20">
+                <div className="max-w-xl w-full bg-white rounded-lg shadow-xl border border-slate-200 p-8 md:p-10 z-10">
                     <div className="text-center mb-8">
-                        <h2 className="text-2xl font-bold text-[#0A1428] mb-2">Create Account</h2>
-                        <p className="text-[#6B7280] text-sm font-medium">Company Registration</p>
+                        <h2 className="text-2xl font-black text-slate-900 mb-2 uppercase tracking-tight">Create Account</h2>
+                        <p className="text-slate-500 text-sm">Company Registration</p>
                     </div>
 
                     {error && (
-                        <div className="mb-6 bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm font-medium flex items-center">
+                        <div className="mb-6 bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm font-medium flex items-center">
                             <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
@@ -114,12 +103,12 @@ const Signup: React.FC = () => {
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <label className="text-xs font-bold text-[#374151] uppercase tracking-wider" htmlFor="fullName">Full Name</label>
+                                <label className="text-xs font-black text-slate-700 uppercase tracking-wider" htmlFor="fullName">Full Name</label>
                                 <input
                                     id="fullName"
                                     type="text"
                                     required
-                                    className="w-full px-4 py-3 bg-[#F3F4F6] border border-[#D1D5DB] rounded-xl focus:ring-4 focus:ring-[#FF3B6D]/20 focus:border-[#FF3B6D] transition-all outline-none font-medium text-sm"
+                                    className="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-600/20 focus:border-emerald-600 transition-all outline-none text-sm"
                                     placeholder="John Doe"
                                     value={formData.fullName}
                                     onChange={handleChange}
@@ -127,12 +116,12 @@ const Signup: React.FC = () => {
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-xs font-bold text-[#374151] uppercase tracking-wider" htmlFor="companyName">Business Name</label>
+                                <label className="text-xs font-black text-slate-700 uppercase tracking-wider" htmlFor="companyName">Business Name</label>
                                 <input
                                     id="companyName"
                                     type="text"
                                     required
-                                    className="w-full px-4 py-3 bg-[#F3F4F6] border border-[#D1D5DB] rounded-xl focus:ring-4 focus:ring-[#FF3B6D]/20 focus:border-[#FF3B6D] transition-all outline-none font-medium text-sm"
+                                    className="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-600/20 focus:border-emerald-600 transition-all outline-none text-sm"
                                     placeholder="Acme Catering"
                                     value={formData.companyName}
                                     onChange={handleChange}
@@ -143,12 +132,12 @@ const Signup: React.FC = () => {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <label className="text-xs font-bold text-[#374151] uppercase tracking-wider" htmlFor="email">Work Email</label>
+                                <label className="text-xs font-black text-slate-700 uppercase tracking-wider" htmlFor="email">Work Email</label>
                                 <input
                                     id="email"
                                     type="email"
                                     required
-                                    className="w-full px-4 py-3 bg-[#F3F4F6] border border-[#D1D5DB] rounded-xl focus:ring-4 focus:ring-[#FF3B6D]/20 focus:border-[#FF3B6D] transition-all outline-none font-medium text-sm"
+                                    className="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-600/20 focus:border-emerald-600 transition-all outline-none text-sm"
                                     placeholder="name@company.com"
                                     value={formData.email}
                                     onChange={handleChange}
@@ -156,13 +145,13 @@ const Signup: React.FC = () => {
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-xs font-bold text-[#374151] uppercase tracking-wider" htmlFor="phone">Phone Number</label>
+                                <label className="text-xs font-black text-slate-700 uppercase tracking-wider" htmlFor="phone">Phone Number</label>
                                 <input
                                     id="phone"
                                     type="tel"
                                     required
-                                    className="w-full px-4 py-3 bg-[#F3F4F6] border border-[#D1D5DB] rounded-xl focus:ring-4 focus:ring-[#FF3B6D]/20 focus:border-[#FF3B6D] transition-all outline-none font-medium text-sm"
-                                    placeholder="+1 (555) 000-0000"
+                                    className="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-600/20 focus:border-emerald-600 transition-all outline-none text-sm"
+                                    placeholder="+44 (0) 000 000 0000"
                                     value={formData.phone}
                                     onChange={handleChange}
                                     disabled={loading}
@@ -171,12 +160,12 @@ const Signup: React.FC = () => {
                         </div>
 
                         <div className="space-y-2">
-                            <label className="text-xs font-bold text-[#374151] uppercase tracking-wider" htmlFor="password">Create Password</label>
+                            <label className="text-xs font-black text-slate-700 uppercase tracking-wider" htmlFor="password">Create Password</label>
                             <input
                                 id="password"
                                 type="password"
                                 required
-                                className="w-full px-4 py-3 bg-[#F3F4F6] border border-[#D1D5DB] rounded-xl focus:ring-4 focus:ring-[#FF3B6D]/20 focus:border-[#FF3B6D] transition-all outline-none font-medium text-sm"
+                                className="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-600/20 focus:border-emerald-600 transition-all outline-none text-sm"
                                 placeholder="Minimum 6 characters"
                                 value={formData.password}
                                 onChange={handleChange}
@@ -185,12 +174,12 @@ const Signup: React.FC = () => {
                         </div>
 
                         <div className="space-y-2">
-                            <label className="text-xs font-bold text-[#374151] uppercase tracking-wider" htmlFor="confirmPassword">Confirm Password</label>
+                            <label className="text-xs font-black text-slate-700 uppercase tracking-wider" htmlFor="confirmPassword">Confirm Password</label>
                             <input
                                 id="confirmPassword"
                                 type="password"
                                 required
-                                className="w-full px-4 py-3 bg-[#F3F4F6] border border-[#D1D5DB] rounded-xl focus:ring-4 focus:ring-[#FF3B6D]/20 focus:border-[#FF3B6D] transition-all outline-none font-medium text-sm"
+                                className="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-600/20 focus:border-emerald-600 transition-all outline-none text-sm"
                                 placeholder="Re-enter password"
                                 value={formData.confirmPassword}
                                 onChange={handleChange}
@@ -202,7 +191,7 @@ const Signup: React.FC = () => {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="w-full bg-[#FF3B6D] text-white py-3.5 rounded-xl font-bold uppercase tracking-wider text-sm hover:brightness-110 transition-all shadow-md active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center"
+                                className="w-full bg-brand-green text-white py-3.5 rounded-lg font-black uppercase tracking-widest text-sm hover:bg-emerald-700 transition-all shadow-md active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center"
                             >
                                 {loading ? (
                                     <>
@@ -216,16 +205,16 @@ const Signup: React.FC = () => {
                                     'Submit Application'
                                 )}
                             </button>
-                            <p className="text-center mt-4 text-[10px] text-[#6B7280] font-medium leading-relaxed">
+                            <p className="text-center mt-4 text-[10px] text-slate-500 leading-relaxed">
                                 By clicking "Submit Application", you agree to our Terms of Service and Privacy Policy. All accounts are subject to verification.
                             </p>
                         </div>
                     </form>
 
-                    <div className="mt-10 text-center pt-8 border-t border-[#E5E7EB]">
-                        <p className="text-[#6B7280] text-sm font-medium">
+                    <div className="mt-10 text-center pt-8 border-t border-slate-200">
+                        <p className="text-slate-500 text-sm">
                             Already have an account?{' '}
-                            <Link to="/login" className="text-[#FF3B6D] font-bold hover:underline">Sign In</Link>
+                            <Link to="/login" className="text-brand-red font-bold hover:underline">Sign In</Link>
                         </p>
                     </div>
                 </div>

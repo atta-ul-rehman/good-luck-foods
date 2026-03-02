@@ -9,9 +9,20 @@ const Header: React.FC = () => {
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
   const [dropdownPosition, setDropdownPosition] = useState<{ left: number; top: number }>({ left: 0, top: 0 });
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const categoryScrollRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const navigate = useNavigate();
   const { isAuthenticated, user, logout } = useAuth();
+
+  const scrollCategories = (direction: 'left' | 'right') => {
+    if (categoryScrollRef.current) {
+      const scrollAmount = 200;
+      categoryScrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const handleCategoryHover = (catId: string, event: React.MouseEvent<HTMLDivElement>) => {
     if (hoverTimeoutRef.current) {
@@ -85,7 +96,7 @@ const Header: React.FC = () => {
               />
               <button
                 type="submit"
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-emerald-600 transition-colors"
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-emerald-600 hover:text-emerald-700 transition-colors"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -93,9 +104,9 @@ const Header: React.FC = () => {
               </button>
             </form>
 
-            {/* Request Quote Button */}
+            {/* Login Button */}
             <Link
-              to="/contact"
+              to="/login"
               className="hidden md:block bg-brand-red text-white px-6 py-2 rounded-lg text-sm font-black tracking-widest hover:brightness-110 transition-all active:scale-95"
             >
               Login
@@ -120,8 +131,33 @@ const Header: React.FC = () => {
 
       {/* Sticky Product Sub-Nav */}
       <div className="bg-brand-red border-t border-b border-red-700 sticky-sub-nav">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex space-x-8 py-3 whitespace-nowrap overflow-x-auto no-scrollbar overscroll-x-contain">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          {/* Left Arrow */}
+          <button
+            onClick={() => scrollCategories('left')}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white text-brand-red p-1.5 rounded-lg transition-all"
+            aria-label="Scroll left"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          {/* Right Arrow */}
+          <button
+            onClick={() => scrollCategories('right')}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white text-brand-red p-1.5 rounded-lg transition-all"
+            aria-label="Scroll right"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          <div 
+            ref={categoryScrollRef}
+            className="flex space-x-8 py-3 whitespace-nowrap overflow-x-auto no-scrollbar overscroll-x-contain mx-6"
+          >
             {CATEGORIES.map((cat) => (
               <div
                 key={cat.id}

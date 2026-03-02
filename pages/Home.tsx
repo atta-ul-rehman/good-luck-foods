@@ -4,6 +4,7 @@ import { CATEGORIES, INDUSTRIES, PRODUCTS } from '../constants';
 import CategoryCard from '../components/CategoryCard';
 import ProductCard from '../components/ProductCard';
 import HeroSlider from '../components/HeroSlider';
+import { Product } from '../types';
 
 // Custom hook for scroll animations
 const useScrollAnimation = (threshold = 0.1, rootMargin = '0px') => {
@@ -123,6 +124,85 @@ const SectionHeader: React.FC<{ subtitle?: string; title: string; description?: 
   </div>
 );
 
+// Products Slider Component
+const ProductsSlider: React.FC<{ products: Product[] }> = ({ products }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const itemsPerView = 4;
+  const maxIndex = Math.max(0, products.length - itemsPerView);
+  const cardWidth = 100 / itemsPerView; // Dynamic width percentage
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [maxIndex]);
+
+  const goToPrev = () => {
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  };
+
+  return (
+    <div className="relative">
+      {/* Navigation Arrows - Desktop */}
+      <button
+        onClick={goToPrev}
+        className="hidden lg:flex absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white shadow-lg rounded-full items-center justify-center hover:bg-emerald-600 hover:text-white transition-all group"
+      >
+        <svg className="w-5 h-5 text-slate-600 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button
+        onClick={goToNext}
+        className="hidden lg:flex absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white shadow-lg rounded-full items-center justify-center hover:bg-emerald-600 hover:text-white transition-all group"
+      >
+        <svg className="w-5 h-5 text-slate-600 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      {/* Desktop Slider */}
+      <div className="hidden lg:block overflow-hidden">
+        <div
+          className="flex gap-4 transition-transform duration-500 ease-in-out"
+          style={{ transform: `translateX(-${currentIndex * cardWidth}%)` }}
+        >
+          {products.map((product) => (
+            <div key={product.id} className="flex-shrink-0" style={{ width: `calc(${cardWidth}% - 12px)` }}>
+              <ProductCard product={product} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Mobile/Tablet Grid View */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:hidden">
+        {products.slice(0, 4).map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+
+      {/* Dots Indicator - Desktop */}
+      <div className="hidden lg:flex justify-center gap-2 mt-8">
+        {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrentIndex(idx)}
+            className={`w-2.5 h-2.5 rounded-full transition-all ${
+              idx === currentIndex ? 'bg-emerald-600 w-8' : 'bg-slate-300 hover:bg-slate-400'
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const Home: React.FC = () => {
   return (
     <div className="animate-in fade-in duration-500">
@@ -166,26 +246,26 @@ const Home: React.FC = () => {
           <div className="space-y-6">
             {/* Category 1: Drinks */}
             <AnimatedSection animation="slideRight" delay={100}>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch bg-slate-900 overflow-hidden group transition-all duration-500 hover:shadow-2xl">
-              <div className="p-10 lg:p-14 order-2 lg:order-1 flex flex-col justify-center min-h-[320px]">
-                <span className="inline-block px-4 py-1.5 bg-emerald-600 text-white text-xs font-black uppercase tracking-widest mb-4 w-fit">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch bg-slate-900 rounded-lg overflow-hidden group transition-all duration-500 hover:shadow-2xl">
+              <div className="p-8 lg:p-10 order-2 lg:order-1 flex flex-col justify-center min-h-[260px]">
+                <span className="inline-block px-3 py-1 bg-brand-green   text-white text-[10px] font-black uppercase tracking-widest mb-3 w-fit">
                   Category
                 </span>
-                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-wide">Drinks</h3>
-                <p className="text-slate-400 leading-relaxed mb-6">
+                <h3 className="text-xl md:text-2xl font-black text-white mb-3 uppercase tracking-wide">Drinks</h3>
+                <p className="text-slate-400 leading-relaxed mb-5 text-sm">
                   From refreshing beverages to specialty drinks, we supply a comprehensive range of drink products for restaurants, cafes, and retail outlets across the UK.
                 </p>
                 <Link 
                   to="/products" 
-                  className="inline-flex rounded-lg items-center gap-2 bg-emerald-600 text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-emerald-700 transition-all w-fit"
+                  className="inline-flex rounded-lg items-center gap-2 bg-brand-green text-white px-5 py-2.5 font-black text-xs uppercase tracking-widest hover:bg-brand-green/80 transition-all w-fit"
                 >
                   Explore Products
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </Link>
               </div>
-              <div className="order-1 lg:order-2 h-[320px] overflow-hidden">
+              <div className="order-1 lg:order-2 h-[260px] overflow-hidden">
                 <img 
                   src="https://images.unsplash.com/photo-1763074847615-81748f08cea2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Drinks"
@@ -197,28 +277,28 @@ const Home: React.FC = () => {
 
             {/* Category 2: Packaging */}
             <AnimatedSection animation="slideLeft" delay={100}>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch bg-slate-900 overflow-hidden group transition-all duration-500 hover:shadow-2xl">
-              <div className="h-[320px] overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch bg-slate-900 rounded-lg overflow-hidden group transition-all duration-500 hover:shadow-2xl">
+              <div className="h-[260px] overflow-hidden">
                 <img 
                   src="/assets/packaging.png"
                   alt="Bespoke Packaging"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
-              <div className="p-10 lg:p-14 flex flex-col justify-center min-h-[320px]">
-                <span className="inline-block px-4 py-1.5 bg-brand-red text-white text-xs font-black uppercase tracking-widest mb-4 w-fit">
+              <div className="p-8 lg:p-10 flex flex-col justify-center min-h-[260px]">
+                <span className="inline-block px-3 py-1 bg-brand-red text-white text-[10px] font-black uppercase tracking-widest mb-3 w-fit">
                   Category
                 </span>
-                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-wide">Bespoke Packaging</h3>
-                <p className="text-slate-400 leading-relaxed mb-6">
+                <h3 className="text-xl md:text-2xl font-black text-white mb-3 uppercase tracking-wide">Bespoke Packaging</h3>
+                <p className="text-slate-400 leading-relaxed mb-5 text-sm">
                   Premium food packaging solutions including containers, disposables, and eco-friendly options. Perfect for takeaways, catering services, and food businesses.
                 </p>
                 <Link 
                   to="/products" 
-                  className="inline-flex rounded-lg items-center gap-2 bg-brand-red text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-brand-red/80 transition-all w-fit"
+                  className="inline-flex rounded-lg items-center gap-2 bg-brand-red text-white px-5 py-2.5 font-black text-xs uppercase tracking-widest hover:bg-brand-red/80 transition-all w-fit"
                 >
                   Explore Products
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </Link>
@@ -228,26 +308,26 @@ const Home: React.FC = () => {
 
             {/* Category 3: Frozen Products */}
             <AnimatedSection animation="slideRight" delay={100}>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch bg-slate-900 overflow-hidden group transition-all duration-500 hover:shadow-2xl">
-              <div className="p-10 lg:p-14 order-2 lg:order-1 flex flex-col justify-center min-h-[320px]">
-                <span className="inline-block px-4 py-1.5 bg-emerald-600 text-white text-xs font-black uppercase tracking-widest mb-4 w-fit">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch bg-slate-900 rounded-lg overflow-hidden group transition-all duration-500 hover:shadow-2xl">
+              <div className="p-8 lg:p-10 order-2 lg:order-1 flex flex-col justify-center min-h-[260px]">
+                <span className="inline-block px-3 py-1 bg-brand-green text-white text-[10px] font-black uppercase tracking-widest mb-3 w-fit">
                   Category
                 </span>
-                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-wide">Frozen Products</h3>
-                <p className="text-slate-400 leading-relaxed mb-6">
+                <h3 className="text-xl md:text-2xl font-black text-white mb-3 uppercase tracking-wide">Frozen Products</h3>
+                <p className="text-slate-400 leading-relaxed mb-5 text-sm">
                   High-quality frozen foods sourced from trusted suppliers. We offer frozen meats, vegetables, seafood, and ready-to-cook items for professional kitchens.
                 </p>
                 <Link 
                   to="/products" 
-                  className="inline-flex rounded-lg items-center gap-2 bg-emerald-600 text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-emerald-700 transition-all w-fit"
+                  className="inline-flex rounded-lg items-center gap-2 bg-brand-green text-white px-5 py-2.5 font-black text-xs uppercase tracking-widest hover:bg-brand-green/80 transition-all w-fit"
                 >
                   Explore Products
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </Link>
               </div>
-              <div className="order-1 lg:order-2 h-[320px] overflow-hidden">
+              <div className="order-1 lg:order-2 h-[260px] overflow-hidden">
                 <img 
                   src="/assets/frozen-products.png"
                   alt="Frozen Products"
@@ -259,28 +339,28 @@ const Home: React.FC = () => {
 
             {/* Category 4: Spices */}
             <AnimatedSection animation="slideLeft" delay={100}>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch bg-slate-900 overflow-hidden group transition-all duration-500 hover:shadow-2xl">
-              <div className="h-[320px] overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch bg-slate-900 rounded-lg overflow-hidden group transition-all duration-500 hover:shadow-2xl">
+              <div className="h-[260px] overflow-hidden">
                 <img 
                   src="/assets/spices.png"
                   alt="Spices"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
-              <div className="p-10 lg:p-14 flex flex-col justify-center min-h-[320px]">
-                <span className="inline-block px-4 py-1.5 bg-brand-red text-white text-xs font-black uppercase tracking-widest mb-4 w-fit">
+              <div className="p-8 lg:p-10 flex flex-col justify-center min-h-[260px]">
+                <span className="inline-block px-3 py-1 bg-brand-red text-white text-[10px] font-black uppercase tracking-widest mb-3 w-fit">
                   Category
                 </span>
-                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-wide">Spices</h3>
-                <p className="text-slate-400 leading-relaxed mb-6">
+                <h3 className="text-xl md:text-2xl font-black text-white mb-3 uppercase tracking-wide">Spices</h3>
+                <p className="text-slate-400 leading-relaxed mb-5 text-sm">
                   Authentic spices and seasonings from around the world. Our premium spice range helps chefs create flavorful dishes that keep customers coming back.
                 </p>
                 <Link 
                   to="/products" 
-                  className="inline-flex rounded-lg items-center gap-2 bg-brand-red text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-brand-red/80 transition-all w-fit"
+                  className="inline-flex rounded-lg items-center gap-2 bg-brand-red text-white px-5 py-2.5 font-black text-xs uppercase tracking-widest hover:bg-brand-red/80 transition-all w-fit"
                 >
                   Explore Products
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </Link>
@@ -290,31 +370,62 @@ const Home: React.FC = () => {
 
             {/* Category 5: Households */}
             <AnimatedSection animation="slideRight" delay={100}>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch bg-slate-900 overflow-hidden group transition-all duration-500 hover:shadow-2xl">
-              <div className="p-10 lg:p-14 order-2 lg:order-1 flex flex-col justify-center min-h-[320px]">
-                <span className="inline-block px-4 py-1.5 bg-emerald-600 text-white text-xs font-black uppercase tracking-widest mb-4 w-fit">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch bg-slate-900 rounded-lg overflow-hidden group transition-all duration-500 hover:shadow-2xl">
+              <div className="p-8 lg:p-10 order-2 lg:order-1 flex flex-col justify-center min-h-[260px]">
+                <span className="inline-block px-3 py-1 bg-brand-green text-white text-[10px] font-black uppercase tracking-widest mb-3 w-fit">
                   Category
                 </span>
-                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-wide">Households</h3>
-                <p className="text-slate-400 leading-relaxed mb-6">
-                  Essential household products for commercial and domestic use. From cleaning supplies to everyday essentials, we provide quality products at wholesale prices.
+                <h3 className="text-xl md:text-2xl font-black text-white mb-3 uppercase tracking-wide">Households</h3>
+                <p className="text-slate-400 leading-relaxed mb-5 text-sm">
+                  Essential household products for commercial and domestic use. From cleaning supplies to everyday essentials, we provide quality products at competitive prices.
                 </p>
                 <Link 
                   to="/products" 
-                  className="inline-flex rounded-lg items-center gap-2 bg-emerald-600 text-white px-6 py-3 font-black text-sm uppercase tracking-widest hover:bg-emerald-700 transition-all w-fit"
+                  className="inline-flex rounded-lg items-center gap-2 bg-brand-green text-white px-5 py-2.5 font-black text-xs uppercase tracking-widest hover:bg-brand-green/80 transition-all w-fit"
                 >
                   Explore Products
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </Link>
               </div>
-              <div className="order-1 lg:order-2 h-[320px] overflow-hidden">
+              <div className="order-1 lg:order-2 h-[260px] overflow-hidden">
                 <img 
                   src="https://plus.unsplash.com/premium_photo-1664305032567-2c460e29dec1?q=80&w=1068&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Households"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
+              </div>
+            </div>
+            </AnimatedSection>
+
+            {/* Category 6: Flour */}
+            <AnimatedSection animation="slideLeft" delay={100}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch bg-slate-900 rounded-lg overflow-hidden group transition-all duration-500 hover:shadow-2xl">
+              <div className="h-[260px] overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Flour"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+              <div className="p-8 lg:p-10 flex flex-col justify-center min-h-[260px]">
+                <span className="inline-block px-3 py-1 bg-brand-red text-white text-[10px] font-black uppercase tracking-widest mb-3 w-fit">
+                  Category
+                </span>
+                <h3 className="text-xl md:text-2xl font-black text-white mb-3 uppercase tracking-wide">Flour</h3>
+                <p className="text-slate-400 leading-relaxed mb-5 text-sm">
+                  Premium quality flour varieties including all-purpose, bread flour, whole wheat, and specialty flours. Perfect for bakeries, restaurants, and food manufacturers.
+                </p>
+                <Link 
+                  to="/products" 
+                  className="inline-flex rounded-lg items-center gap-2 bg-brand-red text-white px-5 py-2.5 font-black text-xs uppercase tracking-widest hover:bg-brand-red/80 transition-all w-fit"
+                >
+                  Explore Products
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
               </div>
             </div>
             </AnimatedSection>
@@ -427,7 +538,7 @@ const Home: React.FC = () => {
                   High Demand Stock
                 </span>
                 <h2 className="text-2xl md:text-4xl font-bold text-slate-900">
-                  Featured Wholesale Items
+                  Featured Items
                 </h2>
                 <p className="text-slate-500 mt-3 max-w-xl text-sm leading-relaxed">
                   Curated selection of our best-moving product lines for professional kitchens and retail shelves.
@@ -442,13 +553,8 @@ const Home: React.FC = () => {
             </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {PRODUCTS.slice(0, 4).map((product, index) => (
-              <AnimatedSection key={product.id} animation="scaleUp" delay={index * 100}>
-                <ProductCard product={product} />
-              </AnimatedSection>
-            ))}
-          </div>
+          {/* Products Slider */}
+          <ProductsSlider products={PRODUCTS.slice(0, 8)} />
         </div>
       </section>
       {/* Supply - hidden*/}

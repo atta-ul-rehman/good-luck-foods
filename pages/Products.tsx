@@ -136,7 +136,7 @@ const Products: React.FC = () => {
           <div className="w-full lg:w-64 relative">
             <button 
               onClick={() => setIsFilterOpen(!isFilterOpen)}
-              className="w-full bg-brand-green text-white px-6 py-4 rounded-xl font-black uppercase tracking-widest text-[11px] flex items-center justify-between group shadow-lg shadow-brand-green/20"
+              className="w-full bg-brand-green text-white px-6 py-4 rounded-xl font-black uppercase tracking-widest text-[11px] flex items-center justify-between group"
             >
               <div className="flex items-center">
                 <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M4 6h16M4 12h16M4 18h16" /></svg>
@@ -147,12 +147,12 @@ const Products: React.FC = () => {
 
             {/* Filter Dropdown */}
             {isFilterOpen && (
-              <div className="absolute top-full left-0 mt-2 w-[600px] bg-white rounded-2xl shadow-2xl border border-slate-100 p-6 z-50">
-                <div className="grid grid-cols-2 gap-6">
+              <div className="absolute top-full left-0 mt-2 w-[250px] bg-white rounded-2xl shadow-2xl border border-slate-100 p-6 z-50">
+                <div className="grid grid-cols-1 gap-6">
                   {/* Categories Filter */}
                   <div>
                     <h3 className="text-[12px] font-black text-slate-900 uppercase tracking-widest mb-4 border-b border-slate-100 pb-2">Categories</h3>
-                    <ul className="space-y-2 max-h-[250px] overflow-y-auto">
+                    <ul className="space-y-2 max-h-[250px] overflow-y-auto scrollbar-green">
                       <li
                         onClick={() => { setSelectedCategory(null); setIsFilterOpen(false); }}
                         className={`text-[12px] font-bold cursor-pointer transition-colors flex justify-between items-center group px-2 py-1.5 rounded-lg hover:bg-slate-50 ${!selectedCategory ? 'text-brand-green bg-green-50' : 'text-slate-500 hover:text-brand-green'}`}
@@ -176,7 +176,7 @@ const Products: React.FC = () => {
                   </div>
 
                   {/* Brands & Status Filter */}
-                  <div className="space-y-6">
+                  <div className="hidden space-y-6">
                     {/* Supply Brands */}
                     <div>
                       <h3 className="text-[12px] font-black text-slate-900 uppercase tracking-widest mb-4 border-b border-slate-100 pb-2">Supply Brands</h3>
@@ -218,10 +218,10 @@ const Products: React.FC = () => {
                 </div>
 
                 {/* Clear Filters Button */}
-                <div className="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center">
+                <div className="mt-6 pt-4 border-t border-slate-100 flex justify-center items-center">
                   <button
                     onClick={() => { setSelectedCategory(null); }}
-                    className="text-[11px] font-bold text-slate-500 hover:text-brand-red transition-colors"
+                    className="hidden text-[11px] font-bold text-slate-500 hover:text-brand-red transition-colors"
                   >
                     Clear All Filters
                   </button>
@@ -277,7 +277,7 @@ const Products: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Organic/Promo Banner */}
-        <div className="relative rounded-[3rem] overflow-hidden bg-brand-red50 mb-12 min-h-[340px] flex items-center p-12 lg:p-20">
+        <div className="relative rounded-[3rem] overflow-hidden bg-brand-red50 mb-12 min-h-[280px] flex items-center p-8 lg:p-14">
           <div className="absolute top-0 right-0 w-1/2 h-full hidden md:block">
             <img
               src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=1200"

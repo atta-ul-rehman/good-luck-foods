@@ -311,3 +311,22 @@ button {
     transform: translateY(0);
   }
 }
+
+/* Custom Scrollbar - Brand Green */
+.scrollbar-green::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-green::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.scrollbar-green::-webkit-scrollbar-thumb {
+  background: #059669;
+  border-radius: 4px;
+}
+
+.scrollbar-green::-webkit-scrollbar-thumb:hover {
+  background: #047857;
+}
