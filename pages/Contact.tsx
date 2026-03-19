@@ -61,7 +61,7 @@ const Contact: React.FC = () => {
   return (
     <div className="animate-fade-in">
       <div className="bg-slate-900 py-16 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Contact Us</h1>
+        <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">Contact Us</h1>
         <p className="text-slate-400 text-lg max-w-xl mx-auto">Request pricing, custom catalogs, or a logistics consultation.</p>
       </div>
 
@@ -69,7 +69,7 @@ const Contact: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
 
           {/* Info Card */}
-          <div className="lg:col-span-4 space-y-6">
+          <div className="lg:col-span-4 space-y-6 order-2 lg:order-1">
             <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
               <h3 className="text-xl font-bold text-slate-900 mb-6">Direct Channels</h3>
               <div className="space-y-5">
@@ -120,7 +120,7 @@ const Contact: React.FC = () => {
             </div>
 
             <div className="bg-brand-dark p-8 rounded-3xl text-white shadow-xl relative overflow-hidden">
-              <h4 className="text-xl font-bold mb-4 relative z-10">Why choose us?</h4>
+              <h4 className="text-xl font-bold mb-4 relative z-10">Benefints of choosing us</h4>
               <ul className="space-y-4 text-sm relative z-10 font-medium">
                 <li className="flex items-start space-x-3"><span className="opacity-50">•</span> <span>Immediate access to bulk price tiers</span></li>
                 <li className="flex items-start space-x-3"><span className="opacity-50">•</span> <span>Dedicated regional account manager</span></li>
@@ -134,12 +134,12 @@ const Contact: React.FC = () => {
           </div>
 
           {/* Form Card */}
-          <div className="lg:col-span-8">
+          <div className="lg:col-span-8 order-1 lg:order-2">
             <div className="bg-white rounded-2xl shadow-2xl p-6 md:p-8 border border-slate-100">
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-700 tracking-tight">Your Full Name</label>
+                    <label className="text-sm font-bold text-slate-700 tracking-tight">Your Full Name</label>
                     <input
                       required
                       type="text"
@@ -150,7 +150,7 @@ const Contact: React.FC = () => {
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-700 tracking-tight">Business / Company Name</label>
+                    <label className="text-sm font-bold text-slate-700 tracking-tight">Business / Company Name</label>
                     <input
                       required
                       type="text"
@@ -164,7 +164,7 @@ const Contact: React.FC = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-700 tracking-tight">Corporate Email</label>
+                    <label className="text-sm font-bold text-slate-700 tracking-tight">Corporate Email</label>
                     <input
                       required
                       type="email"
@@ -175,7 +175,7 @@ const Contact: React.FC = () => {
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-700 tracking-tight">Primary Phone</label>
+                    <label className="text-sm font-bold text-slate-700 tracking-tight">Primary Phone</label>
                     <input
                       required
                       type="tel"
@@ -188,7 +188,7 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-700 tracking-tight">Area of Interest</label>
+                  <label className="text-sm font-bold text-slate-700 tracking-tight">Area of Interest</label>
                   <div className="relative">
                     <select
                       className="w-full px-4 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:ring-4 focus:ring-amber-400/10 focus:border-amber-400 transition-all outline-none appearance-none font-medium text-slate-600"
@@ -206,7 +206,7 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-700 tracking-tight">Tell us about your requirements</label>
+                  <label className="text-sm font-bold text-slate-700 tracking-tight">Tell us about your requirements</label>
                   <textarea
                     rows={3}
                     className="w-full px-4 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:ring-4 focus:ring-amber-400/10 focus:border-amber-400 transition-all outline-none resize-none"

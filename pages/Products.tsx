@@ -116,156 +116,10 @@ const Products: React.FC = () => {
 
   return (
     <div className="bg-white min-h-screen">
-      {/* Top Shop Bar */}
-      <div className="bg-slate-50 border-b border-slate-200 hidden md:block">
-        <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center text-[11px] font-bold text-slate-500 uppercase tracking-widest">
-          <div className="flex space-x-6">
-            <span className="flex items-center"><span className="text-brand-green mr-2">✓</span> 100% Secure B2B Sourcing</span>
-            <span className="flex items-center"><span className="text-brand-green mr-2">✓</span> Direct Manufacturer Pricing</span>
-          </div>
-          <div className="flex space-x-6">
-            <span className="hover:text-brand-green cursor-pointer transition-colors">Order Tracking</span>
-            <span className="hover:text-brand-green cursor-pointer transition-colors">English / USD</span>
-          </div>
-        </div>
-      </div>
+     
 
       {/* Main Shop Header */}
-      <div className="bg-white border-b border-slate-100 py-6 sticky top-[116px] z-40 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row items-center gap-6">
-          <div className="w-full lg:w-64 relative">
-            <button 
-              onClick={() => setIsFilterOpen(!isFilterOpen)}
-              className="w-full bg-brand-green text-white px-6 py-4 rounded-xl font-black uppercase tracking-widest text-[11px] flex items-center justify-between group"
-            >
-              <div className="flex items-center">
-                <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M4 6h16M4 12h16M4 18h16" /></svg>
-                All Categories
-              </div>
-              <svg className={`w-4 h-4 transition-transform ${isFilterOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" /></svg>
-            </button>
-
-            {/* Filter Dropdown */}
-            {isFilterOpen && (
-              <div className="absolute top-full left-0 mt-2 w-[250px] bg-white rounded-2xl shadow-2xl border border-slate-100 p-6 z-50">
-                <div className="grid grid-cols-1 gap-6">
-                  {/* Categories Filter */}
-                  <div>
-                    <h3 className="text-[12px] font-black text-slate-900 uppercase tracking-widest mb-4 border-b border-slate-100 pb-2">Categories</h3>
-                    <ul className="space-y-2 max-h-[250px] overflow-y-auto scrollbar-green">
-                      <li
-                        onClick={() => { setSelectedCategory(null); setIsFilterOpen(false); }}
-                        className={`text-[12px] font-bold cursor-pointer transition-colors flex justify-between items-center group px-2 py-1.5 rounded-lg hover:bg-slate-50 ${!selectedCategory ? 'text-brand-green bg-green-50' : 'text-slate-500 hover:text-brand-green'}`}
-                      >
-                        All Products
-                        <span className="text-[10px] bg-slate-100 px-2 py-0.5 rounded-full text-slate-400 group-hover:bg-brand-green group-hover:text-white transition-all">{PRODUCTS.length}</span>
-                      </li>
-                      {CATEGORIES.map(cat => (
-                        <li
-                          key={cat.id}
-                          onClick={() => { setSelectedCategory(cat.id); setIsFilterOpen(false); }}
-                          className={`text-[12px] font-bold cursor-pointer transition-colors flex justify-between items-center group px-2 py-1.5 rounded-lg hover:bg-slate-50 ${selectedCategory === cat.id ? 'text-brand-green bg-green-50' : 'text-slate-500 hover:text-brand-green'}`}
-                        >
-                          {cat.name}
-                          <span className="text-[10px] bg-slate-100 px-2 py-0.5 rounded-full text-slate-400 group-hover:bg-brand-green group-hover:text-white transition-all">
-                            {PRODUCTS.filter(p => p.categoryId === cat.id).length}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Brands & Status Filter */}
-                  <div className="hidden space-y-6">
-                    {/* Supply Brands */}
-                    <div>
-                      <h3 className="text-[12px] font-black text-slate-900 uppercase tracking-widest mb-4 border-b border-slate-100 pb-2">Supply Brands</h3>
-                      <div className="space-y-2">
-                        {['Nestlé', 'Unilever', 'Frito Lay', 'GlobalSelect', 'FreshFarm'].map(brand => (
-                          <label key={brand} className="flex items-center space-x-2 cursor-pointer group">
-                            <input type="checkbox" className="w-4 h-4 rounded border-slate-200 text-brand-green focus:ring-brand-green transition-all" />
-                            <span className="text-[12px] font-bold text-slate-500 group-hover:text-slate-900">{brand}</span>
-                          </label>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Product Status */}
-                    <div>
-                      <h3 className="text-[12px] font-black text-slate-900 uppercase tracking-widest mb-4 border-b border-slate-100 pb-2">Product Status</h3>
-                      <div className="space-y-2">
-                        <label className="flex items-center space-x-2 cursor-pointer group">
-                          <input type="checkbox" className="w-4 h-4 accent-brand-green rounded border-slate-200 focus:ring-brand-green transition-all" defaultChecked />
-                          <span className="text-[12px] font-bold text-slate-500 group-hover:text-slate-900">In Stock</span>
-                        </label>
-                        <label className="flex items-center space-x-2 cursor-pointer group">
-                          <input type="checkbox" className="w-4 h-4 accent-brand-green rounded border-slate-200 focus:ring-brand-green transition-all" />
-                          <span className="text-[12px] font-bold text-slate-500 group-hover:text-slate-900">Contract Item</span>
-                        </label>
-                      </div>
-                    </div>
-
-                    {/* Price Range */}
-                    <div>
-                      <h3 className="text-[12px] font-black text-slate-900 uppercase tracking-widest mb-4 border-b border-slate-100 pb-2">Price Per Unit</h3>
-                      <input type="range" className="w-full accent-brand-green h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer" />
-                      <div className="flex justify-between mt-2 text-[10px] font-bold text-slate-400">
-                        <span>$0</span>
-                        <span>$1,000+</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Clear Filters Button */}
-                <div className="mt-6 pt-4 border-t border-slate-100 flex justify-center items-center">
-                  <button
-                    onClick={() => { setSelectedCategory(null); }}
-                    className="hidden text-[11px] font-bold text-slate-500 hover:text-brand-red transition-colors"
-                  >
-                    Clear All Filters
-                  </button>
-                  <button
-                    onClick={() => setIsFilterOpen(false)}
-                    className="bg-brand-green text-white px-6 py-2 rounded-lg font-black uppercase tracking-widest text-[10px] hover:brightness-110 transition-all"
-                  >
-                    Apply Filters
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-
-          <div className="flex-grow relative group w-fit">
-            <input
-              type="text"
-              placeholder="Search for wholesale products, brands, or categories..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-slate-100 border-none rounded-2xl px-8 py-4 text-sm font-medium focus:ring-4 focus:ring-brand-green/10 transition-all outline-none"
-            />
-            <button className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-brand-green transition-colors">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-            </button>
-          </div>
-
-          <div className="flex items-center space-x-8 w-full lg:w-auto justify-center lg:justify-end">
-            <div className="text-right hidden xl:block">
-              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Need Support?</p>
-              <p className="text-sm font-black text-slate-900">+1 (800) 555-FOOD</p>
-            </div>
-            <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-400 hover:text-brand-green cursor-pointer transition-colors relative">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-              </div>
-              <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-400 hover:text-brand-green cursor-pointer transition-colors relative">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 118 0m-4 8l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" /></svg>
-                <span className="absolute -top-1 -right-1 bg-brand-red text-white text-[9px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">0</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    
 
       {/* Click outside to close dropdown */}
       {isFilterOpen && (
@@ -276,65 +130,40 @@ const Products: React.FC = () => {
       )}
 
       <div className="max-w-7xl mx-auto px-4 py-8">
-        {/* Organic/Promo Banner */}
-        <div className="relative rounded-[3rem] overflow-hidden bg-brand-red50 mb-12 min-h-[280px] flex items-center p-8 lg:p-14">
-          <div className="absolute top-0 right-0 w-1/2 h-full hidden md:block">
-            <img
-              src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=1200"
-              className="w-full h-full object-cover rounded-l-[5rem]"
-              alt="Organic Banner"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-brand-red50 via-transparent to-transparent"></div>
-          </div>
-          <div className="relative z-10 max-w-lg">
-            <span className="text-brand-green font-black text-[11px] uppercase tracking-[0.3em] mb-4 block">Seasonal Freshness</span>
-            <h2 className="text-4xl lg:text-5xl font-black text-slate-900 mb-6 leading-tight uppercase tracking-normal">
-              Wholesale Meals <br /> <span className="text-brand-green">Prepared & Delivered</span>
-            </h2>
-            <p className="text-slate-500 font-medium text-lg leading-relaxed mb-10 max-w-sm">
-              Fully prepared and delivered nationwide. Professional solutions for institutional catering.
-            </p>
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-brand-green shadow-sm">✓</div>
-              <span className="text-slate-700 font-bold text-sm tracking-tight">Direct Farm Distribution</span>
-            </div>
-          </div>
-        </div>
-
         {/* Grid Header */}
-        <div className="bg-slate-50 border border-slate-100 rounded-3xl p-4 mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center space-x-6">
+        <div className="bg-slate-50 border border-slate-100 rounded-2xl md:rounded-3xl p-4 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div className="flex items-center space-x-4 md:space-x-6">
             <div className="flex items-center space-x-2">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-2.5 rounded-xl transition-all ${viewMode === 'grid' ? 'bg-white shadow-md text-brand-red' : 'text-slate-400 hover:text-brand-red'}`}
+                className={`p-2 md:p-2.5 rounded-xl transition-all ${viewMode === 'grid' ? 'bg-white shadow-md text-brand-red' : 'text-slate-400 hover:text-brand-red'}`}
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>
+                <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-2.5 rounded-xl transition-all ${viewMode === 'list' ? 'bg-white shadow-md text-brand-red' : 'text-slate-400 hover:text-brand-red'}`}
+                className={`p-2 md:p-2.5 rounded-xl transition-all ${viewMode === 'list' ? 'bg-white shadow-md text-brand-red' : 'text-slate-400 hover:text-brand-red'}`}
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
+                <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
               </button>
             </div>
-            <p className="text-[11px] font-black text-slate-400 uppercase tracking-widest">
-              Showing {visibleProducts.length} of {filteredProducts.length} Results
+            <p className="text-[10px] md:text-[11px] font-black text-slate-400 uppercase tracking-widest">
+              {visibleProducts.length} of {filteredProducts.length} Results
             </p>
           </div>
 
-          <div className="flex items-center space-x-6">
+          <div className="flex flex-wrap items-center gap-4 md:gap-6 w-full md:w-auto">
             <div className="flex items-center">
-              <span className="text-[11px] font-black text-slate-400 uppercase tracking-widest mr-3">Sort by:</span>
+              <span className="text-[10px] md:text-[11px] font-black text-slate-400 uppercase tracking-widest mr-2 md:mr-3">Sort:</span>
               <select className="bg-transparent text-slate-900 font-bold text-xs focus:outline-none cursor-pointer">
-                <option>Latest Inventory</option>
-                <option>High Volume Demand</option>
-                <option>Alphabetical</option>
+                <option>Latest</option>
+                <option>High Demand</option>
+                <option>A-Z</option>
               </select>
             </div>
-            <div className="flex items-center">
-              <span className="text-[11px] font-black text-slate-400 uppercase tracking-widest">
-                Showing {visibleStart + 1}-{Math.min(visibleEnd, filteredProducts.length)} of {filteredProducts.length}
+            <div className="hidden sm:flex items-center">
+              <span className="text-[10px] md:text-[11px] font-black text-slate-400 uppercase tracking-widest">
+                {visibleStart + 1}-{Math.min(visibleEnd, filteredProducts.length)} of {filteredProducts.length}
               </span>
             </div>
           </div>
@@ -352,10 +181,10 @@ const Products: React.FC = () => {
               ))}
             </div>
           ) : (
-            <div className="bg-slate-50 rounded-[3rem] p-32 text-center border-2 border-dashed border-slate-200">
-              <div className="text-6xl mb-8 opacity-20">📦</div>
-              <h3 className="text-2xl font-black text-slate-900 mb-4 uppercase tracking-tighter">No items match your filters</h3>
-              <p className="text-slate-500 font-medium mb-10 max-w-sm mx-auto">We couldn't find any products matching your current selection. Try resetting filters or search terms.</p>
+            <div className="bg-slate-50 rounded-[2rem] md:rounded-[3rem] p-12 md:p-32 text-center border-2 border-dashed border-slate-200">
+              <div className="text-5xl md:text-6xl mb-6 md:mb-8 opacity-20">📦</div>
+              <h3 className="text-xl md:text-2xl font-black text-slate-900 mb-3 md:mb-4 uppercase tracking-tighter">No items match your filters</h3>
+              <p className="text-slate-500 font-medium mb-8 md:mb-10 max-w-sm mx-auto text-sm md:text-base">We couldn't find any products matching your current selection. Try resetting filters or search terms.</p>
               <button
                 onClick={() => { setSelectedCategory(null); setSearchQuery(''); }}
                 className="bg-brand-green text-white px-10 py-4 rounded-xl font-black uppercase tracking-widest text-[10px] shadow-xl shadow-brand-green/20"
@@ -403,20 +232,20 @@ const Products: React.FC = () => {
       </div>
 
       {/* Bottom Newsletter (Bacola Style) */}
-      <section className="bg-brand-dark py-24 mt-24 relative overflow-hidden dot-pattern">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row justify-between items-center gap-12 relative z-10">
+      <section className="bg-brand-dark py-16 md:py-24 mt-16 md:mt-24 relative overflow-hidden dot-pattern">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row justify-between items-center gap-8 md:gap-12 relative z-10">
           <div className="text-white text-center lg:text-left">
-            <h2 className="text-4xl font-black uppercase tracking-tighter mb-4 leading-none italic underline decoration-brand-green decoration-4 underline-offset-8">Join the Supply Network</h2>
-            <p className="text-slate-400 font-medium text-lg">Subscribe to our wholesale inventory alerts and regional market reports.</p>
+            <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter mb-3 md:mb-4 leading-none italic underline decoration-brand-green decoration-4 underline-offset-8">Join the Supply Network</h2>
+            <p className="text-slate-400 font-medium text-base md:text-lg">Subscribe to our wholesale inventory alerts and regional market reports.</p>
           </div>
           <div className="w-full lg:w-auto">
-            <form className="flex flex-col sm:flex-row gap-4">
+            <form className="flex flex-col sm:flex-row gap-3 md:gap-4">
               <input
                 type="email"
                 placeholder="Your work email address..."
-                className="bg-white/5 border border-white/10 text-white rounded-2xl px-8 py-5 min-w-[320px] font-medium focus:ring-4 focus:ring-brand-green/30 transition-all outline-none"
+                className="bg-white/5 border border-white/10 text-white rounded-xl md:rounded-2xl px-5 md:px-8 py-4 md:py-5 w-full sm:min-w-[280px] md:min-w-[320px] font-medium focus:ring-4 focus:ring-brand-green/30 transition-all outline-none text-sm md:text-base"
               />
-              <button className="bg-brand-green text-white px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-[11px] shadow-2xl shadow-brand-green/20 hover:brightness-110 transition-all">
+              <button className="bg-brand-green text-white px-8 md:px-12 py-4 md:py-5 rounded-xl md:rounded-2xl font-black uppercase tracking-widest text-[11px] shadow-2xl shadow-brand-green/20 hover:brightness-110 transition-all">
                 Subscribe
               </button>
             </form>

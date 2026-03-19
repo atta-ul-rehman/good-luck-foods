@@ -211,17 +211,17 @@ const Home: React.FC = () => {
       <HeroSlider />
 
       {/* Trusted By */}
-      <section className="py-10 bg-slate-900 border-y-4 border-slate-700 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-8 md:py-10 bg-slate-900 border-y-4 border-slate-700 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
           <AnimatedSection animation="fadeSlideUp">
-            <p className="text-center text-xs font-black text-white uppercase tracking-[0.3em] mb-8">
+            <p className="text-center text-[10px] md:text-xs font-black text-white uppercase tracking-[0.2em] md:tracking-[0.3em] mb-6 md:mb-8">
               Well known brands
             </p>
           </AnimatedSection>
-          <div className="flex flex-wrap justify-center gap-x-16 gap-y-6">
+          <div className="flex flex-wrap justify-center gap-x-6 sm:gap-x-10 md:gap-x-16 gap-y-4 md:gap-y-6">
             {['RETAILMAX', 'FOODMART', 'CITYDISTRO', 'HOSPITALITY CO', 'GLOBALFOODS'].map((brand, index) => (
               <AnimatedSection key={brand} animation="scaleUp" delay={index * 100}>
-                <span className="text-lg font-black text-slate-400 uppercase tracking-widest hover:text-emerald-500 transition-colors cursor-default">
+                <span className="text-sm md:text-lg font-black text-slate-400 uppercase tracking-wider md:tracking-widest hover:text-emerald-500 transition-colors cursor-default">
                   {brand}
                 </span>
               </AnimatedSection>
@@ -231,8 +231,8 @@ const Home: React.FC = () => {
       </section>
 
       {/* Category Showcase Section */}
-      <section className="py-20 bg-slate-100 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-12 md:py-20 bg-slate-100 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
           {/* Section Header */}
           <AnimatedSection animation="fadeSlideUp">
             <SectionHeader
@@ -448,51 +448,6 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Why Choose us Section */}
-      <section className="py-20 bg-slate-100 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <AnimatedSection animation="slideRight">
-              <div className="relative">
-                <img
-                  src="https://images.unsplash.com/photo-1590650153855-d9e808231d41?auto=format&fit=crop&q=80&w=800"
-                  className="w-full shadow-2xl relative z-10"
-                  alt="Operations"
-                />
-                <div className="absolute -bottom-6 -right-6 bg-slate-900 text-white p-6  rounded-lg shadow-2xl hidden md:block z-20">
-                  <p className="text-4xl font-black mb-1">99.8%</p>
-                  <p className="text-white/80 text-xs font-black uppercase tracking-widest">Accuracy Rate</p>
-                </div>
-                {/* Accent line */}
-                <div className="absolute top-0 left-0 w-2 h-full bg-brand-red"></div>
-              </div>
-            </AnimatedSection>
-            <AnimatedSection animation="slideLeft" delay={200}>
-              <div>
-                <span className="text-emerald-600 text-xs font-black uppercase tracking-[0.3em]">Why Choose Us</span>
-                <h2 className="text-2xl md:text-4xl font-black text-slate-900 mt-3 mb-2 uppercase tracking-tight">Why Choose Good Luck Foods Ltd.</h2>
-                <div className="w-24 h-1 bg-brand-red mb-8"></div>
-                <div className="space-y-8">
-                  {[
-                    { title: 'Volume-Optimized Pricing', desc: 'Our price tiers grow with your business. The more you buy, the more you save on unit costs.' },
-                    { title: 'Predictable Logistics', desc: 'Real-time tracking and dedicated account managers ensure you know exactly when your stock arrives.' },
-                    { title: 'Sourcing Sovereignty', desc: 'Direct relationships with farms and manufacturers mean we bypass global supply chain volatility.' }
-                  ].map((item, i) => <InfoCard key={i} number={i + 1} title={item.title} desc={item.desc} />)}
-                </div>
-                <div className="mt-10">
-                  <Link
-                    to="/contact"
-                    className="inline-block rounded-lg bg-brand-red text-white px-10 py-4 font-black uppercase tracking-widest text-xs hover:bg-brand-red/90 transition-all"
-                  >
-                    Request Proposal
-                  </Link>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
-
       {/* Your Brand Banner - Full Width */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
@@ -503,20 +458,20 @@ const Home: React.FC = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-emerald-700 via-emerald-700/95 to-emerald-700/80"></div>
         </div>
-        <div className="relative z-10 py-16 md:py-20">
-          <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight">
+        <div className="relative z-10 py-12 md:py-20">
+          <div className="max-w-7xl mx-auto px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
+            <div className="text-center md:text-left">
+              <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight">
                 Your Brand
               </h2>
-              <div className="w-24 h-1 bg-white mt-4"></div>
-              <p className="text-white/80 mt-6 max-w-xl text-lg">
+              <div className="w-16 md:w-24 h-1 bg-white mt-3 md:mt-4 mx-auto md:mx-0"></div>
+              <p className="text-white/80 mt-4 md:mt-6 max-w-xl text-base md:text-lg">
                 Looking for bespoke wholesale solutions? We offer white-label products, custom packaging, and tailored distribution for your business needs.
               </p>
             </div>
             <Link 
               to="/contact" 
-              className="flex-shrink-0 rounded-lg bg-white text-emerald-700 px-10 py-5 font-black uppercase tracking-widest text-sm hover:bg-slate-100 transition-all"
+              className="flex-shrink-0 rounded-lg bg-white text-emerald-700 px-8 md:px-10 py-4 md:py-5 font-black uppercase tracking-widest text-xs md:text-sm hover:bg-slate-100 transition-all"
             >
               Get Started
             </Link>
@@ -529,24 +484,21 @@ const Home: React.FC = () => {
       </section>
 
       {/* Featured Products */}
-      <section className="py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-16 md:py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
           <AnimatedSection animation="fadeSlideUp">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-12 gap-4 md:gap-8">
               <div>
-                <span className="text-brand-green text-[11px] font-semibold uppercase tracking-[0.25em] mb-3 block">
-                  High Demand Stock
-                </span>
-                <h2 className="text-2xl md:text-4xl font-bold text-slate-900">
-                  Featured Items
+                <h2 className="text-xl md:text-4xl font-bold text-slate-900">
+                  High Demand Products
                 </h2>
-                <p className="text-slate-500 mt-3 max-w-xl text-sm leading-relaxed">
+                <p className="text-slate-500 mt-2 md:mt-3 max-w-xl text-xs md:text-sm leading-relaxed">
                   Curated selection of our best-moving product lines for professional kitchens and retail shelves.
                 </p>
               </div>
-              <Link to="/products" className="text-brand-red font-semibold text-sm hover:underline flex items-center gap-2">
+              <Link to="/products" className="text-brand-red font-semibold text-xs md:text-sm hover:underline flex items-center gap-2">
                 View Full Catalog
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Link>
@@ -557,43 +509,23 @@ const Home: React.FC = () => {
           <ProductsSlider products={PRODUCTS.slice(0, 8)} />
         </div>
       </section>
-      {/* Supply - hidden*/}
-      <section className="hidden py-20 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
-          <AnimatedSection animation="fadeSlideUp">
-            <SectionHeader
-              subtitle="Browse Categories"
-              title="SUPPLY WITHOUT THE OVERHEAD"
-              description="Direct manufacturer relationships mean better pricing without intermediary markup."
-            />
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {CATEGORIES.slice(0, 8).map((cat, index) => (
-              <AnimatedSection key={cat.id} animation="scaleUp" delay={index * 80}>
-                <CategoryCard category={cat} />
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Industries Grid */}
-      <section className="py-20 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-12 md:py-20 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
           <AnimatedSection animation="fadeSlideUp">
             <SectionHeader
-              subtitle="Who We Serve"
+              
               title="INDUSTRIES WE SERVE"
               description="Customized wholesale solutions for every professional sector."
             />
           </AnimatedSection>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
             {INDUSTRIES.map((ind, index) => (
               <AnimatedSection key={ind.name} animation="slideUp" delay={index * 80}>
-                <div className="p-8 bg-slate-50 border-2 border-slate-200 text-center hover:shadow-xl hover:border-emerald-600 hover:-translate-y-1 transition-all group cursor-default">
-                  <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">{ind.icon}</div>
-                  <h4 className="font-black text-slate-900 text-xs uppercase tracking-widest">{ind.name}</h4>
+                <div className="p-4 md:p-8 bg-slate-50 border-2 border-slate-200 text-center hover:shadow-xl hover:border-emerald-600 hover:-translate-y-1 transition-all group cursor-default">
+                  <div className="text-2xl md:text-4xl mb-2 md:mb-4 group-hover:scale-110 transition-transform">{ind.icon}</div>
+                  <h4 className="font-black text-slate-900 text-[10px] md:text-xs uppercase tracking-wider md:tracking-widest">{ind.name}</h4>
                 </div>
               </AnimatedSection>
             ))}
@@ -601,19 +533,19 @@ const Home: React.FC = () => {
         </div>
       </section>
       {/* Final CTA */}
-      <section className="py-20 bg-brand-dark text-white relative overflow-hidden">
+      <section className="py-12 md:py-20 bg-brand-dark text-white relative overflow-hidden">
         {/* Diagonal accent */}
-        <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row justify-between items-center gap-10 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 flex flex-col lg:flex-row justify-between items-center gap-8 md:gap-10 relative z-10">
           <div className="text-center lg:text-left">
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-2 uppercase">Grow Your Margins</h2>
-            <div className="w-24 h-1 bg-emerald-600 mb-6 mx-auto lg:mx-0"></div>
-            <p className="text-slate-400 text-lg leading-relaxed max-w-lg">
+            <h2 className="text-2xl md:text-5xl font-black tracking-tight mb-2 uppercase">Grow Your Margins</h2>
+            <div className="w-16 md:w-24 h-1 bg-emerald-600 mb-4 md:mb-6 mx-auto lg:mx-0"></div>
+            <p className="text-slate-400 text-base md:text-lg leading-relaxed max-w-lg">
               Join 1,200+ businesses benefiting from superior pricing and dependable supply chains.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             
-            <a href="tel:+441612731399" className="bg-transparent border-2 border-white text-white px-10 py-4 font-black uppercase tracking-widest text-sm hover:bg-white hover:text-slate-900 transition-all text-center">
+            <a href="tel:+441612731399" className="bg-transparent border-2 border-white text-white px-8 md:px-10 py-3 md:py-4 font-black uppercase tracking-widest text-xs md:text-sm hover:bg-white hover:text-slate-900 transition-all text-center">
               Call Now
             </a>
           </div>

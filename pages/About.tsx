@@ -54,17 +54,17 @@ const About: React.FC = () => {
                 </p>
               </div>
 
-              <div className="mt-12 flex gap-14">
+              <div className="mt-12 flex flex-wrap gap-8 md:gap-14">
                 {[
                   { label: 'Years Active', value: '15+' },
                   { label: 'Hub Centers', value: '3' },
                   { label: 'B2B Focused', value: '100%' }
                 ].map((stat, i) => (
                   <div key={i}>
-                    <div className="text-3xl font-black text-brand-green">
+                    <div className="text-2xl md:text-3xl font-black text-brand-green">
                       {stat.value}
                     </div>
-                    <div className="text-sm text-slate-500 uppercase tracking-widest">
+                    <div className="text-xs md:text-sm text-slate-500 uppercase tracking-widest">
                       {stat.label}
                     </div>
                   </div>

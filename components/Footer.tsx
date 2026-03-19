@@ -6,11 +6,11 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-slate-900 text-slate-300 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-4">
           {/* Brand Info */}
-          <div className="space-y-6">
+          <div className="space-y-6 md:col-span-3">
             <Link to="/" className="flex items-center">
-              <img src="/assets/logo.png" alt="Good Luck Foods" className="h-20 md:h-24 w-auto object-cover" />
+              <img src="/assets/logo.png" alt="Good Luck Foods" className="h-20 md:h-32 w-auto object-cover" />
             </Link>
             <p className="text-sm leading-relaxed text-slate-400">
               Premium B2B wholesale distribution of quality food and grocery products. Serving the hospitality and retail industry since 2008.
@@ -24,26 +24,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="text-white font-bold mb-6">Quick Links</h4>
-            <ul className="space-y-4 text-sm">
-              <li><Link to="/products" className="hover:text-emerald-400 transition-colors">Browse Products</Link></li>
-              <li><Link to="/about" className="hover:text-emerald-400 transition-colors">Company Story</Link></li>
-              <li><Link to="/contact" className="hover:text-emerald-400 transition-colors">Contact Sales</Link></li>
-              <li><Link to="/signup" className="hover:text-emerald-400 transition-colors">Join Us</Link></li>
-            </ul>
-          </div>
-
-          {/* Categories */}
-          <div>
-            <h4 className="text-white font-bold mb-6">Key Categories</h4>
-            <ul className="space-y-4 text-sm">
-              <li><Link to="/category/drinks-beverages" className="hover:text-emerald-400 transition-colors">Drinks & Beverages</Link></li>
-              <li><Link to="/category/frozen-food" className="hover:text-emerald-400 transition-colors">Frozen Food</Link></li>
-              <li><Link to="/category/fresh-produce" className="hover:text-emerald-400 transition-colors">Fresh Produce</Link></li>
-              <li><Link to="/category/packaging" className="hover:text-emerald-400 transition-colors">Wholesale Packaging</Link></li>
-            </ul>
-          </div>
+         
 
           {/* Contact */}
           <div>
@@ -74,7 +55,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 space-y-4 md:space-y-0">
+        <div className="border-t border-slate-800 pt-4 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 space-y-4 md:space-y-0">
           <p>© 2026 Good Luck Foods Ltd. All Rights Reserved.</p>
           <div className="flex space-x-6">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>

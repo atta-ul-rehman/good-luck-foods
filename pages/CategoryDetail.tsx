@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { CATEGORIES, PRODUCTS } from '../constants';
-import ProductCard from '../components/ProductCard';
+import { CATEGORIES } from '../constants';
 
 interface InfoCardProps {
   number: number;
@@ -95,6 +94,122 @@ const FAQSection: React.FC<FAQProps> = ({ faqs }) => (
   </section >
 );
 
+// Subcategory Card Component
+interface SubcategoryCardProps {
+  name: string;
+  categorySlug: string;
+  categoryImage: string;
+}
+
+const SubcategoryCard: React.FC<SubcategoryCardProps> = ({ name, categorySlug, categoryImage }) => (
+  <div className="flex-shrink-0 w-full md:w-52 bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-all duration-300 group">
+    <div className="h-28 overflow-hidden">
+      <img
+        src={categoryImage}
+        alt={name}
+        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        loading="lazy"
+      />
+    </div>
+    <div className="p-4">
+      <h4 className="font-bold text-slate-800 text-sm mb-3 line-clamp-2">{name}</h4>
+      <Link
+        to={`/products?category=${categorySlug}&subcategory=${encodeURIComponent(name)}`}
+        className="inline-flex items-center gap-1 text-xs font-bold text-brand-green hover:text-brand-green/80 transition-colors"
+      >
+        View Products
+        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </Link>
+    </div>
+  </div>
+);
+
+// Subcategory Slider Component
+interface SubcategorySliderProps {
+  subcategories: string[];
+  categorySlug: string;
+  categoryImage: string;
+}
+
+const SubcategorySlider: React.FC<SubcategorySliderProps> = ({ subcategories, categorySlug, categoryImage }) => {
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+  const showSlider = subcategories.length > 4;
+
+  const checkScrollability = () => {
+    if (sliderRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
+    }
+  };
+
+  useEffect(() => {
+    checkScrollability();
+    window.addEventListener('resize', checkScrollability);
+    return () => window.removeEventListener('resize', checkScrollability);
+  }, [subcategories]);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (sliderRef.current) {
+      const scrollAmount = 220;
+      sliderRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  if (subcategories.length === 0) return null;
+
+  return (
+    <div className="relative">
+      {showSlider && canScrollLeft && (
+        <button
+          onClick={() => scroll('left')}
+          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-slate-600 hover:text-brand-green hover:shadow-xl transition-all"
+          aria-label="Scroll left"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+      )}
+      
+      <div
+        ref={sliderRef}
+        onScroll={checkScrollability}
+        className={`flex flex-col md:flex-row gap-4 md:gap-5 ${showSlider ? 'md:overflow-x-auto scrollbar-hide scroll-smooth' : 'md:flex-wrap'}`}
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
+        {subcategories.map((subcat) => (
+          <SubcategoryCard
+            key={subcat}
+            name={subcat}
+            categorySlug={categorySlug}
+            categoryImage={categoryImage}
+          />
+        ))}
+      </div>
+
+      {showSlider && canScrollRight && (
+        <button
+          onClick={() => scroll('right')}
+          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-slate-600 hover:text-brand-green hover:shadow-xl transition-all"
+          aria-label="Scroll right"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      )}
+    </div>
+  );
+};
+
 const CategoryDetail: React.FC = () => {
   const { slug } = useParams();
   const category = CATEGORIES.find((c) => c.slug === slug);
@@ -111,7 +226,6 @@ const CategoryDetail: React.FC = () => {
       </div>
     );
 
-  const categoryProducts = PRODUCTS.filter((p) => p.categoryId === category.id);
   const content = CATEGORY_CONTENT[category.slug] || getFallbackContent(category.name);
 
   return (
@@ -150,125 +264,44 @@ const CategoryDetail: React.FC = () => {
         </div>
       </section>
 
-      {/* Overview + Products + Quality */}
-      <section className="py-28 bg-white border-b border-slate-100">
+      {/* Overview + Subcategories */}
+      <section className="py-12 md:py-28 bg-white border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
-            {/* Left: Overview + Products */}
-            <div className="lg:col-span-8 space-y-24">
-              {/* Overview */}
-              <div>
-                <h2 className="text-3xl font-black text-slate-900 mb-10 flex items-center">
-                  <span className="w-10 h-1 bg-brand-green mr-5 rounded-full"></span>
-                  Wholesale {category.name} Overview
-                </h2>
-                <p className="text-lg text-slate-600 leading-relaxed font-medium max-w-3xl">{content.overview}</p>
-                <p className="mt-6 text-sm text-slate-500 font-semibold uppercase tracking-wider">
-                  Designed for professional buyers requiring consistent quality and scalable supply
-                </p>
-              </div>
-
-              {/* Featured Wholesale Products */}
-              <div>
-                <h2 className="text-2xl font-black text-slate-900 mb-12">
-                  Featured Products
-                </h2>
-                {categoryProducts.length > 0 ? (
-                  <>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                      {categoryProducts.slice(0, 3).map((product) => (
-                        <ProductCard key={product.id} product={product} />
-                      ))}
-                    </div>
-                    <div className="mt-10 text-center">
-                      <Link
-                        to={`/products?category=${category.slug}`}
-                        className="inline-block bg-brand-green text-white px-8 py-3 rounded-xl font-bold text-sm hover:bg-brand-green/90 transition-all"
-                      >
-                        Browse More {category.name}
-                      </Link>
-                    </div>
-                  </>
-                ) : (
-                  <div className="bg-slate-50 p-8 rounded-2xl text-center border border-dashed border-slate-300">
-                    <p className="text-slate-600">Contact us for our full {category.name.toLowerCase()} catalog.</p>
-                    <Link
-                      to="/contact"
-                      className="inline-block mt-4 bg-brand-red text-white px-6 py-2 rounded-lg font-bold text-sm"
-                    >
-                      Request Catalog
-                    </Link>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Right: Quality & Standards */}
-            <div className="lg:col-span-4">
-              <div className="sticky top-32 p-12 bg-slate-900 text-white rounded-[2rem] shadow-2xl">
-                <h2 className="text-xl font-black uppercase tracking-widest mb-10 text-brand-green">
-                  Sourcing & Standards
-                </h2>
-                <div className="space-y-10">
-                  <div className="flex space-x-5">
-                    <span className="text-brand-lime font-black text-xl">✓</span>
-                    <p className="text-sm text-slate-300 font-medium leading-relaxed">{content.quality}</p>
-                  </div>
-                  <div className="pt-10 border-t border-slate-800">
-                    <p className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 mb-3">
-                      Supply Continuity
-                    </p>
-                    <p className="text-xs text-slate-400 leading-relaxed italic">
-                      Direct manufacturer and origin-level sourcing reduces dependency on volatile
-                      global supply chains and ensures volume-ready availability.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>  
-
-      {/* Supply & Bulk Inquiry */}
-      <section className="py-24 bg-slate-50 border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+          <div className="space-y-12">
+            {/* Overview */}
             <div>
-              <h3 className="text-2xl font-extrabold text-slate-900 mb-8 flex items-center">
-                <span className="w-12 h-1 bg-brand-green rounded-full mr-4"></span>
-                Supply & Quality Assurance
-              </h3>
-              <div className="space-y-8">
-                {[
-                  { title: 'Global Sourcing', desc: 'We source directly from origin to ensure product authenticity and best pricing.' },
-                  { title: 'Consistency Guaranteed', desc: 'Standardized grading for all items to ensure recipe consistency for chefs.' },
-                  { title: 'Volume-Ready', desc: 'Infrastructure to handle single pallets or full container loads.' }
-                ].map((item, i) => (
-                  <InfoCard key={i} number={i + 1} title={item.title} desc={item.desc} />
-                ))}
-              </div>
+              <h2 className="text-3xl font-black text-slate-900 mb-10 flex items-center">
+                <span className="w-10 h-1 bg-brand-green mr-5 rounded-full"></span>
+                {category.name} Overview
+              </h2>
+              <p className="text-lg text-slate-600 leading-relaxed font-medium max-w-7xl">{content.overview}</p>
+              <p className="mt-6 text-sm text-slate-500 font-semibold uppercase tracking-wider">
+                Designed for professional buyers requiring consistent quality and scalable supply
+              </p>
             </div>
 
-            <div className="bg-gradient-to-tr from-brand-red to-red-400 rounded-3xl p-12 text-white relative overflow-hidden shadow-2xl">
-              <div className="relative z-10 space-y-6">
-                <h3 className="text-2xl font-extrabold">Bulk Order Inquiry</h3>
-                <p className="text-emerald-100 leading-relaxed text-lg">
-                  Interested in stocking our {category.name} range? Reserve your stock today with a category specialist for tier-based volume pricing and delivery schedules.
-                </p>
-                <Link
-                  to="/contact"
-                  className="inline-block bg-white text-slate-800 px-10 py-4 rounded-xl font-bold text-lg hover:bg-emerald-50 transition-colors shadow-lg"
-                >
-                  Get Wholesale Pricing
-                </Link>
-                <p className="text-xs text-white/70 uppercase tracking-wide font-semibold mt-2">
-                  Wholesale only · Fast response
-                </p>
-              </div>
-              <div className="absolute -bottom-12 -right-12 opacity-20 pointer-events-none transform rotate-12 text-[220px]">
-                <span>{category.icon}</span>
-              </div>
+            {/* Subcategories */}
+            <div>
+              <h2 className="text-2xl font-black text-slate-900 mb-12">
+                Browse Subcategories
+              </h2>
+              {category.subcategories && category.subcategories.length > 0 ? (
+                <SubcategorySlider
+                  subcategories={category.subcategories}
+                  categorySlug={category.slug}
+                  categoryImage={category.image}
+                />
+              ) : (
+                <div className="bg-slate-50 p-8 rounded-2xl text-center border border-dashed border-slate-300">
+                  <p className="text-slate-600">Contact us for our full {category.name.toLowerCase()} catalog.</p>
+                  <Link
+                    to="/contact"
+                    className="inline-block mt-4 bg-brand-red text-white px-6 py-2 rounded-lg font-bold text-sm"
+                  >
+                    Request Catalog
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>

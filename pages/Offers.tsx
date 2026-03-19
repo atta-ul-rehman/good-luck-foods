@@ -40,16 +40,23 @@ const Offers: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-red-600 to-red-700 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-4">
+      <section className="relative h-[200px] bg-slate-900 flex items-center overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?auto=format&fit=crop&q=80&w=1920"
+          alt="Special wholesale offers and deals"
+          className="absolute inset-0 w-full h-full object-cover opacity-50"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent"></div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
+          <h1 className="text-3xl md:text-5xl font-black tracking-widest text-white mb-4">
             SPECIAL OFFERS
           </h1>
-          <p className="text-xl text-red-100 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto">
             Exclusive deals and discounts for our valued wholesale customers
           </p>
         </div>
-      </div>
+      </section>
 
       {/* Offers Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
