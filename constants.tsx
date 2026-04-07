@@ -1,7 +1,96 @@
 import { Category, Product } from './types';
 
+const DRINK_CAN_ASSET_BASE = '/assets/Drink Cans processed';
+
+const DRINK_CAN_FILES = [
+  '7UP CANS 24X330ML.png',
+  'BAR CHERRYADE 24X330 ML.png',
+  'BAR COLA 24X330 ML.png',
+  'BAR LEMONADE  24X330 ML.png',
+  'CAPRISUN (40X200ML).png',
+  'CHERRY COKE CANS (GB) 24X330ML.png',
+  'COKE CANS 24X330ML.png',
+  'DIET COKE 330ML 30PK.png',
+  'Dr PEPPER 24 X 330ml GB.png',
+  'FANTA FRT TWIST 24X330ML GB.png',
+  'FANTA G PE & P APPLE 24 X 330ML GB.png',
+  'FANTA LEMON 24 X 330ML GB.png',
+  'FANTA ORANGE 24X330ML GB.png',
+  'ICE COLA 24 X 330ML.png',
+  'ICE LEMONADE 24 X 330ML.png',
+  'ICE MANGO 24 X 330ML.png',
+  'ICE MAX 24 X 330ML.png',
+  'ICE ORANGE 24 X 330ML.png',
+  'ICE STRAWBERRY 24 X 330ML.png',
+  'IRN BRU 24X330 ML GB.png',
+  'LUCOZADE ORANGE 24X380ML.png',
+  'MIRINDA  ORANGE 24X330ML.png',
+  'MIRINDA STRAWBERRY 24X330ML.png',
+  'MONSTER ENERGY DRINK.png',
+  'PEPSI CANS    24 X 330ML.png',
+  'PEPSI LIGHT CANS 24X330ML.jpeg',
+  'PEPSI MAX CANS 24X330ML.png',
+  'RED BULL 24 X 250 ML.png',
+  'RIBENA BLK CURNT 24X250ML.png',
+  'RIO TROPICAL 24X330ML GB.png',
+  'RUBICON MANGO 24X330ML GB.png',
+  'RUBICON PASSION 24X330ML GB .png',
+  'RUBICUN GUAVA 24X330ML GB.png',
+  'SPRITE 24X330ML GB.png',
+  'TANGO APPLE 24X330ML GB.png',
+  'TANGO ORANGE 24X330ML GB.png',
+  'VIMTO 24X330ML GB.png',
+  'ZANTI COLA 330X24ML.png',
+] as const;
+
+const SAUCE_BOTTLE_FILES = [
+  'HARRISONS GARLIC MAYO 1LTR.png',
+  'HARRISONS GARLIC MAYO 6 X1LTR.png',
+  'HARRISONS S CHILLI 1LTR.png',
+  'HARRISONS S CHILLI 6x1LTR.png',
+] as const;
+
+const toProductName = (fileName: string) =>
+  fileName
+    .replace(/\.[^.]+$/, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+const toProductImage = (fileName: string) =>
+  `${DRINK_CAN_ASSET_BASE}/${fileName}`
+    .split('/')
+    .map(segment => encodeURIComponent(segment))
+    .join('/')
+    .replace('%2F', '/');
+
+const createAssetProduct = (id: string, categoryId: string, fileName: string, description: string): Product => ({
+  id,
+  categoryId,
+  name: toProductName(fileName),
+  description,
+  image: toProductImage(fileName),
+});
+
+const DRINK_CAN_PRODUCTS: Product[] = DRINK_CAN_FILES.map((fileName, index) =>
+  createAssetProduct(
+    `drink-can-${index + 1}`,
+    '1',
+    fileName,
+    'Wholesale case format for retail shelves, takeaways, and foodservice buyers.'
+  )
+);
+
+const SAUCE_BOTTLE_PRODUCTS: Product[] = SAUCE_BOTTLE_FILES.map((fileName, index) =>
+  createAssetProduct(
+    `sauce-bottle-${index + 1}`,
+    '10',
+    fileName,
+    'Popular wholesale bottle line for fast food shops, takeaways, and catering supply.'
+  )
+);
+
 export const CATEGORIES: Category[] = [
-  { id: '1', name: 'Drinks', slug: 'drinks', description: 'Premium beverages including sodas, artisanal juices, and mineral waters.', image: 'https://images.unsplash.com/photo-1527960471264-932f39eb5846?auto=format&fit=crop&q=80&w=800', icon: '🥤', subcategories: ['Canned Drinks', 'Bottled Drinks'] },
+  { id: '1', name: 'Drinks', slug: 'drinks', description: 'Premium beverages including sodas, artisanal juices, and mineral waters.', image: '/assets/Drink%20Cans%20processed/COKE%20CANS%2024X330ML.png', icon: '🥤', subcategories: ['Canned Drinks', 'Bottled Drinks'] },
   { id: '2', name: 'Packaging', slug: 'packaging', description: 'Sustainable and industrial strength wholesale packaging solutions.', image: 'https://images.unsplash.com/photo-1607166452427-7e4477079cb9?auto=format&fit=crop&q=80&w=800', icon: '📦', subcategories: ['Paper Bags with Handles', 'Paper Bags without Handles', 'Chicken Boxes', 'Wrapping Sheets'] },
   { id: '3', name: 'Frozen Foods', slug: 'frozen-foods', description: 'IQF vegetables, premium meats, and ready-to-heat professional meals.', image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=800', icon: '❄️', subcategories: ['Frozen Chips', 'Frozen Buns', 'Frozen Meat', 'Frozen Chicken'] },
   { id: '4', name: 'Desserts', slug: 'desserts', description: 'Wholesale sweets, cakes, ice cream and confectionery items.', image: 'https://images.unsplash.com/photo-1581798459219-318e76aecc7b?auto=format&fit=crop&q=80&w=800', icon: '🍰', subcategories: ['Cakes', 'Ice Cream', 'Confectionery'] },
@@ -17,11 +106,7 @@ export const CATEGORIES: Category[] = [
 
 export const PRODUCTS: Product[] = [
   // Drinks (Category 1)
-  { id: 'p1', categoryId: '1', name: 'Premium Mineral Water', description: 'Pure volcanic spring water in various glass and PET bottle sizes.', image: 'https://images.unsplash.com/photo-1560023907-5f339617ea30?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p2', categoryId: '1', name: 'Organic Fruit Juices', description: 'Cold-pressed 100% natural juices for premium hospitality.', image: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p3', categoryId: '1', name: 'Sparkling Soda Mixers', description: 'High-carbonation mixers for bars and restaurants.', image: 'https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p4', categoryId: '1', name: 'Energy Drinks Bulk Pack', description: 'High caffeine energy drinks for convenience stores.', image: 'https://images.unsplash.com/photo-1622543925917-763c34d1a86e?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p5', categoryId: '1', name: 'Iced Tea Collection', description: 'Premium iced tea in multiple flavors for cafes.', image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&q=80&w=400' },
+  ...DRINK_CAN_PRODUCTS,
   
   // Packaging (Category 2)
   { id: 'p6', categoryId: '2', name: 'Eco-Friendly Takeout Boxes', description: 'Compostable sugarcane fiber containers for sustainable brands.', image: 'https://images.unsplash.com/photo-1605648916319-cf082f7524a1?auto=format&fit=crop&q=80&w=400' },
@@ -80,6 +165,7 @@ export const PRODUCTS: Product[] = [
   { id: 'p45', categoryId: '9', name: 'Butter Blocks 2kg', description: 'Salted butter blocks for baking.', image: 'https://images.unsplash.com/photo-1589985263345-3e61882b06e3?auto=format&fit=crop&q=80&w=400' },
   
   // Sauces (Category 10)
+  ...SAUCE_BOTTLE_PRODUCTS,
   { id: 'p46', categoryId: '10', name: 'Classic Tomato Marinara', description: 'Premium base sauce made with San Marzano style tomatoes.', image: 'https://images.unsplash.com/photo-1528751004905-2f447291c582?auto=format&fit=crop&q=80&w=400' },
   { id: 'p47', categoryId: '10', name: 'BBQ Marinade 5L', description: 'Smoky BBQ marinade for grilled meats.', image: 'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&q=80&w=400' },
   { id: 'p48', categoryId: '10', name: 'Mayonnaise 10kg', description: 'Commercial grade mayonnaise bucket.', image: 'https://images.unsplash.com/photo-1582169296194-e4d644c48063?auto=format&fit=crop&q=80&w=400' },
