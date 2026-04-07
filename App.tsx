@@ -68,6 +68,16 @@ const AppLayout = () => {
 const App: React.FC = () => {
   const [showSplash, setShowSplash] = useState(true);
 
+  useEffect(() => {
+    // Allow direct links like /products to work with HashRouter.
+    if (window.location.hash) return;
+
+    const { pathname, search } = window.location;
+    if (pathname !== '/') {
+      window.location.replace(`/#${pathname}${search}`);
+    }
+  }, []);
+
   const handleSplashComplete = () => {
     setShowSplash(false);
   };
