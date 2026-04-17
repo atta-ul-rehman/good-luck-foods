@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { CATEGORIES } from '../constants';
+import SEO from '../components/SEO';
 
 interface InfoCardProps {
   number: number;
@@ -228,8 +229,59 @@ const CategoryDetail: React.FC = () => {
 
   const content = CATEGORY_CONTENT[category.slug] || getFallbackContent(category.name);
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.goodluckfoods.co.uk/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Products',
+        item: 'https://www.goodluckfoods.co.uk/products',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: category.name,
+        item: `https://www.goodluckfoods.co.uk/category/${category.slug}`,
+      },
+    ],
+  };
+
+  const faqSchema = content.faqs && content.faqs.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: content.faqs.map((faq: { q: string; a: string }) => ({
+          '@type': 'Question',
+          name: faq.q,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.a,
+          },
+        })),
+      }
+    : null;
+
+  const schemas = faqSchema
+    ? [breadcrumbSchema, faqSchema]
+    : [breadcrumbSchema];
+
   return (
     <div className="animate-in fade-in duration-500">
+      <SEO
+        title={`Wholesale ${category.name} – Bulk ${category.name} Supply UK`}
+        description={`${category.description} Good Luck Foods Ltd. supplies wholesale ${category.name.toLowerCase()} to restaurants, takeaways and retailers across the UK. Request bulk pricing today.`}
+        path={`/category/${category.slug}`}
+        image={category.image.startsWith('http') ? category.image : `https://www.goodluckfoods.co.uk${category.image}`}
+        schema={schemas}
+      />
       {/* Hero */}
       <section className="relative h-[200px] bg-slate-900 flex items-center overflow-hidden">
         <img
@@ -307,8 +359,8 @@ const CategoryDetail: React.FC = () => {
         </div>
       </section>
 
-      {/* FAQs - Hidden */}
-      {/* <FAQSection faqs={content.faqs} /> */}
+      {/* FAQs */}
+      {content.faqs && content.faqs.length > 0 && <FAQSection faqs={content.faqs} />}
     </div>
   );
 };

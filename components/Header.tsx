@@ -133,6 +133,7 @@ const Header: React.FC = () => {
   ];
 
   const isActive = (path: string) => location.pathname === path;
+  const hideTopHeaderControls = location.pathname === '/login' || location.pathname === '/signup';
   const hideSubNav = location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/forgot-password';
 
   return (
@@ -147,6 +148,7 @@ const Header: React.FC = () => {
           {/* Right Side: Search, Button, and Menu */}
           <div className="flex items-center gap-4 flex-1 justify-end md:justify-between md:ml-8">
             {/* Search Bar */}
+            {!hideTopHeaderControls && (
             <div ref={searchRef} className="relative hidden md:block w-[100%]">
               <form onSubmit={handleSearch}>
                 <input
@@ -250,28 +252,33 @@ const Header: React.FC = () => {
                 </div>
               )}
             </div>
+            )}
 
             {/* Login Button */}
-            <Link
-              to="/login"
-              className="hidden md:block bg-brand-red text-white px-6 py-2 rounded-lg text-sm font-black tracking-widest hover:brightness-110 transition-all active:scale-95"
-            >
-              Login
-            </Link>
+            {!hideTopHeaderControls && (
+              <Link
+                to="/login"
+                className="hidden md:block bg-brand-red text-white px-6 py-2 rounded-lg text-sm font-black tracking-widest hover:brightness-110 transition-all active:scale-95"
+              >
+                Login
+              </Link>
+            )}
 
             {/* Menu Button */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 text-slate-600 focus:outline-none"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {isOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
+            {!hideTopHeaderControls && (
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="p-2 text-slate-600 focus:outline-none"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {isOpen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </button>
+            )}
           </div>
         </div>
       </div>

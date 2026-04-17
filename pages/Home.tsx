@@ -4,6 +4,7 @@ import { CATEGORIES, INDUSTRIES, PRODUCTS } from '../constants';
 import CategoryCard from '../components/CategoryCard';
 import ProductCard from '../components/ProductCard';
 import HeroSlider from '../components/HeroSlider';
+import SEO from '../components/SEO';
 import { Product } from '../types';
 
 // Custom hook for scroll animations
@@ -204,8 +205,73 @@ const ProductsSlider: React.FC<{ products: Product[] }> = ({ products }) => {
 };
 
 const Home: React.FC = () => {
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Good Luck Foods Ltd.',
+    url: 'https://www.goodluckfoods.co.uk',
+    logo: 'https://www.goodluckfoods.co.uk/assets/logo1.jpg',
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+44-161-273-1399',
+      contactType: 'sales',
+      areaServed: 'GB',
+      availableLanguage: 'English',
+    },
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Unit 5, Viva Centre, Coverdale Cres',
+      addressLocality: 'Manchester',
+      postalCode: 'M12 4AP',
+      addressCountry: 'GB',
+    },
+    foundingDate: '2008',
+    description:
+      'B2B wholesale food and grocery distributor based in Manchester, UK. Supplying restaurants, takeaways, hotels and retailers since 2008.',
+    sameAs: [],
+  };
+
+  const localBusinessSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FoodEstablishment',
+    name: 'Good Luck Foods Ltd.',
+    image: 'https://www.goodluckfoods.co.uk/assets/logo1.jpg',
+    url: 'https://www.goodluckfoods.co.uk',
+    telephone: '+44-161-273-1399',
+    email: 'sales@goodluckfoods.com',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Unit 5, Viva Centre, Coverdale Cres',
+      addressLocality: 'Manchester',
+      postalCode: 'M12 4AP',
+      addressCountry: 'GB',
+    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        opens: '09:00',
+        closes: '19:00',
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: 'Sunday',
+        opens: '10:30',
+        closes: '16:00',
+      },
+    ],
+    priceRange: '££',
+    servesCuisine: 'Wholesale Food Distribution',
+  };
+
   return (
     <div className="animate-in fade-in duration-500">
+      <SEO
+        title="Wholesale B2B Food & Grocery Supplier"
+        description="Good Luck Foods Ltd. is a Manchester-based B2B wholesale food and grocery distributor. Supplying drinks, frozen foods, packaging, spices, sauces and more to restaurants, takeaways and retailers across the UK since 2008."
+        path="/"
+        schema={[organizationSchema, localBusinessSchema]}
+      />
 
       {/* Hero Slider Section */}
       <HeroSlider />

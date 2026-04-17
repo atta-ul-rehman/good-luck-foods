@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 .env
+.github/reviews/local-change-review.md
+.github/reviews/.review-state.json

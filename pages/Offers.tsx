@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 
 const Offers: React.FC = () => {
@@ -39,7 +40,11 @@ const Offers: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Hero Section */}
+      <SEO
+        title="Special Wholesale Offers & Bulk Deal Pricing"
+        description="Browse current wholesale deals and bulk order pricing from Good Luck Foods Ltd. Special offers on drinks, frozen foods, sauces, packaging and more for UK businesses."
+        path="/offers"
+      />
       <section className="relative h-[200px] bg-slate-900 flex items-center overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?auto=format&fit=crop&q=80&w=1920"

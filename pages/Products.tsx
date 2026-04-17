@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import { CATEGORIES, PRODUCTS } from '../constants';
 import ProductCard from '../components/ProductCard';
+import SEO from '../components/SEO';
 
 const INITIAL_LOAD = 50;
 const LOAD_MORE_COUNT = 10;
@@ -116,6 +117,11 @@ const Products: React.FC = () => {
 
   return (
     <div className="bg-white min-h-screen">
+      <SEO
+        title="Wholesale Products – Drinks, Frozen Foods, Packaging & More"
+        description="Browse 800+ wholesale food and grocery products at Good Luck Foods Ltd. Categories include drinks, frozen foods, packaging, sauces, spices, oils and cleaning supplies. Bulk pricing available for UK businesses."
+        path="/products"
+      />
      
 
       {/* Main Shop Header */}

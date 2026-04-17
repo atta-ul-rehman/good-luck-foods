@@ -8,6 +8,8 @@ export default defineConfig(({ mode }) => {
       server: {
         port: 3000,
         host: '0.0.0.0',
+        // Required for BrowserRouter: serve index.html for all unknown paths
+        historyApiFallback: true,
       },
       plugins: [react()],
       define: {

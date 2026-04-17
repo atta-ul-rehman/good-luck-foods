@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CATEGORIES } from '../constants';
 import { contactAPI } from '../utils/api';
+import SEO from '../components/SEO';
 
 const Contact: React.FC = () => {
   const location = useLocation();
@@ -18,6 +19,27 @@ const Contact: React.FC = () => {
     category: '',
     message: preSelectedProduct ? `Inquiry regarding: ${preSelectedProduct}` : ''
   });
+
+  const contactPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Contact Good Luck Foods Ltd.',
+    description: 'Get in touch with Good Luck Foods Ltd. for wholesale pricing, bulk orders and product inquiries.',
+    url: 'https://www.goodluckfoods.co.uk/contact',
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'Good Luck Foods Ltd.',
+      telephone: '+44-161-273-1399',
+      email: 'sales@goodluckfoods.com',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Unit 5, Viva Centre, Coverdale Cres',
+        addressLocality: 'Manchester',
+        postalCode: 'M12 4AP',
+        addressCountry: 'GB',
+      },
+    },
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,6 +82,12 @@ const Contact: React.FC = () => {
 
   return (
     <div className="animate-fade-in">
+      <SEO
+        title="Contact Us – Request Wholesale Pricing"
+        description="Contact Good Luck Foods Ltd. to request wholesale pricing, bulk order quotes, or a logistics consultation. Based in Manchester, serving businesses across the UK."
+        path="/contact"
+        schema={contactPageSchema}
+      />
       <div className="bg-slate-900 py-16 text-center">
         <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">Contact Us</h1>
         <p className="text-slate-400 text-lg max-w-xl mx-auto">Request pricing, custom catalogs, or a logistics consultation.</p>

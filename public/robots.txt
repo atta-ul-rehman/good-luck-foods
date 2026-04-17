@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Block auth pages - no SEO value
+Disallow: /login
+Disallow: /signup
+Disallow: /forgot-password
+
+Sitemap: https://www.goodluckfoods.co.uk/sitemap.xml

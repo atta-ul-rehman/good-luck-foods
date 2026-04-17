@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider } from './context/AuthContext';
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -68,27 +69,19 @@ const AppLayout = () => {
 const App: React.FC = () => {
   const [showSplash, setShowSplash] = useState(true);
 
-  useEffect(() => {
-    // Allow direct links like /products to work with HashRouter.
-    if (window.location.hash) return;
-
-    const { pathname, search } = window.location;
-    if (pathname !== '/') {
-      window.location.replace(`/#${pathname}${search}`);
-    }
-  }, []);
-
   const handleSplashComplete = () => {
     setShowSplash(false);
   };
 
   return (
-    <AuthProvider>
-      {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
-      <HashRouter>
-        <AppLayout />
-      </HashRouter>
-    </AuthProvider>
+    <HelmetProvider>
+      <AuthProvider>
+        {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
+        <BrowserRouter>
+          <AppLayout />
+        </BrowserRouter>
+      </AuthProvider>
+    </HelmetProvider>
   );
 };
 

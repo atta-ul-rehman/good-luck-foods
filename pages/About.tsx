@@ -1,9 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const About: React.FC = () => {
   return (
     <div className="animate-in fade-in duration-500">
+      <SEO
+        title="About Us – B2B Wholesale Food Distributor Since 2008"
+        description="Learn about Good Luck Foods Ltd., a Manchester-based B2B wholesale food distributor supplying restaurants, takeaways and retailers across the UK since 2008. 5,000+ product lines across 12 categories."
+        path="/about"
+      />
 
       {/* Hero */}
       <section className="bg-slate-900 py-16">

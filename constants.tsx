@@ -1,53 +1,139 @@
 import { Category, Product } from './types';
 
 const DRINK_CAN_ASSET_BASE = '/assets/Drink Cans processed';
+const AVIKO_ASSET_BASE = '/assets/Aviko - Processed incomp';
+const BREAD_BUNS_ASSET_BASE = '/assets/Bread & buns processed';
+const BURGER_ASSET_BASE = '/assets/Burger Processed';
+const CANNED_ASSET_BASE = '/assets/Canned food 2';
 
 const DRINK_CAN_FILES = [
-  '7UP CANS 24X330ML.png',
-  'BAR CHERRYADE 24X330 ML.png',
-  'BAR COLA 24X330 ML.png',
-  'BAR LEMONADE  24X330 ML.png',
-  'CAPRISUN (40X200ML).png',
-  'CHERRY COKE CANS (GB) 24X330ML.png',
-  'COKE CANS 24X330ML.png',
-  'DIET COKE 330ML 30PK.png',
-  'Dr PEPPER 24 X 330ml GB.png',
-  'FANTA FRT TWIST 24X330ML GB.png',
-  'FANTA G PE & P APPLE 24 X 330ML GB.png',
-  'FANTA LEMON 24 X 330ML GB.png',
-  'FANTA ORANGE 24X330ML GB.png',
-  'ICE COLA 24 X 330ML.png',
-  'ICE LEMONADE 24 X 330ML.png',
-  'ICE MANGO 24 X 330ML.png',
-  'ICE MAX 24 X 330ML.png',
-  'ICE ORANGE 24 X 330ML.png',
-  'ICE STRAWBERRY 24 X 330ML.png',
-  'IRN BRU 24X330 ML GB.png',
-  'LUCOZADE ORANGE 24X380ML.png',
-  'MIRINDA  ORANGE 24X330ML.png',
-  'MIRINDA STRAWBERRY 24X330ML.png',
-  'MONSTER ENERGY DRINK.png',
-  'PEPSI CANS    24 X 330ML.png',
-  'PEPSI LIGHT CANS 24X330ML.jpeg',
-  'PEPSI MAX CANS 24X330ML.png',
-  'RED BULL 24 X 250 ML.png',
-  'RIBENA BLK CURNT 24X250ML.png',
-  'RIO TROPICAL 24X330ML GB.png',
-  'RUBICON MANGO 24X330ML GB.png',
-  'RUBICON PASSION 24X330ML GB .png',
-  'RUBICUN GUAVA 24X330ML GB.png',
-  'SPRITE 24X330ML GB.png',
-  'TANGO APPLE 24X330ML GB.png',
-  'TANGO ORANGE 24X330ML GB.png',
-  'VIMTO 24X330ML GB.png',
-  'ZANTI COLA 330X24ML.png',
+  '7UP CANS 24X330ML.webp',
+  'BAR CHERRYADE 24X330 ML.webp',
+  'BAR COLA 24X330 ML.webp',
+  'BAR LEMONADE  24X330 ML.webp',
+  'CAPRISUN (40X200ML).webp',
+  'CHERRY COKE CANS (GB) 24X330ML.webp',
+  'COKE CANS 24X330ML.webp',
+  'DIET COKE 330ML 30PK.webp',
+  'Dr PEPPER 24 X 330ml GB.webp',
+  'FANTA FRT TWIST 24X330ML GB.webp',
+  'FANTA G PE & P APPLE 24 X 330ML GB.webp',
+  'FANTA LEMON 24 X 330ML GB.webp',
+  'FANTA ORANGE 24X330ML GB.webp',
+  'ICE COLA 24 X 330ML.webp',
+  'ICE LEMONADE 24 X 330ML.webp',
+  'ICE MANGO 24 X 330ML.webp',
+  'ICE MAX 24 X 330ML.webp',
+  'ICE ORANGE 24 X 330ML.webp',
+  'ICE STRAWBERRY 24 X 330ML.webp',
+  'IRN BRU 24X330 ML GB.webp',
+  'LUCOZADE ORANGE 24X380ML.webp',
+  'MIRINDA  ORANGE 24X330ML.webp',
+  'MIRINDA STRAWBERRY 24X330ML.webp',
+  'MONSTER ENERGY DRINK.webp',
+  'PEPSI CANS    24 X 330ML.webp',
+  'PEPSI LIGHT CANS 24X330ML.webp',
+  'PEPSI MAX CANS 24X330ML.webp',
+  'RED BULL 24 X 250 ML.webp',
+  'RIBENA BLK CURNT 24X250ML.webp',
+  'RIO TROPICAL 24X330ML GB.webp',
+  'RUBICON MANGO 24X330ML GB.webp',
+  'RUBICON PASSION 24X330ML GB .webp',
+  'RUBICUN GUAVA 24X330ML GB.webp',
+  'SPRITE 24X330ML GB.webp',
+  'TANGO APPLE 24X330ML GB.webp',
+  'TANGO ORANGE 24X330ML GB.webp',
+  'VIMTO 24X330ML GB.webp',
+  'ZANTI COLA 330X24ML.webp',
 ] as const;
 
 const SAUCE_BOTTLE_FILES = [
-  'HARRISONS GARLIC MAYO 1LTR.png',
-  'HARRISONS GARLIC MAYO 6 X1LTR.png',
-  'HARRISONS S CHILLI 1LTR.png',
-  'HARRISONS S CHILLI 6x1LTR.png',
+  'HARRISONS GARLIC MAYO 1LTR.webp',
+  'HARRISONS GARLIC MAYO 6 X1LTR.webp',
+  'HARRISONS S CHILLI 1LTR.webp',
+  'HARRISONS S CHILLI 6x1LTR.webp',
+] as const;
+
+const AVIKO_FILES = [
+  'AVIKO BATTERED ONION RINGS BOX 6X1KG.webp',
+  'AVIKO CHILLI CHEDDAR NUGGETS5X1KG.webp',
+  'AVIKO HASH BROWNS TRIANGLE 4X2.5KG.webp',
+  'AVIKO HASHBROWN  TRIANGAES 2.5 KG.webp',
+  'AVIKO JALAPENO CHEESE SNK1X5 KG.webp',
+  'AVIKO MAC && CHEESE 1 X 6 KG BOX.webp',
+  'AVIKO MOZZARELLA STICKS 1KG.webp',
+  'AVIKO MOZZASTICKS 5X1KG.webp',
+  'AVIKO ONION RINGS 1X1KG.webp',
+  'AVIKO PREMIUM CR 7MM 10 KG.webp',
+  'AVIKO PREMIUM CURNCH 38 9.5MM.webp',
+  'AVIKO SUPER CRUNCH  9.5 MM 4X2.5KG.webp',
+  'AVIKO SWEET POTATO 1X2.2KG.webp',
+  'AVIKO SWEET POTATO FRIES BOX .webp',
+  'AVIKO VEGGIE BURGER 1125G.webp',
+] as const;
+
+const BREAD_BUNS_FILES = [
+  '4 BUNS AMERICANA SEEDED BOX.webp',
+  '4.5 BUNS AMERICANA SEEDED BOX.webp',
+  '5 BUNS AMERICANA SEEDED BOX.webp',
+  '5 BUNS LETSDOUGH 48X86G.webp',
+  '6.5 SIDE SLICED HOT DOG ROLLS BOX.webp',
+  'AMR BROICHE BUN 4.5.webp',
+  'CABICO T WRAP 12.webp',
+  'DULCESOL BRIOCHE .webp',
+  'DULCESOL HOT DOG.webp',
+  'DULCESOL WRAPS 10.webp',
+  'LETSDOUGH SEEDED BUN 4.5.webp',
+  'SABAT PITTA BREAD LARGE 18X6.webp',
+  'SANTA MARIA 10 WRAPS 5X10.webp',
+  'SANTA MARIA 12 WRAPS 10X10.webp',
+  'ST PIERRE BUN SEEDEDX36.webp',
+  'TORTILLA 25CM AYCAN 10.webp',
+  'TORTILLA 30CM AYCAN 12.webp',
+] as const;
+
+const BURGER_FILES = [
+  'PARAGON BASIC BUR 40z.webp',
+  'PARAGON BASIC BURGER 2oz.webp',
+  'PARAGON GOURMET BURGER.webp',
+  'PARAGON HALAL CROWN BURGER 4OZ.webp',
+  'PARAGON HALAL SMASH BRG 3OZ.webp',
+  'PARGON CLASSIC BURGERS.webp',
+] as const;
+
+const CANNED_FILES = [
+  'AYTAC CHICK PEAS JAR 12X540g.webp',
+  'CARTIER BLACK OLIVES TIN 12X1KG.webp',
+  'CARTIER BLACK OLIVES TIN 1X5KG.webp',
+  'CARTIER BLACK OLIVES TIN 3X5KG.webp',
+  'CARTIER GREEN OLIVES TIN 12X1KG.webp',
+  'CARTIER GREEN OLIVES TIN 1X5KG.webp',
+  'CARTIER GREEN OLIVES TIN 3X5KG.webp',
+  'CRESPO GREEN OLIVE 1X420G.webp',
+  'CRESPO GREEN OLIVE 3X420G.webp',
+  'DL COCUNUT MILK 24X400ML.webp',
+  'DON VALLE LEMON DRESSING 24X400 ML.webp',
+  'HEERA MANGO CHUTNEY 40KG.webp',
+  'HEERA MANGO CHUTNEY 5KG.webp',
+  'NATCO CHOPPED TOMATOES 2.5KG.webp',
+  'NATCO CHOPPED TOMATOES 6X2.5KG.webp',
+  'NATCO MANGO PULP 450G.webp',
+  'NATCO MANGO PULP 450GX12.webp',
+  'NATCO MANGO PULP 6X850G.webp',
+  'NATCO PEELED TOMATOES 2.5KG.webp',
+  'NATCO PEELED TOMATOES 6X2.5KG.webp',
+  'NVR  GERHKINS WHOLE  1 X 2.4ML.webp',
+  'NVR  GERHKINS WHOLE  2 X 2.4ML.webp',
+  'PINEAPPLE CUT PIECES 12X825G.webp',
+  'PRIMA CHILLI PEPPERS PICKLED TIN 10 KG.webp',
+  'PRIMA MANGO CHUTNEY 5KG.webp',
+  'PRIMA PINEAPPLE 12x850G.webp',
+  'PRIMA SLICED BLACK OLIVES 3 KG.webp',
+  'PRIMA SLICED BLACK OLIVES 6x3 KG.webp',
+  'TAHINI AL NAKHLA BUCKET.webp',
+  'TAHINI AL NAKIL GREEN BUCKET.webp',
+  'TETLEY TEA BAGS 400.webp',
+  'TRS LEMON DRESING 24X400 ML.webp',
 ] as const;
 
 const toProductName = (fileName: string) =>
@@ -56,46 +142,99 @@ const toProductName = (fileName: string) =>
     .replace(/\s+/g, ' ')
     .trim();
 
-const toProductImage = (fileName: string) =>
-  `${DRINK_CAN_ASSET_BASE}/${fileName}`
+const toProductImage = (assetBase: string, fileName: string) =>
+  `${assetBase}/${fileName}`
     .split('/')
     .map(segment => encodeURIComponent(segment))
     .join('/')
     .replace('%2F', '/');
 
-const createAssetProduct = (id: string, categoryId: string, fileName: string, description: string): Product => ({
+const createAssetProduct = (
+  id: string,
+  categoryId: string,
+  assetBase: string,
+  fileName: string,
+  description: string
+): Product => ({
   id,
   categoryId,
   name: toProductName(fileName),
   description,
-  image: toProductImage(fileName),
+  image: toProductImage(assetBase, fileName),
 });
 
-const DRINK_CAN_PRODUCTS: Product[] = DRINK_CAN_FILES.map((fileName, index) =>
-  createAssetProduct(
-    `drink-can-${index + 1}`,
-    '1',
-    fileName,
-    'Wholesale case format for retail shelves, takeaways, and foodservice buyers.'
-  )
+const createCategoryProducts = (
+  idPrefix: string,
+  categoryId: string,
+  assetBase: string,
+  fileNames: readonly string[],
+  description: string
+): Product[] =>
+  fileNames.map((fileName, index) =>
+    createAssetProduct(
+      `${idPrefix}-${index + 1}`,
+      categoryId,
+      assetBase,
+      fileName,
+      description
+    )
+  );
+
+const DRINK_CAN_PRODUCTS: Product[] = createCategoryProducts(
+  'drink-can',
+  '1',
+  DRINK_CAN_ASSET_BASE,
+  DRINK_CAN_FILES,
+  'Wholesale case format for retail shelves, takeaways, and foodservice buyers.'
 );
 
-const SAUCE_BOTTLE_PRODUCTS: Product[] = SAUCE_BOTTLE_FILES.map((fileName, index) =>
-  createAssetProduct(
-    `sauce-bottle-${index + 1}`,
-    '10',
-    fileName,
-    'Popular wholesale bottle line for fast food shops, takeaways, and catering supply.'
-  )
+const SAUCE_BOTTLE_PRODUCTS: Product[] = createCategoryProducts(
+  'sauce-bottle',
+  '10',
+  DRINK_CAN_ASSET_BASE,
+  SAUCE_BOTTLE_FILES,
+  'Popular wholesale bottle line for fast food shops, takeaways, and catering supply.'
+);
+
+const FROZEN_PRODUCTS: Product[] = [
+  ...createCategoryProducts(
+    'frozen-aviko',
+    '3',
+    AVIKO_ASSET_BASE,
+    AVIKO_FILES,
+    'Frozen wholesale products ideal for high-volume kitchens and takeaway operations.'
+  ),
+  ...createCategoryProducts(
+    'frozen-buns',
+    '3',
+    BREAD_BUNS_ASSET_BASE,
+    BREAD_BUNS_FILES,
+    'Frozen buns, wraps, and bread lines supplied in bulk for foodservice buyers.'
+  ),
+  ...createCategoryProducts(
+    'frozen-burger',
+    '3',
+    BURGER_ASSET_BASE,
+    BURGER_FILES,
+    'Bulk burger patties suitable for fast food stores, restaurants, and distributors.'
+  ),
+];
+
+const CANNED_PRODUCTS: Product[] = createCategoryProducts(
+  'canned',
+  '6',
+  CANNED_ASSET_BASE,
+  CANNED_FILES,
+  'Canned and preserved product range for wholesale buyers and catering suppliers.'
 );
 
 export const CATEGORIES: Category[] = [
-  { id: '1', name: 'Drinks', slug: 'drinks', description: 'Premium beverages including sodas, artisanal juices, and mineral waters.', image: '/assets/Drink%20Cans%20processed/COKE%20CANS%2024X330ML.png', icon: '🥤', subcategories: ['Canned Drinks', 'Bottled Drinks'] },
+  { id: '1', name: 'Drinks', slug: 'drinks', description: 'Premium beverages including sodas, artisanal juices, and mineral waters.', image: '/assets/Drink%20Cans%20processed/COKE%20CANS%2024X330ML.webp', icon: '🥤', subcategories: ['Canned Drinks', 'Bottled Drinks'] },
   { id: '2', name: 'Packaging', slug: 'packaging', description: 'Sustainable and industrial strength wholesale packaging solutions.', image: 'https://images.unsplash.com/photo-1607166452427-7e4477079cb9?auto=format&fit=crop&q=80&w=800', icon: '📦', subcategories: ['Paper Bags with Handles', 'Paper Bags without Handles', 'Chicken Boxes', 'Wrapping Sheets'] },
-  { id: '3', name: 'Frozen Foods', slug: 'frozen-foods', description: 'IQF vegetables, premium meats, and ready-to-heat professional meals.', image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=800', icon: '❄️', subcategories: ['Frozen Chips', 'Frozen Buns', 'Frozen Meat', 'Frozen Chicken'] },
+  { id: '3', name: 'Frozen Foods', slug: 'frozen-foods', description: 'IQF vegetables, premium meats, and ready-to-heat professional meals.', image: '/assets/Aviko%20-%20Processed%20incomp/AVIKO%20PREMIUM%20CR%207MM%2010%20KG.webp', icon: '❄️', subcategories: ['Frozen Chips', 'Frozen Buns', 'Frozen Meat', 'Frozen Chicken'] },
   { id: '4', name: 'Desserts', slug: 'desserts', description: 'Wholesale sweets, cakes, ice cream and confectionery items.', image: 'https://images.unsplash.com/photo-1581798459219-318e76aecc7b?auto=format&fit=crop&q=80&w=800', icon: '🍰', subcategories: ['Cakes', 'Ice Cream', 'Confectionery'] },
   { id: '5', name: 'Flour & Grains', slug: 'flour-grains', description: 'High-protein flours and premium grains for commercial baking.', image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800', icon: '🌾', subcategories: ['Pizza Flour', 'Rice', 'Other Grains'] },
-  { id: '6', name: 'Canned Products', slug: 'canned-products', description: 'Bulk preserved goods, legumes, and pantry staples.', image: 'https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&q=80&w=800', icon: '🥫', subcategories: ['Olives', 'Pizza Sauces', 'Other Canned Items'] },
+  { id: '6', name: 'Canned Products', slug: 'canned-products', description: 'Bulk preserved goods, legumes, and pantry staples.', image: '/assets/Canned%20food%202/CARTIER%20BLACK%20OLIVES%20TIN%2012X1KG.webp', icon: '🥫', subcategories: ['Olives', 'Pizza Sauces', 'Other Canned Items'] },
   { id: '7', name: 'Fresh Products', slug: 'fresh-products', description: 'Daily-sourced produce from local farms and global suppliers.', image: 'https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&q=80&w=800', icon: '🍎', subcategories: ['Vegetables', 'Fresh Chicken'] },
   { id: '8', name: 'Spices & Herbs', slug: 'spices-herbs', description: 'Authentic flavors sourced directly from origins worldwide.', image: 'https://images.unsplash.com/photo-1532336414038-cf19250c5757?auto=format&fit=crop&q=80&w=800', icon: '🌶️', subcategories: ['Breading', 'Spices', 'Herbs'] },
   { id: '9', name: 'Oils & Fats', slug: 'oils-fats', description: 'Cooking oils, butter, and shortenings in industrial formats.', image: 'https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?auto=format&fit=crop&q=80&w=800', icon: '🫗', subcategories: ['Cooking Oil', 'Solid Fats'] },
@@ -108,83 +247,14 @@ export const PRODUCTS: Product[] = [
   // Drinks (Category 1)
   ...DRINK_CAN_PRODUCTS,
   
-  // Packaging (Category 2)
-  { id: 'p6', categoryId: '2', name: 'Eco-Friendly Takeout Boxes', description: 'Compostable sugarcane fiber containers for sustainable brands.', image: 'https://images.unsplash.com/photo-1605648916319-cf082f7524a1?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p7', categoryId: '2', name: 'Paper Bags with Handles', description: 'Sturdy kraft paper bags for retail and takeaway.', image: 'https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p8', categoryId: '2', name: 'Chicken Box Large', description: 'Ventilated boxes for fried chicken takeaway orders.', image: 'https://images.unsplash.com/photo-1626645738196-c2a72c7e1f58?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p9', categoryId: '2', name: 'Wrapping Sheets Roll', description: 'Grease-proof wrapping paper for burgers and sandwiches.', image: 'https://images.unsplash.com/photo-1589939705384-5185138a047a?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p10', categoryId: '2', name: 'Pizza Box Multi-Size', description: 'Corrugated pizza boxes in 10", 12", and 14" sizes.', image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=400' },
-  
   // Frozen Foods (Category 3)
-  { id: 'p11', categoryId: '3', name: 'Bulk Chicken Breasts', description: 'IQF skinless boneless chicken breasts, Grade A, Halal certified.', image: 'https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p12', categoryId: '3', name: 'Premium Frozen Berries', description: 'Mixed forest berries, blast-frozen to preserve nutrients.', image: 'https://images.unsplash.com/photo-1590779033100-9f60a05a013d?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p13', categoryId: '3', name: 'Frozen Chips 2.5kg', description: 'Premium straight-cut chips for commercial fryers.', image: 'https://images.unsplash.com/photo-1630384060421-cb20adf44e8b?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p14', categoryId: '3', name: 'Frozen Beef Patties', description: 'Quarter-pound beef patties, 48 count box.', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p15', categoryId: '3', name: 'Frozen Burger Buns', description: 'Sesame seed buns, pre-sliced, 60 count.', image: 'https://images.unsplash.com/photo-1586816001966-79b736744398?auto=format&fit=crop&q=80&w=400' },
-  
-  // Desserts (Category 4)
-  { id: 'p16', categoryId: '4', name: 'Chocolate Cake Mix', description: 'Professional grade chocolate cake mix, 10kg bag.', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p17', categoryId: '4', name: 'Vanilla Ice Cream 5L', description: 'Premium vanilla ice cream for dessert parlors.', image: 'https://images.unsplash.com/photo-1570197788417-0e82375c9371?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p18', categoryId: '4', name: 'Assorted Confectionery', description: 'Mixed candy selection for retail display.', image: 'https://images.unsplash.com/photo-1581798459219-318e76aecc7b?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p19', categoryId: '4', name: 'Cheesecake Base', description: 'Ready-made cheesecake base, pack of 12.', image: 'https://images.unsplash.com/photo-1524351199678-941a58a3df50?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p20', categoryId: '4', name: 'Whipped Cream Cans', description: 'Professional whipped cream dispensers, case of 24.', image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&q=80&w=400' },
-  
-  // Flour & Grains (Category 5)
-  { id: 'p21', categoryId: '5', name: 'High-Gluten Bread Flour', description: 'Superior strength flour for artisanal bakeries and pizzerias.', image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p22', categoryId: '5', name: 'Pizza Flour 00', description: 'Italian-style 00 flour for authentic pizza dough.', image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p23', categoryId: '5', name: 'Basmati Rice 25kg', description: 'Premium long-grain basmati rice for restaurants.', image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p24', categoryId: '5', name: 'Semolina Flour', description: 'Durum wheat semolina for pasta making.', image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p25', categoryId: '5', name: 'Wholemeal Flour 16kg', description: 'Stone-ground wholemeal flour for healthy baking.', image: 'https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?auto=format&fit=crop&q=80&w=400' },
+  ...FROZEN_PRODUCTS,
   
   // Canned Products (Category 6)
-  { id: 'p26', categoryId: '6', name: 'Pizza Sauce 3kg', description: 'Italian-style pizza sauce in catering tin.', image: 'https://images.unsplash.com/photo-1528751004905-2f447291c582?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p27', categoryId: '6', name: 'Green Olives Pitted', description: 'Spanish green olives, pitted, 2kg jar.', image: 'https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p28', categoryId: '6', name: 'Chickpeas Bulk Can', description: 'Pre-cooked chickpeas in bulk catering can.', image: 'https://images.unsplash.com/photo-1534483909714-d40394c01443?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p29', categoryId: '6', name: 'Black Olives Sliced', description: 'Sliced black olives for pizza toppings.', image: 'https://images.unsplash.com/photo-1601039641847-7857b994d704?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p30', categoryId: '6', name: 'Crushed Tomatoes 2.5kg', description: 'San Marzano style crushed tomatoes.', image: 'https://images.unsplash.com/photo-1546548970-71785318a17b?auto=format&fit=crop&q=80&w=400' },
-  
-  // Fresh Products (Category 7)
-  { id: 'p31', categoryId: '7', name: 'Fresh Chicken Whole', description: 'Whole fresh chicken, Halal certified.', image: 'https://images.unsplash.com/photo-1587593810167-a84920ea0781?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p32', categoryId: '7', name: 'Mixed Vegetables Box', description: 'Daily fresh mixed vegetables selection.', image: 'https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p33', categoryId: '7', name: 'Fresh Onions 10kg', description: 'Premium white onions in bulk bag.', image: 'https://images.unsplash.com/photo-1518977956812-cd3dbadaaf31?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p34', categoryId: '7', name: 'Fresh Tomatoes Box', description: 'Vine-ripened tomatoes for restaurants.', image: 'https://images.unsplash.com/photo-1546094096-0df4bcabd337?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p35', categoryId: '7', name: 'Fresh Lettuce Case', description: 'Iceberg lettuce heads, case of 12.', image: 'https://images.unsplash.com/photo-1622206151226-18ca2c9ab4a1?auto=format&fit=crop&q=80&w=400' },
-  
-  // Spices & Herbs (Category 8)
-  { id: 'p36', categoryId: '8', name: 'Whole Black Peppercorns', description: 'Grade A Sarawak peppercorns in 5kg industrial sacks.', image: 'https://images.unsplash.com/photo-1599940859674-a7fef639eaec?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p37', categoryId: '8', name: 'Smoked Spanish Paprika', description: 'Authentic Pimentón de la Vera for professional kitchens.', image: 'https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p38', categoryId: '8', name: 'Chicken Breading Mix', description: 'Southern-style breading for fried chicken.', image: 'https://images.unsplash.com/photo-1532336414038-cf19250c5757?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p39', categoryId: '8', name: 'Mixed Italian Herbs', description: 'Dried oregano, basil, and thyme blend.', image: 'https://images.unsplash.com/photo-1515586000433-45406d8e6662?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p40', categoryId: '8', name: 'Turmeric Powder 1kg', description: 'Pure ground turmeric for curry houses.', image: 'https://images.unsplash.com/photo-1615485500704-8e990f9900f7?auto=format&fit=crop&q=80&w=400' },
-  
-  // Oils & Fats (Category 9)
-  { id: 'p41', categoryId: '9', name: 'Vegetable Oil 20L', description: 'High-temperature frying oil for commercial use.', image: 'https://images.unsplash.com/photo-1474979266404-7eaacbadcbaf?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p42', categoryId: '9', name: 'Solid Vegetable Fat', description: 'Premium shortening for baking.', image: 'https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p43', categoryId: '9', name: 'Extra Virgin Olive Oil', description: 'Cold-pressed olive oil, 5L tin.', image: 'https://images.unsplash.com/photo-1596360301181-bab3e14b8abb?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p44', categoryId: '9', name: 'Sunflower Oil 10L', description: 'Light sunflower oil for cooking.', image: 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p45', categoryId: '9', name: 'Butter Blocks 2kg', description: 'Salted butter blocks for baking.', image: 'https://images.unsplash.com/photo-1589985263345-3e61882b06e3?auto=format&fit=crop&q=80&w=400' },
+  ...CANNED_PRODUCTS,
   
   // Sauces (Category 10)
   ...SAUCE_BOTTLE_PRODUCTS,
-  { id: 'p46', categoryId: '10', name: 'Classic Tomato Marinara', description: 'Premium base sauce made with San Marzano style tomatoes.', image: 'https://images.unsplash.com/photo-1528751004905-2f447291c582?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p47', categoryId: '10', name: 'BBQ Marinade 5L', description: 'Smoky BBQ marinade for grilled meats.', image: 'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p48', categoryId: '10', name: 'Mayonnaise 10kg', description: 'Commercial grade mayonnaise bucket.', image: 'https://images.unsplash.com/photo-1582169296194-e4d644c48063?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p49', categoryId: '10', name: 'Hot Sauce Gallon', description: 'Medium heat hot sauce for chicken shops.', image: 'https://images.unsplash.com/photo-1472476443507-c7a5948772fc?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p50', categoryId: '10', name: 'Garlic Mayo 5kg', description: 'Creamy garlic mayonnaise for kebab shops.', image: 'https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&q=80&w=400' },
-  
-  // Cleaning Supplies (Category 11)
-  { id: 'p51', categoryId: '11', name: 'Washing Up Liquid 5L', description: 'Professional strength dish soap.', image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p52', categoryId: '11', name: 'Kitchen Degreaser 5L', description: 'Heavy-duty degreaser for commercial kitchens.', image: 'https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p53', categoryId: '11', name: 'Floor Cleaner 5L', description: 'Commercial floor cleaning solution.', image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p54', categoryId: '11', name: 'Sanitizer Spray 750ml', description: 'Food-safe surface sanitizer.', image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p55', categoryId: '11', name: 'Oven Cleaner 5L', description: 'Professional oven and grill cleaner.', image: 'https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?auto=format&fit=crop&q=80&w=400' },
-  
-  // General Items (Category 12)
-  { id: 'p56', categoryId: '12', name: 'Disposable Gloves Box', description: 'Nitrile gloves, box of 100.', image: 'https://images.unsplash.com/photo-1584362917165-526a968579e8?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p57', categoryId: '12', name: 'Kitchen Foil Roll', description: 'Heavy-duty aluminium foil, 45cm x 150m.', image: 'https://images.unsplash.com/photo-1594136273046-cbcf44e7b8a3?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p58', categoryId: '12', name: 'Cling Film Catering', description: 'Professional cling film, 45cm x 300m.', image: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p59', categoryId: '12', name: 'Napkins Bulk Pack', description: 'White paper napkins, 5000 count.', image: 'https://images.unsplash.com/photo-1584556812952-905ffd0c611a?auto=format&fit=crop&q=80&w=400' },
-  { id: 'p60', categoryId: '12', name: 'Wooden Skewers 1000pc', description: 'Bamboo skewers for kebabs.', image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=400' },
 ];
 
 export const INDUSTRIES = [
