@@ -9,8 +9,8 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-4">
           {/* Brand Info */}
           <div className="space-y-6 md:col-span-3">
-            <Link to="/" className="flex items-center">
-              <img src="/assets/logo_footer.png" alt="Good Luck Foods" className="h-20 md:h-32 w-auto object-cover" />
+            <Link to="/" className="inline-flex items-center -ml-4 md:-ml-8">
+              <img src="/assets/logo_footer.png" alt="Good Luck Foods" className="h-20 md:h-32 w-auto object-contain" />
             </Link>
             <p className="text-sm leading-relaxed text-slate-400">
               Premium B2B wholesale distribution of quality food and grocery products. Serving the hospitality and retail industry since 2008.

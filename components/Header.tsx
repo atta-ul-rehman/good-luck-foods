@@ -27,6 +27,30 @@ const Header: React.FC = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    const handleOutsideDropdownClick = (event: MouseEvent | TouchEvent) => {
+      const target = event.target as HTMLElement;
+      if (
+        target.closest('[data-category-item]') ||
+        target.closest('[data-subcategory-dropdown]')
+      ) {
+        return;
+      }
+      setHoveredCategory(null);
+    };
+
+    document.addEventListener('mousedown', handleOutsideDropdownClick);
+    document.addEventListener('touchstart', handleOutsideDropdownClick);
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideDropdownClick);
+      document.removeEventListener('touchstart', handleOutsideDropdownClick);
+    };
+  }, []);
+
+  useEffect(() => {
+    setHoveredCategory(null);
+  }, [location.pathname, location.search]);
+
   // Get search suggestions
   const getSearchSuggestions = () => {
     if (!searchQuery.trim()) return { categories: [], products: [], subcategories: [] };
@@ -87,6 +111,16 @@ const Header: React.FC = () => {
     setHoveredCategory(catId);
   };
 
+  const handleCategoryToggle = (catId: string, event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const categoryItem = event.currentTarget.closest('[data-category-item]') as HTMLElement | null;
+    const rect = (categoryItem ?? event.currentTarget).getBoundingClientRect();
+
+    setDropdownPosition({ left: rect.left, top: rect.bottom });
+    setHoveredCategory((prev) => (prev === catId ? null : catId));
+  };
+
   const handleCategoryLeave = () => {
     hoverTimeoutRef.current = setTimeout(() => {
       setHoveredCategory(null);
@@ -138,10 +172,10 @@ const Header: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-[100] bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4">
         <div className="flex justify-between items-center h-20">
           {/* Logo Section - Left */}
-          <Link to="/" className="flex items-center group flex-shrink-0">
+          <Link to="/" className="flex items-center group flex-shrink-0 -ml-1 sm:ml-0">
             <img src="/assets/logo1.jpg" alt="Good Luck Foods" className="h-16 md:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
           </Link>
 
@@ -317,20 +351,31 @@ const Header: React.FC = () => {
               <div
                 key={cat.id}
                 className="relative group"
+                data-category-item
                 onMouseEnter={(e) => handleCategoryHover(cat.id, e)}
                 onMouseLeave={handleCategoryLeave}
               >
-                <Link
-                  to={`/category/${cat.slug}`}
-                  className="text-[10px] font-black text-white hover:text-[#333] transition-colors uppercase tracking-[0.15em] flex items-center gap-1"
-                >
-                  {cat.name}
+                <div className="flex items-center gap-1">
+                  <Link
+                    to={`/category/${cat.slug}`}
+                    onClick={() => setHoveredCategory(null)}
+                    className="text-[10px] font-black text-white hover:text-[#333] transition-colors uppercase tracking-[0.15em]"
+                  >
+                    {cat.name}
+                  </Link>
                   {cat.subcategories && cat.subcategories.length > 0 && (
-                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
+                    <button
+                      type="button"
+                      onClick={(e) => handleCategoryToggle(cat.id, e)}
+                      className="text-white hover:text-[#333] transition-colors"
+                      aria-label={`Toggle ${cat.name} subcategories`}
+                    >
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
                   )}
-                </Link>
+                </div>
               </div>
             ))}
           </div>
@@ -344,6 +389,7 @@ const Header: React.FC = () => {
         if (!cat?.subcategories?.length) return null;
         return (
           <div 
+            data-subcategory-dropdown
             className="fixed z-[9999] bg-white rounded-lg shadow-xl pt-2 pb-2 min-w-[180px]"
             style={{ left: `${dropdownPosition.left}px`, top: `${dropdownPosition.top}px`, paddingTop: '10px', marginTop: '-2px' }}
             onMouseEnter={handleDropdownEnter}
@@ -353,6 +399,7 @@ const Header: React.FC = () => {
               <Link
                 key={idx}
                 to={`/category/${cat.slug}?sub=${encodeURIComponent(sub)}`}
+                onClick={() => setHoveredCategory(null)}
                 className="block px-4 py-2 text-xs font-medium text-slate-700 hover:bg-red-50 hover:text-red-600 transition-colors"
               >
                 {sub}

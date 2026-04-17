@@ -63,8 +63,8 @@ interface FAQProps {
 
 const FAQSection: React.FC<FAQProps> = ({ faqs }) => (
   <section className="bg-white border-t border-slate-100">
-    <div className="py-28 px-6">
-      <h2 className="text-4xl font-extrabold text-slate-900 text-center mb-20">
+    <div className="py-20 md:py-28 px-6">
+      <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 text-center md:mb-20 mb-10 ">
         Buyer Frequently Asked Questions
       </h2>
 
