@@ -58,6 +58,7 @@ const Footer: React.FC = () => {
         <div className="border-t border-slate-800 pt-4 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 space-y-4 md:space-y-0">
           <p>© 2026 Good Luck Foods Ltd. All Rights Reserved.</p>
           <div className="flex space-x-6">
+            <Link to="/coming-soon" className="hover:text-white transition-colors">Coming Soon</Link>
             <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</a>
             <a href="/wholesale-agreement" className="hover:text-white transition-colors">Wholesale Agreement</a>
