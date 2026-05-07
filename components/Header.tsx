@@ -162,6 +162,7 @@ const Header: React.FC = () => {
     { name: 'HOME', path: '/' },
     { name: 'PRODUCTS', path: '/products' },
     { name: 'OFFERS', path: '/offers' },
+    { name: 'BLOG', path: '/blog' },
     { name: 'ABOUT', path: '/about' },
     { name: 'CONTACT', path: '/contact' },
   ];
@@ -257,10 +258,11 @@ const Header: React.FC = () => {
                       <p className="text-xs font-bold text-slate-400 uppercase tracking-wider px-3 py-1">Products</p>
                       {suggestions.products.map(prod => {
                         const category = CATEGORIES.find(c => c.id === prod.categoryId);
+                        const productPath = `/products?search=${encodeURIComponent(prod.name)}${category ? `&category=${encodeURIComponent(category.slug)}` : ''}&product=${encodeURIComponent(prod.id)}`;
                         return (
                           <button
                             key={prod.id}
-                            onClick={() => handleSuggestionClick(`/products?search=${encodeURIComponent(prod.name)}`)}
+                            onClick={() => handleSuggestionClick(productPath)}
                             className="w-full text-left px-3 py-2 hover:bg-emerald-50 rounded-lg flex items-center gap-3 transition-colors"
                           >
                             <img src={prod.image} alt={prod.name} className="w-10 h-10 object-cover rounded-lg" />
@@ -517,7 +519,7 @@ const Header: React.FC = () => {
             <Link
               to="/contact"
               onClick={() => setIsOpen(false)}
-              className="block w-full rounded-full text-center bg-brand-red text-white px-6 py-4 font-black uppercase tracking-widest hover:brightness-110 transition-all"
+              className="block w-full rounded-full text-sm text-center bg-brand-red text-white px-4 py-4 font-black uppercase tracking-widest hover:brightness-110 transition-all"
             >
               Request Quote
             </Link>

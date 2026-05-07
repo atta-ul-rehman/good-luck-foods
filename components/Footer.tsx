@@ -1,12 +1,16 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Footer: React.FC = () => {
+  const { pathname } = useLocation();
+  const isAuthPage = pathname === '/login' || pathname === '/signup';
+
   return (
-    <footer className="bg-slate-900 text-slate-300 pt-16 pb-8">
+    <footer className={`bg-slate-900 text-slate-300 ${isAuthPage ? 'pt-6 pb-6' : 'pt-16 pb-8'}`}>
       <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-4">
+        {!isAuthPage && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-4">
           {/* Brand Info */}
           <div className="space-y-6 md:col-span-3">
             <Link to="/" className="inline-flex items-center -ml-4 md:-ml-8">
@@ -53,12 +57,13 @@ const Footer: React.FC = () => {
               <li className="flex justify-between"><span>Sun</span><span className="text-emerald-400">10:30 am – 4 pm</span></li>
             </ul>
           </div>
-        </div>
+          </div>
+        )}
 
         <div className="border-t border-slate-800 pt-4 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 space-y-4 md:space-y-0">
           <p>© 2026 Good Luck Foods Ltd. All Rights Reserved.</p>
           <div className="flex space-x-6">
-            <Link to="/coming-soon" className="hover:text-white transition-colors">Coming Soon</Link>
+            <Link to="/blog" className="hover:text-white transition-colors">Blog</Link>
             <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</a>
             <a href="/wholesale-agreement" className="hover:text-white transition-colors">Wholesale Agreement</a>

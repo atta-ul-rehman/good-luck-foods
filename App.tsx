@@ -12,6 +12,8 @@ import CategoryDetail from './pages/CategoryDetail';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ForgotPassword from './pages/ForgotPassword';
+import Blog from './pages/Blog';
+import BlogDetail from './pages/BlogDetail';
 import SplashScreen from './components/SplashScreen';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -26,7 +28,7 @@ const ScrollToTop = () => {
 
 const AppLayout = () => {
   const { pathname } = useLocation();
-  const isComingSoonRoute = pathname === '/';
+  const isComingSoonRoute = pathname === '/coming-soon';
 
   return (
     <div className="flex flex-col min-h-screen selection:bg-emerald-100 selection:text-emerald-900">
@@ -34,17 +36,19 @@ const AppLayout = () => {
       {!isComingSoonRoute && <Header />}
       <main className="flex-grow">
         <Routes>
-          <Route path="/" element={<ComingSoon />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Navigate to="/" replace />} />
           <Route path="/products" element={<Products />} />
           <Route path="/offers" element={<Offers />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogDetail />} />
           <Route path="/category/:slug" element={<CategoryDetail />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/coming-soon" element={<Navigate to="/" replace />} />
+          <Route path="/coming-soon" element={<ComingSoon />} />
           <Route path="*" element={<Navigate to="/products" replace />} />
         </Routes>
       </main>

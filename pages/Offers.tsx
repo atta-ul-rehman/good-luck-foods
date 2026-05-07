@@ -9,7 +9,7 @@ const Offers: React.FC = () => {
       title: 'Bulk Frozen Foods Deal',
       description: 'Get 15% off on all frozen food orders over £500',
       validUntil: 'March 31, 2026',
-      image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=800',
+      image: '/assets/external/offer-card-beverages.jpg',
       discount: '15% OFF'
     },
     {
@@ -17,7 +17,7 @@ const Offers: React.FC = () => {
       title: 'Packaging Essentials Bundle',
       description: 'Buy any 3 packaging products and get 1 free',
       validUntil: 'April 15, 2026',
-      image: 'https://images.unsplash.com/photo-1589939705384-5185138a047a?auto=format&fit=crop&q=80&w=800',
+      image: '/assets/external/offer-card-frozen.png',
       discount: 'BUY 3 GET 1'
     },
     {
@@ -25,7 +25,7 @@ const Offers: React.FC = () => {
       title: 'Cleaning Supplies Special',
       description: '20% discount on bulk cleaning supply orders',
       validUntil: 'March 20, 2026',
-      image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800',
+      image: '/assets/external/cat-cleaning-general.jpg',
       discount: '20% OFF'
     },
     {
@@ -33,7 +33,7 @@ const Offers: React.FC = () => {
       title: 'First Order Discount',
       description: 'New customers get 10% off their first order',
       validUntil: 'Ongoing',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800',
+      image: '/assets/external/offer-card-discount.jpg',
       discount: '10% OFF'
     }
   ];
@@ -47,7 +47,7 @@ const Offers: React.FC = () => {
       />
       <section className="relative h-[200px] bg-slate-900 flex items-center overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?auto=format&fit=crop&q=80&w=1920"
+          src="/assets/external/offer-hero.jpg"
           alt="Special wholesale offers and deals"
           className="absolute inset-0 w-full h-full object-cover opacity-50"
           loading="lazy"

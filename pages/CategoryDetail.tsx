@@ -57,6 +57,71 @@ const Tags: React.FC<TagProps> = ({ tags }) => (
   </div>
 );
 
+const SUBCATEGORY_IMAGE_MAP: Record<string, Record<string, string>> = {
+  drinks: {
+    'Canned Drinks': '/assets/Drink%20Cans%20processed/COKE%20CANS%2024X330ML.webp',
+    'Bottled Drinks': '/assets/Drink%20Bottles%20Processed/COCA%20COLA%20500ML%20X12.webp',
+  },
+  packaging: {
+    'Paper Bags with Handles': '/assets/Fc%20Boxes%20-%20Sos%20Bags/R12%20WHITE%20TAKEAWAY%20BAG%20MY.webp',
+    'Paper Bags without Handles': '/assets/Greaseproof%20%26%20paper%20bags/BROWN%20BAG%2010X10%20MY%20.webp',
+    'Chicken Boxes': '/assets/Fc%20Boxes%20-%20Sos%20Bags/CHICKEN%20BOXES%20FC2%20LARGE.webp',
+    'Wrapping Sheets': '/assets/Wrapping%20products/WRAPPING%20PAPER%2018X24%20MY%20.webp',
+  },
+  'frozen-foods': {
+    'Frozen Chips': '/assets/Aviko%20-%20Processed%20incomp/AVIKO%20PREMIUM%20CR%207MM%2010%20KG.webp',
+    'Frozen Buns': '/assets/Bread%20%26%20buns%20processed/4%20BUNS%20AMERICANA%20SEEDED%20BOX.webp',
+    'Frozen Meat': '/assets/Frozen%20Meats/MAWBEEF%20HALAL%20BURGERS%2048X4oz.webp',
+    'Frozen Chicken': '/assets/Frozen%20Meats/MV%20CHICKEN%20STRIP%201KG.webp',
+  },
+  desserts: {
+    Cakes: '/assets/Dessert%20Processed/CARROT_CAKE.webp',
+    'Ice Cream': '/assets/Dessert%20Processed/MARCO_STRAWBERRY_ICE.webp',
+    Confectionery: '/assets/Confectionery%20Processed/KINDER%20BUENO%2020%20BARS.webp',
+  },
+  'flour-grains': {
+    'Pizza Flour': '/assets/Flours%20%26%20Rice/BRAVO_PIZZA_FLOUR.webp',
+    Rice: '/assets/Flours%20%26%20Rice/HEERA_RICE_XXL.webp',
+    'Other Grains': '/assets/Flours%20%26%20Rice/PLAIN_WHITE_FLOUR.webp',
+  },
+  'canned-products': {
+    Olives: '/assets/Canned%20food%202/CARTIER%20GREEN%20OLIVES%20TIN%2012X1KG.webp',
+    'Pizza Sauces': '/assets/Canned%20food%202/NATCO%20CHOPPED%20TOMATOES%202.5KG.webp',
+    'Other Canned Items': '/assets/Canned%20food%202/AYTAC%20CHICK%20PEAS%20JAR%2012X540g.webp',
+  },
+  'fresh-products': {
+    Vegetables: '/assets/Vegetables/TOMATO%20BOX.webp',
+    'Fresh Chicken': '/assets/Fresh/FRESH%20CHICKEN%20130-140%20%2810kg%29.webp',
+  },
+  'spices-herbs': {
+    Breading: '/assets/General%20Spices%202/ROOSTER%20HD%20BREADER%2012.5KG.webp',
+    Spices: '/assets/Heera%20Spices/HEERA%20CHILLI%20POWDER%201KG.webp',
+    Herbs: '/assets/Heera%20Spices/HEERA%20KASOORI%20METHI%20200G.webp',
+  },
+  'oils-fats': {
+    'Cooking Oil': '/assets/Oil%20%26%20Fats/KTC%20VEGETA%20OIL%205%20LTR.webp',
+    'Solid Fats': '/assets/Oil%20%26%20Fats/KHYBER%20GHEE%2012.5KG.webp',
+  },
+  sauces: {
+    Marinades: '/assets/Sauces%20processed/HARRISON%20PERI%20PERI%20DIPS%20.webp',
+    Mayonnaise: '/assets/Mayo/HEINZ%20MAYONNAISE%209.6%20KG.jpeg',
+    LION: '/assets/Lion%20Sauces/LION%20ORGINAL%20PIRI%20HOT%20SAUCE%201%20X%202.27LT.webp',
+  },
+  'cleaning-supplies': {
+    'Washing Up Liquids': '/assets/Tissues/BLUE%20WIPER%20ROLL%201X2%20.webp',
+    Degreasers: '/assets/Plasctic%20%26%20Bin%20Bags/BLACK%20BIN%20BAG%20COMPACTOR%20.webp',
+    'Other Cleaning Items': '/assets/Tissues/WHITE%20JUMBO%20BIG%20ROLL%20X%206PACK.webp',
+  },
+  'general-items': {
+    'Dry Goods & Pantry': '/assets/General%20Items/TRS%20CHANA%20DAL%206x2kg.webp',
+    'Kitchen Essentials': '/assets/General%20Items/APRON.webp',
+    'Till Rolls & Charcoal': '/assets/General%20Items/THERMAL%20ROLLS%2080%20X%2080%2020PK.webp',
+  },
+};
+
+const getSubcategoryImage = (categorySlug: string, subcategoryName: string, fallbackImage: string): string =>
+  SUBCATEGORY_IMAGE_MAP[categorySlug]?.[subcategoryName] || fallbackImage;
+
 interface FAQProps {
   faqs: { q: string; a: string }[];
 }
@@ -99,14 +164,14 @@ const FAQSection: React.FC<FAQProps> = ({ faqs }) => (
 interface SubcategoryCardProps {
   name: string;
   categorySlug: string;
-  categoryImage: string;
+  image: string;
 }
 
-const SubcategoryCard: React.FC<SubcategoryCardProps> = ({ name, categorySlug, categoryImage }) => (
+const SubcategoryCard: React.FC<SubcategoryCardProps> = ({ name, categorySlug, image }) => (
   <div className="flex-shrink-0 w-full md:w-52 bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-all duration-300 group">
     <div className="h-28 overflow-hidden">
       <img
-        src={categoryImage}
+        src={image}
         alt={name}
         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         loading="lazy"
@@ -131,10 +196,10 @@ const SubcategoryCard: React.FC<SubcategoryCardProps> = ({ name, categorySlug, c
 interface SubcategorySliderProps {
   subcategories: string[];
   categorySlug: string;
-  categoryImage: string;
+  fallbackImage: string;
 }
 
-const SubcategorySlider: React.FC<SubcategorySliderProps> = ({ subcategories, categorySlug, categoryImage }) => {
+const SubcategorySlider: React.FC<SubcategorySliderProps> = ({ subcategories, categorySlug, fallbackImage }) => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -191,7 +256,7 @@ const SubcategorySlider: React.FC<SubcategorySliderProps> = ({ subcategories, ca
             key={subcat}
             name={subcat}
             categorySlug={categorySlug}
-            categoryImage={categoryImage}
+            image={getSubcategoryImage(categorySlug, subcat, fallbackImage)}
           />
         ))}
       </div>
@@ -341,7 +406,7 @@ const CategoryDetail: React.FC = () => {
                 <SubcategorySlider
                   subcategories={category.subcategories}
                   categorySlug={category.slug}
-                  categoryImage={category.image}
+                  fallbackImage={category.image}
                 />
               ) : (
                 <div className="bg-slate-50 p-8 rounded-2xl text-center border border-dashed border-slate-300">

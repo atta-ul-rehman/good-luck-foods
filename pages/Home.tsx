@@ -333,7 +333,7 @@ const Home: React.FC = () => {
               </div>
               <div className="order-1 lg:order-2 h-[260px] overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1763074847615-81748f08cea2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  src="/assets/external/home-section-1.jpg"
                   alt="Drinks"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
@@ -457,7 +457,7 @@ const Home: React.FC = () => {
               </div>
               <div className="order-1 lg:order-2 h-[260px] overflow-hidden">
                 <img 
-                  src="https://plus.unsplash.com/premium_photo-1664305032567-2c460e29dec1?q=80&w=1068&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  src="/assets/external/home-section-2.jpg"
                   alt="Households"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
@@ -470,7 +470,7 @@ const Home: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch bg-slate-900 rounded-lg overflow-hidden group transition-all duration-500 hover:shadow-2xl">
               <div className="h-[260px] overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  src="/assets/external/home-section-3.jpg"
                   alt="Flour"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
@@ -518,7 +518,7 @@ const Home: React.FC = () => {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0" 
+            src="/assets/external/blog-wholesale.jpg" 
             alt="Warehouse" 
             className="w-full h-full object-cover"
           />

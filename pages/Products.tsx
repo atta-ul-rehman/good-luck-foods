@@ -11,8 +11,73 @@ const MAX_VISIBLE = 30;
 const Products: React.FC = () => {
   const [searchParams] = useSearchParams();
   const categoryFromUrl = searchParams.get('category');
+  const subcategoryFromUrl = searchParams.get('subcategory');
+  const searchFromUrl = searchParams.get('search') || '';
+  const productFromUrl = searchParams.get('product');
+
+  const subcategoryProductPrefixMap: Record<string, Record<string, string[]>> = {
+    drinks: {
+      'Canned Drinks': ['drink-can-'],
+      'Bottled Drinks': ['drink-bottle-'],
+    },
+    packaging: {
+      'Paper Bags with Handles': ['packaging-'],
+      'Paper Bags without Handles': ['packaging-greaseproof-'],
+      'Chicken Boxes': ['packaging-'],
+      'Wrapping Sheets': ['packaging-wrapping-'],
+    },
+    'frozen-foods': {
+      'Frozen Chips': ['frozen-aviko-', 'frozen-lamb-weston-', 'frozen-product-', 'frozen-product-2-'],
+      'Frozen Buns': ['frozen-buns-'],
+      'Frozen Meat': ['frozen-meat-', 'frozen-burger-'],
+      'Frozen Chicken': ['frozen-meat-', 'frozen-product-', 'frozen-product-2-', 'frozen-burger-'],
+    },
+    desserts: {
+      Cakes: ['dessert-'],
+      'Ice Cream': ['dessert-'],
+      Confectionery: ['confectionery-'],
+    },
+    'flour-grains': {
+      'Pizza Flour': ['flour-'],
+      Rice: ['flour-'],
+      'Other Grains': ['flour-'],
+    },
+    'canned-products': {
+      Olives: ['canned-', 'canned-proc-'],
+      'Pizza Sauces': ['canned-', 'canned-proc-'],
+      'Other Canned Items': ['canned-', 'canned-proc-'],
+    },
+    'fresh-products': {
+      Vegetables: ['vegetable-'],
+      'Fresh Chicken': ['fresh-'],
+    },
+    'spices-herbs': {
+      Breading: ['spice-general-', 'spice-general-2-', 'spice-heera-', 'spice-herra-2-', 'spice-natco-'],
+      Spices: ['spice-general-', 'spice-general-2-', 'spice-heera-', 'spice-herra-2-', 'spice-natco-'],
+      Herbs: ['spice-general-', 'spice-general-2-', 'spice-heera-', 'spice-herra-2-', 'spice-natco-'],
+    },
+    'oils-fats': {
+      'Cooking Oil': ['oil-fat-'],
+      'Solid Fats': ['oil-fat-'],
+    },
+    sauces: {
+      Marinades: ['sauce-bottle-', 'sauce-', 'sauce-lion-'],
+      Mayonnaise: ['sauce-mayo-', 'sauce-bottle-', 'sauce-lion-', 'sauce-'],
+      LION: ['sauce-lion-'],
+    },
+    'cleaning-supplies': {
+      'Washing Up Liquids': ['cleaning-tissue-', 'cleaning-bin-bag-'],
+      Degreasers: ['cleaning-bin-bag-', 'cleaning-tissue-'],
+      'Other Cleaning Items': ['cleaning-tissue-', 'cleaning-bin-bag-'],
+    },
+    'general-items': {
+      'Dry Goods & Pantry': ['general-'],
+      'Kitchen Essentials': ['general-'],
+      'Till Rolls & Charcoal': ['general-'],
+    },
+  };
   
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(searchFromUrl);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(() => {
     if (categoryFromUrl) {
       const cat = CATEGORIES.find(c => c.slug === categoryFromUrl);
@@ -37,22 +102,247 @@ const Products: React.FC = () => {
     if (categoryFromUrl) {
       const cat = CATEGORIES.find(c => c.slug === categoryFromUrl);
       setSelectedCategory(cat ? cat.id : null);
+      return;
     }
+    setSelectedCategory(null);
   }, [categoryFromUrl]);
+
+  // Sync search filter with URL query
+  useEffect(() => {
+    setSearchQuery(searchFromUrl);
+  }, [searchFromUrl]);
 
   const filteredProducts = useMemo(() => {
     return PRODUCTS.filter(p => {
       const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
       const matchesCategory = selectedCategory ? p.categoryId === selectedCategory : true;
-      return matchesSearch && matchesCategory;
+
+      let matchesSubcategory = true;
+      if (categoryFromUrl && subcategoryFromUrl) {
+        if (categoryFromUrl === 'packaging') {
+          if (subcategoryFromUrl === 'Chicken Boxes') {
+            matchesSubcategory = p.id.startsWith('packaging-') && /BOX|CHIKEN|CHICKEN/i.test(p.name);
+          } else if (subcategoryFromUrl === 'Paper Bags with Handles') {
+            matchesSubcategory =
+              p.id.startsWith('packaging-') &&
+              !p.id.startsWith('packaging-greaseproof-') &&
+              !p.id.startsWith('packaging-wrapping-') &&
+              !p.id.startsWith('packaging-satco-') &&
+              !/BOX|CHIKEN|CHICKEN/i.test(p.name);
+          } else {
+            const subcategoryPrefixes = subcategoryProductPrefixMap[categoryFromUrl]?.[subcategoryFromUrl];
+            if (subcategoryPrefixes && subcategoryPrefixes.length > 0) {
+              matchesSubcategory = subcategoryPrefixes.some(prefix => p.id.startsWith(prefix));
+            }
+          }
+        } else if (categoryFromUrl === 'frozen-foods') {
+          const isChickenItem = /CHICKEN|CHK|WING|FILLET|NUGGET|POPCORN|DONER|TANDOORI|SEEKH/i.test(p.name);
+
+          if (subcategoryFromUrl === 'Frozen Meat') {
+            matchesSubcategory =
+              (p.id.startsWith('frozen-meat-') || p.id.startsWith('frozen-burger-')) &&
+              !isChickenItem;
+          } else if (subcategoryFromUrl === 'Frozen Chicken') {
+            matchesSubcategory =
+              (p.id.startsWith('frozen-meat-') ||
+                p.id.startsWith('frozen-product-') ||
+                p.id.startsWith('frozen-product-2-') ||
+                p.id.startsWith('frozen-burger-')) &&
+              isChickenItem;
+          } else {
+            const subcategoryPrefixes = subcategoryProductPrefixMap[categoryFromUrl]?.[subcategoryFromUrl];
+            if (subcategoryPrefixes && subcategoryPrefixes.length > 0) {
+              matchesSubcategory = subcategoryPrefixes.some(prefix => p.id.startsWith(prefix));
+            }
+          }
+        } else if (categoryFromUrl === 'desserts') {
+          const isCakeItem = /CAKE|PIE|DONUT|COOKIE|BISCOFF|OREO|BROWNIE|VELVET|MATILDA/i.test(p.name);
+          const isIceCreamItem = /ICE|SLUSH|TOPPING|CREAM|MILK|ANGELITO|VANILLA|STRAWBERRY|CHOCOLATE/i.test(p.name);
+
+          if (subcategoryFromUrl === 'Cakes') {
+            matchesSubcategory = p.id.startsWith('dessert-') && isCakeItem;
+          } else if (subcategoryFromUrl === 'Ice Cream') {
+            matchesSubcategory = p.id.startsWith('dessert-') && isIceCreamItem && !isCakeItem;
+          } else if (subcategoryFromUrl === 'Confectionery') {
+            matchesSubcategory = p.id.startsWith('confectionery-');
+          } else {
+            const subcategoryPrefixes = subcategoryProductPrefixMap[categoryFromUrl]?.[subcategoryFromUrl];
+            if (subcategoryPrefixes && subcategoryPrefixes.length > 0) {
+              matchesSubcategory = subcategoryPrefixes.some(prefix => p.id.startsWith(prefix));
+            }
+          }
+        } else if (categoryFromUrl === 'flour-grains') {
+          const isPizzaFlourItem = /PIZZA|DOUGH|IMPROVER|BREADINGS/i.test(p.name);
+          const isRiceItem = /RICE|BASMATI|1121|LONG/i.test(p.name);
+
+          if (subcategoryFromUrl === 'Pizza Flour') {
+            matchesSubcategory = p.id.startsWith('flour-') && isPizzaFlourItem;
+          } else if (subcategoryFromUrl === 'Rice') {
+            matchesSubcategory = p.id.startsWith('flour-') && isRiceItem;
+          } else if (subcategoryFromUrl === 'Other Grains') {
+            matchesSubcategory = p.id.startsWith('flour-') && !isPizzaFlourItem && !isRiceItem;
+          } else {
+            const subcategoryPrefixes = subcategoryProductPrefixMap[categoryFromUrl]?.[subcategoryFromUrl];
+            if (subcategoryPrefixes && subcategoryPrefixes.length > 0) {
+              matchesSubcategory = subcategoryPrefixes.some(prefix => p.id.startsWith(prefix));
+            }
+          }
+        } else if (categoryFromUrl === 'canned-products') {
+          const isOliveItem = /OLIVE/i.test(p.name);
+          const isPizzaSauceItem = /PIZZA|TOMATO|PASTE|SAUCE/i.test(p.name);
+
+          if (subcategoryFromUrl === 'Olives') {
+            matchesSubcategory = (p.id.startsWith('canned-') || p.id.startsWith('canned-proc-')) && isOliveItem;
+          } else if (subcategoryFromUrl === 'Pizza Sauces') {
+            matchesSubcategory =
+              (p.id.startsWith('canned-') || p.id.startsWith('canned-proc-')) &&
+              isPizzaSauceItem &&
+              !isOliveItem;
+          } else if (subcategoryFromUrl === 'Other Canned Items') {
+            matchesSubcategory =
+              (p.id.startsWith('canned-') || p.id.startsWith('canned-proc-')) &&
+              !isOliveItem &&
+              !isPizzaSauceItem;
+          } else {
+            const subcategoryPrefixes = subcategoryProductPrefixMap[categoryFromUrl]?.[subcategoryFromUrl];
+            if (subcategoryPrefixes && subcategoryPrefixes.length > 0) {
+              matchesSubcategory = subcategoryPrefixes.some(prefix => p.id.startsWith(prefix));
+            }
+          }
+        } else if (categoryFromUrl === 'fresh-products') {
+          const isFreshChickenItem = /CHICKEN|FILLET|WING|STRIP|KPS/i.test(p.name);
+
+          if (subcategoryFromUrl === 'Vegetables') {
+            matchesSubcategory = p.id.startsWith('vegetable-');
+          } else if (subcategoryFromUrl === 'Fresh Chicken') {
+            matchesSubcategory = p.id.startsWith('fresh-') && isFreshChickenItem;
+          } else {
+            const subcategoryPrefixes = subcategoryProductPrefixMap[categoryFromUrl]?.[subcategoryFromUrl];
+            if (subcategoryPrefixes && subcategoryPrefixes.length > 0) {
+              matchesSubcategory = subcategoryPrefixes.some(prefix => p.id.startsWith(prefix));
+            }
+          }
+        } else if (categoryFromUrl === 'spices-herbs') {
+          const hasSpicePrefix =
+            p.id.startsWith('spice-general-') ||
+            p.id.startsWith('spice-general-2-') ||
+            p.id.startsWith('spice-heera-') ||
+            p.id.startsWith('spice-herra-2-') ||
+            p.id.startsWith('spice-natco-');
+          const isHerbItem = /KASOORI|METHI|PARSLEY|OREGANO|CURRY\s*LEAVES|KARI\s*PATTA|BAY\s*LEAVES|HERB/i.test(p.name);
+          const isBreadingItem = /BREAD|BREADER|BREADING|GRAVY|MARINADE|COATING|PIRI\s*PIRI/i.test(p.name);
+
+          if (subcategoryFromUrl === 'Herbs') {
+            matchesSubcategory = hasSpicePrefix && isHerbItem;
+          } else if (subcategoryFromUrl === 'Breading') {
+            matchesSubcategory = hasSpicePrefix && isBreadingItem;
+          } else if (subcategoryFromUrl === 'Spices') {
+            matchesSubcategory = hasSpicePrefix && !isHerbItem && !isBreadingItem;
+          } else {
+            const subcategoryPrefixes = subcategoryProductPrefixMap[categoryFromUrl]?.[subcategoryFromUrl];
+            if (subcategoryPrefixes && subcategoryPrefixes.length > 0) {
+              matchesSubcategory = subcategoryPrefixes.some(prefix => p.id.startsWith(prefix));
+            }
+          }
+        } else if (categoryFromUrl === 'oils-fats') {
+          const isCookingOilItem = /\bOIL\b|SUNFLOWER|RAPESEED|OLIVE|VEGETA|DRUM|LITRE|LTR/i.test(p.name);
+          const isSolidFatItem = /GHEE|BUTTER|PALMAX|WHIRL|PREP|AVR60/i.test(p.name);
+
+          if (subcategoryFromUrl === 'Cooking Oil') {
+            matchesSubcategory = p.id.startsWith('oil-fat-') && isCookingOilItem && !isSolidFatItem;
+          } else if (subcategoryFromUrl === 'Solid Fats') {
+            matchesSubcategory = p.id.startsWith('oil-fat-') && isSolidFatItem;
+          } else {
+            const subcategoryPrefixes = subcategoryProductPrefixMap[categoryFromUrl]?.[subcategoryFromUrl];
+            if (subcategoryPrefixes && subcategoryPrefixes.length > 0) {
+              matchesSubcategory = subcategoryPrefixes.some(prefix => p.id.startsWith(prefix));
+            }
+          }
+        } else if (categoryFromUrl === 'sauces') {
+          const isLionItem = p.id.startsWith('sauce-lion-');
+          const isMayoItem = /MAYO|MAYONNAISE/i.test(p.name) || p.id.startsWith('sauce-mayo-');
+          const isSauceFamily =
+            p.id.startsWith('sauce-bottle-') || p.id.startsWith('sauce-') || p.id.startsWith('sauce-lion-') || p.id.startsWith('sauce-mayo-');
+
+          if (subcategoryFromUrl === 'LION') {
+            matchesSubcategory = isLionItem;
+          } else if (subcategoryFromUrl === 'Mayonnaise') {
+            matchesSubcategory = isSauceFamily && isMayoItem;
+          } else if (subcategoryFromUrl === 'Marinades') {
+            matchesSubcategory = isSauceFamily && !isLionItem && !isMayoItem;
+          } else {
+            const subcategoryPrefixes = subcategoryProductPrefixMap[categoryFromUrl]?.[subcategoryFromUrl];
+            if (subcategoryPrefixes && subcategoryPrefixes.length > 0) {
+              matchesSubcategory = subcategoryPrefixes.some(prefix => p.id.startsWith(prefix));
+            }
+          }
+        } else if (categoryFromUrl === 'cleaning-supplies') {
+          const isTissueLikeItem = /TISSUE|NAPKIN|NIPKEN|ROLL|WIPER|TOWEL|SERVIRETTES|TOILET/i.test(p.name);
+          const isBagLikeItem = /BAG|BAGS|CARRIER|BIN|COMPACTOR|JUMBO/i.test(p.name);
+          const isCleaningFamily = p.id.startsWith('cleaning-tissue-') || p.id.startsWith('cleaning-bin-bag-');
+
+          if (subcategoryFromUrl === 'Washing Up Liquids') {
+            matchesSubcategory = isCleaningFamily && isTissueLikeItem;
+          } else if (subcategoryFromUrl === 'Degreasers') {
+            matchesSubcategory = isCleaningFamily && isBagLikeItem;
+          } else if (subcategoryFromUrl === 'Other Cleaning Items') {
+            matchesSubcategory = isCleaningFamily && !isTissueLikeItem && !isBagLikeItem;
+          } else {
+            const subcategoryPrefixes = subcategoryProductPrefixMap[categoryFromUrl]?.[subcategoryFromUrl];
+            if (subcategoryPrefixes && subcategoryPrefixes.length > 0) {
+              matchesSubcategory = subcategoryPrefixes.some(prefix => p.id.startsWith(prefix));
+            }
+          }
+        } else if (categoryFromUrl === 'general-items') {
+          const isGeneralItem = p.id.startsWith('general-');
+          const isPantryItem = /DAL|ANCHOVY|CONDIMENT|VINIGER|VINEGAR|TEA/i.test(p.name);
+          const isKitchenEssentialItem = /APRON|MASK|FILTER|STIR|PIZZA\s*TRIPOD|EGGS\s*TRAY/i.test(p.name);
+          const isTillOrCharcoalItem = /THERMAL|TIL\s*ROLL|ROLLS|CHARCOL|CHARCOAL/i.test(p.name);
+
+          if (subcategoryFromUrl === 'Dry Goods & Pantry') {
+            matchesSubcategory = isGeneralItem && isPantryItem;
+          } else if (subcategoryFromUrl === 'Kitchen Essentials') {
+            matchesSubcategory = isGeneralItem && isKitchenEssentialItem;
+          } else if (subcategoryFromUrl === 'Till Rolls & Charcoal') {
+            matchesSubcategory = isGeneralItem && isTillOrCharcoalItem;
+          } else {
+            const subcategoryPrefixes = subcategoryProductPrefixMap[categoryFromUrl]?.[subcategoryFromUrl];
+            if (subcategoryPrefixes && subcategoryPrefixes.length > 0) {
+              matchesSubcategory = subcategoryPrefixes.some(prefix => p.id.startsWith(prefix));
+            }
+          }
+        } else {
+          const subcategoryPrefixes = subcategoryProductPrefixMap[categoryFromUrl]?.[subcategoryFromUrl];
+          if (subcategoryPrefixes && subcategoryPrefixes.length > 0) {
+            matchesSubcategory = subcategoryPrefixes.some(prefix => p.id.startsWith(prefix));
+          }
+        }
+      }
+
+      return matchesSearch && matchesCategory && matchesSubcategory;
     });
-  }, [searchQuery, selectedCategory]);
+  }, [searchQuery, selectedCategory, categoryFromUrl, subcategoryFromUrl]);
 
   // Reset visible range when filters change
   useEffect(() => {
     setVisibleStart(0);
     setVisibleEnd(Math.min(INITIAL_LOAD, filteredProducts.length));
   }, [searchQuery, selectedCategory, filteredProducts.length]);
+
+  // When a specific product was selected from search suggestions, center the visible window around it.
+  useEffect(() => {
+    if (!productFromUrl) return;
+
+    const productIndex = filteredProducts.findIndex(product => product.id === productFromUrl);
+    if (productIndex === -1) return;
+
+    const nextStart = Math.max(0, productIndex - Math.floor(MAX_VISIBLE / 2));
+    const nextEnd = Math.min(filteredProducts.length, nextStart + MAX_VISIBLE);
+
+    setVisibleStart(nextStart);
+    setVisibleEnd(nextEnd);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [productFromUrl, filteredProducts]);
 
   // Get currently visible products with virtual windowing
   const visibleProducts = useMemo(() => {

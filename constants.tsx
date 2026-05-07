@@ -15,8 +15,24 @@ const FRESH_ASSET_BASE = '/assets/Fresh';
 const FROZEN_MEATS_ASSET_BASE = '/assets/Frozen Meats';
 const FROZEN_PRODUCTS_ASSET_BASE = '/assets/Frozen Products';
 const FROZEN_PRODUCTS_2_ASSET_BASE = '/assets/Frozen Products 2';
+const LAMB_WESTON_ASSET_BASE = '/assets/Lamb Weston';
 const PACKAGING_ASSET_BASE = '/assets/Fc Boxes - Sos Bags';
+const GREASEPROOF_ASSET_BASE = '/assets/Greaseproof & paper bags';
+const WRAPPING_ASSET_BASE = '/assets/Wrapping products';
+const SACTO_ASSET_BASE = '/assets/Sacto';
 const SAUCE_ASSET_BASE = '/assets/Sauces processed';
+const LION_SAUCES_ASSET_BASE = '/assets/Lion Sauces';
+const MAYO_ASSET_BASE = '/assets/Mayo';
+const GENERAL_ITEMS_ASSET_BASE = '/assets/General Items';
+const VEGETABLES_ASSET_BASE = '/assets/Vegetables';
+const GENERAL_SPICES_ASSET_BASE = '/assets/General spices';
+const GENERAL_SPICES_2_ASSET_BASE = '/assets/General Spices 2';
+const HEERA_SPICES_ASSET_BASE = '/assets/Heera Spices';
+const HERRA_SPICES_2_ASSET_BASE = '/assets/Herra Spices 2';
+const NATCO_SPICES_ASSET_BASE = '/assets/Nacto Spices';
+const OIL_FATS_ASSET_BASE = '/assets/Oil & Fats';
+const PLASTIC_BIN_BAGS_ASSET_BASE = '/assets/Plasctic & Bin Bags';
+const TISSUES_ASSET_BASE = '/assets/Tissues';
 
 const DRINK_CAN_FILES = [
   '7UP CANS 24X330ML.webp',
@@ -195,6 +211,7 @@ const DRINK_BOTTLE_FILES = [
   'YAZOO CHOCOLATE 1X10.webp',
   'YAZOO STRAWBERRY 10X400ML.webp',
   'ZIONTI COLA GLASS 24X330ML.webp',
+  'make_it_a_202604211021.webp',
 ] as const;
 
 const PACKAGING_FILES = [
@@ -299,6 +316,7 @@ const FLOUR_RICE_FILES = [
   'VICTORIA_PLAIN_FLOUR.webp',
   'VITAL_RICE_20_20.webp',
   'WAFFLE_MIX_12.5KG.webp',
+  'Copy_of_BALAH_202604252048.webp',
 ] as const;
 
 const FRESH_FILES = [
@@ -398,6 +416,9 @@ const FROZEN_FILES = [
   'OKRA ZERO EGP VEG 20X400.webp',
   'PRIMA GARLIC CLOVES 1 X 800G.webp',
   'QUALITOPS PEPPERONI 1KG.webp',
+  'PRIMA GARLIC CLOVES BOX 10X 800G.webp',
+  'McCAIN VEGI BURGER 30X113G BOX.webp',
+  'Use_the_uploaded_202604271622.webp',
   'SPRING ROLLS CHK 1X50.webp',
   'TAXAS PEPPERONI 1KG.webp',
   'TEXAS ONION RINGS 1X450G.webp',
@@ -435,6 +456,7 @@ const FROZEN_FILES_2 = [
   'SUTAN COOKED DONER 2.27KG.webp',
   'TYSON POP IN CHICKEN 1KG.webp',
   'VEG SAMOSAS 5O PCS(QUAITY).webp',
+  'Add_2_in_202604271404 (1).webp',
 ] as const;
 
 const DESSERT_FILES = [
@@ -500,6 +522,7 @@ const CONFECTIONERY_FILES = [
   'MILK CHOCO COOKIE 4.5KHG.webp',
   'OERO ORGINAL SMALL PACK 20 X 66G.webp',
   'SNICKERS 24 PACK BOX.webp',
+  'KINDER BUENO COCONUT BOX.webp',
 ] as const;
 
 const SAUCE_FILES = [
@@ -543,6 +566,455 @@ const SAUCE_FILES = [
   'TATLI BIBER ONCU 4 X 4.3KG.webp',
   'W T TOMATO PASTE 1KG.webp',
   'WHITE TOWER TOMATO PASTE 4.5KG.webp',
+] as const;
+
+const LAMB_WESTON_FILES = [
+  '2LW ONION RING 6X1 KG.webp',
+  'LW 9x9 PRIVET 38 10 KG.webp',
+  'LW CHILLI CHEESE JALAPENOS 1KG.webp',
+  'LW CHILLI CHEESE NUGGETS 1X1KG.webp',
+  'LW CREAM CHEESE JALAPENOS 6 X 1KG  BOX.webp',
+  'LW CRISPY ONION RINGS 6X1KG.webp',
+  'LW CRISY ONION RINGS 1KG.webp',
+  'LW HASHBROWN 10X1KG.webp',
+  'LW HASHBROWN 2.5KG (2).webp',
+  'LW HASHBROWN TRI 1KG X 10 BOX.webp',
+  'LW HASHBROWN TRI 2.5KG.webp',
+  'LW MOZZARELLA STICKS 1KG.webp',
+  'LW MOZZARELLA STICKS BOX 6X1KG.webp',
+  'LW POTATO WEDGES 1 X 2.5KG.webp',
+  'LW SWEET POTATO 2.5KG.webp',
+  'LW SWEET POTATO 4 x 2.5kg.webp',
+  'LW TWISTERS 1 X 2.5KG.webp',
+  'LW TWISTERS BOX 4 X 2.5KG.webp',
+  'LW ZIGGY CHIPS 9X9 1KG.webp',
+  'LW ZIGGY CHIPS 9X9 4X2.5KG.webp',
+] as const;
+
+const GENERAL_ITEM_FILES = [
+  'APRON.webp',
+  'AYTAC CHANA DAL 1.5kg.webp',
+  'CHARCOL 12 KG.webp',
+  'COOK&CO ANCHOVY FILLETS 6X 365g .webp',
+  'EGGS TRAY (30).webp',
+  'FACE MASK X10.webp',
+  'HENNY PENNY FILTER 50PCS.webp',
+  'MJSTC WOODEN STIR 5000.webp',
+  'NON-BREWED CONDIMENT  VINIGER 2X5LT.webp',
+  'NON-BREWED CONDIMENT WHITE 2X5 LTR.webp',
+  'PG TEA BAGS 210.webp',
+  'PIZZA TRIPODS 1X500 WHITE.webp',
+  'SW BLUE DISPOABLE APRONS X100.webp',
+  'THERMAL ROLLS 80 X 80 20PK.webp',
+  'THERMAL TIL 57.50.12 (20) .webp',
+  'THERMAL TIL ROLL  57x40 (20).webp',
+  'TRS CHANA DAL 6x2kg.webp',
+  'WOOD CHARCOAL 15kg.webp',
+] as const;
+
+const VEGETABLE_FILES = [
+  'BULLET CHILLI BOX.webp',
+  'CORIANDER FRE.webp',
+  'CUCUMBER BOX (16).webp',
+  'DUTCH ONION 24KG.webp',
+  'GREEN PEPPER BOX (DUTCH).webp',
+  'LETTUCE BOX.webp',
+  'MINT FRE.webp',
+  'MUSHROOM .webp',
+  'ONION 17 KG WHITE BAG.webp',
+  'RED ONION BAG 9kg.webp',
+  'TOMATO BOX.webp',
+  'WHITE ONION BAG (DUTCH)].webp',
+] as const;
+
+const GENERAL_SPICES_FILES = [
+  'AMERICAN RED SALT 2.KG.webp',
+  'AYTAC PISTACHIO KERNEL 400g.webp',
+  'BALAH BAY LEAVES 2 KG.webp',
+  'BALAH CINNAMON STICKS 1KG.webp',
+  'BLACK SALT 400 G.webp',
+  'BRITISH SALT 12.5KG.webp',
+  'CHICKEN TRAIN PIRI PIRI M HOT 2 KG.webp',
+  'CHICKEN TRAIN PIRI PIRI MILD 2KG.webp',
+  'CHICKEN TRAIN PIRI PIRI X-HOT 2KG.webp',
+  'COOKING SALT BAG 12.5 Kg.webp',
+  'DINACLASS GRAVY MIX 2.5KG.webp',
+  'DINACLASS GRAVY MIX 2x2.5KG.webp',
+  'SHAN BIRYNI  MASALA 12x50G.webp',
+  'FERMIPAN RED YEAST 20x500G.webp',
+  'FERMIPAN RED YEAST 500G.webp',
+  'FRIED ONIONS 2.5 KG.webp',
+  'HEERA COOKING SALT 3KG.webp',
+  'LAZIZA     BIRYANI    100g.webp',
+  'LAZIZA SEEKH KEBAB 100g.webp',
+  'LAZZIZA BIRYANI 6X100g.webp',
+  'LAZZIZA PAYA MASALAI 6X100g.webp',
+  'MAGGI ORIGINAL GRAVY 1.8KG.webp',
+  'MAGGI ORIGINAL GRAVY 2X1.8KG.webp',
+  'MALKA FRIED ONION 2.5KG.webp',
+  'MALKA QASURI METHI 1 KG.webp',
+  'MFC CHICKEN BREADINGS ORIGINALX2KG.webp',
+  'MONOSODIUM GLU (CHINESE SALT)400 G.webp',
+  'NATIONAL ACHAR GOSHT 50G.webp',
+  'NATIONAL ACHAR GOSHT 6X43G.webp',
+  'NATIONAL BIRYANI MASALA 6X39G.webp',
+  'NATIONAL CHAAT MASAL 100g.webp',
+  'NATIONAL CHAAT MASALA 6 x100g.webp',
+  'PARIVAR G CARDAMOM 600G.webp',
+  'PATAKS BALTI PASTE 2.3KG.webp',
+  'PATAKS BALTI PASTE 2x2.3KG.webp',
+  'PATAKS KASHMIRI MASALA 2.2KG.webp',
+  'PATAKS KASHMIRI MASALA 2.X2.2KG.webp',
+  'PATAKS TANDOORI PASTE 1X2.5KG.webp',
+  'PATAKS TANDOORI PASTE 2X2.5KG.webp',
+  'PATAKS TIKKA MASALA 2x2.3KG.webp',
+  'PIRI PIRI MARINADE 4KG .webp',
+  'PIRI PIRI MARINADE 4x4KG .webp',
+  'PRIMA PARSLEY.webp',
+  'RED SALT BUCKET 15KG.webp',
+  'SALT SACHETS  2KG.webp',
+  'SHAN ACHAR GOSHT 50G.webp',
+  'SHAN BIRYANI MASALA 50G.webp',
+  'SHAN CHAAT MASALA 12x100G.webp',
+  'SHAN KARAHI 50G.webp',
+  'TROPICS HOT & SPICY BREADING 12.5KG.webp',
+  'TROPICS ORIGINAL BREADING 12.5KG.webp',
+] as const;
+
+const GENERAL_SPICES_2_FILES = [
+  'AYTAC SUMAC  500G.webp',
+  'ROOSTER HD BREADER 12.5KG.webp',
+  'ROOSTER HDIP SAUCE 5KG.webp',
+  'ROOSTER REG BREADING 12.5KG.webp',
+  'ROOSTER SFRY GRAVY 2KG BOX.webp',
+  'ROOSTER SPICY BREADING 12.5KG.webp',
+  'ROOSTER TASTY BREADING 12.5KG.webp',
+  'TROPICS LEMON&PEPPER 1.5kg.webp',
+] as const;
+
+const HEERA_SPICES_FILES = [
+  'BALAH CINNAMON STICKS 1KG.webp',
+  'BALAH KARI PATTA 1KG.webp',
+  'GREEN CARDAMOM 600G.webp',
+  'HEERA AJWAIN SEEDS 700G.webp',
+  'HEERA BLACK PEPPER COARSE 1KG.webp',
+  'HEERA BREAD CRUMBS 1KG.webp',
+  'HEERA BROWN LENTILS (MASOOR) 2KG.webp',
+  'HEERA CHILI POWDER X HOT 5KG.webp',
+  'HEERA CHILLI POWDER 1KG.webp',
+  'HEERA CHILLI POWDER 5KG.webp',
+  'HEERA CINAMON POWDER 1KG.webp',
+  'HEERA CORIANDER WHOLE 700G.webp',
+  'HEERA CURRY LEAVES 20 G.webp',
+  'HEERA CURRY POWDER MILD 5KG.webp',
+  'HEERA G SULTANA 700G.webp',
+  'HEERA GARAM MASALA POWDER 1KG.webp',
+  'HEERA GARLIC POWDER 1KG.webp',
+  'HEERA GARLIC POWDER 5KG.webp',
+  'HEERA GINGER POWDER 5KG.webp',
+  'HEERA H & S CHICKEN MIX 6 X 700G.webp',
+  'HEERA KALONJEE 1KG.webp',
+  'HEERA KASOORI METHI 200G.webp',
+  'HEERA MADRAS CURRY POWDER HOT 5KG.webp',
+  'HEERA MEHTI SEEDS 1KG.webp',
+  'HEERA METHI POWDER 400G.webp',
+  'HEERA RED KIDENY BE 2KG.webp',
+  'HEERA SEMOLINA COARSE 5KG.webp',
+  'HEERA SEMONLINA FINE 1.5KG.webp',
+  'HEERA SESAME SEED 1KG.webp',
+  'HEERA STAR ANISEED 500 G.webp',
+  'HEERA TANDOORI MASALA 5KG.webp',
+  'HEERA TURMERIC POWDER (HALDI) 1KG (2).webp',
+  'HEERA TURMERIC POWDER HALDI 5 KG.webp',
+  'HEERA URID DALL WASHED 5 KG.webp',
+  'HEERA WHITE PEPPER POWDER 1KG.webp',
+  'HEERA WHOLE BLACK PEPPER 700G.webp',
+  'HEERA WHOLE CORIANDER 3.5KG.webp',
+  'HEERA WHOLE GARAM MASALA 700G.webp',
+  'HRA COOKING SALT 1.5KG.webp',
+  'HRA GINGER POWDER 800G.webp',
+  'HRA TANDOORI MASALA 1KG.webp',
+  'POMEGRANATE SEEDS (ANARDANA) 100 g.webp',
+] as const;
+
+const HERRA_SPICES_2_FILES = [
+  'AMCHOOR POWDER 400g.webp',
+  'BALLA SWEET MANGO CHUTNEY 40 kg.webp',
+  'HEERA  CHICK PEAS 9MM 25KG.webp',
+  'HEERA  GARAM MASALA POWDER 1KG.webp',
+  'HEERA ALMOND 700G.webp',
+  'HEERA ALMOND FLAKE 700G.webp',
+  'HEERA ALMOND POWDER 1 KG.webp',
+  'HEERA BLACK CARDAMOM 700g.webp',
+  'HEERA BLACK PEPPER POWDER 5KG (2).webp',
+  'HEERA BLACK PEPPER POWDER 5KG.webp',
+  'HEERA BLACK SESAME SEEDS 1kg.webp',
+  'HEERA CHANA DAL 2 KG.webp',
+  'HEERA CHICK PEAS 2KG.webp',
+  'HEERA CHICK PEAS6X2.60KG.webp',
+  'HEERA CHILLI WHOLE 1KG.webp',
+  'HEERA CINNAMON STICKS 400G.webp',
+  'HEERA CITRIC ACID 1 KG.webp',
+  'HEERA CLOVES WHOLE 200G.webp',
+  'HEERA CORIANDER POWDER 1KG.webp',
+  'HEERA CORN MEAL MEDIUM 5KG.webp',
+  'HEERA CRUSHED CHILLIES 700G.webp',
+  'HEERA CUMIN POWDER 1KG.webp',
+  'HEERA CUMIN WHOLE (JEERA) 1kg.webp',
+  'HEERA DESI COCONUT (M).webp',
+  'HEERA FENNEL SEEDS 700g.webp',
+  'HEERA GARLIC FLAKES 1Kg.webp',
+  'HEERA GARLIC POPWDER 1kg.webp',
+  'HEERA GARLIC PUREE 1KG.webp',
+  'HEERA GARLIC PUREE 6X1 KG.webp',
+  'HEERA GIN && GAR PUREE 6X1 KG.webp',
+  'HEERA GIN && GAR PUREE1 KG.webp',
+  'HEERA GREEN CARDAMOM 700G.webp',
+  'HEERA GUNGO PEAS 12X400g.webp',
+  'HEERA KALA CHANA 12X400g.webp',
+  'HEERA KEWDA WATER 12X190ML.webp',
+  'HEERA MEAT TENDERISER 400G.webp',
+  'HEERA MIX PICKE JAR.webp',
+  'HEERA OREGANO 1KG.webp',
+  'HEERA PAPRIKA1 KG.webp',
+  'HEERA RED FOOD COLOUR 500g.webp',
+  'HEERA RED SPLIT LENTILS 2KG.png.webp',
+  'HEERA SPINACH PUREE 12X800G.webp',
+  'HEERA SPINACH PUREE 800G.webp',
+  'HEERA STAR ANISEED 1kg.webp',
+  'HEERA TAMARIND IMLI 10x400G.webp',
+  'HEERA TAMARIND IMLI 400G.webp',
+  'HEERA WHITE ONION POWDER 1Kg.webp',
+  'REERA CHILLI POWDER EXTRA 1kg.webp',
+] as const;
+
+const NATCO_SPICES_FILES = [
+  'KASOORI METHI 1KG.webp',
+  'Kevda Water 6x310ml.webp',
+  'NAT GARLIC PASTE 750G.webp',
+  'NATCO  GREEN RAISINS 700G.webp',
+  'NATCO AJWAN 1kg.webp',
+  'NATCO ALMOND FLAKES 300g.webp',
+  'NATCO ALMONDS 1kG.webp',
+  'NATCO ALMONDS 750 G.webp',
+  'NATCO BLACK PEPPER 400g.webp',
+  'NATCO CHANA DAL 25KG.webp',
+  'NATCO CHANA DAL 2KG.webp',
+  'NATCO CHANA DAL 5KG.webp',
+  'NATCO CHICK PEAS 25KG.webp',
+  'NATCO CHICK PEAS 2KG.webp',
+  'NATCO CHILLI PICKLE 4.4KG.webp',
+  'NATCO CHILLI POWDER 1kg.webp',
+  'NATCO CLOVES 750g.webp',
+  'NATCO CLOVES WHOLE 750g.webp',
+  'NATCO COCONUT 250g.webp',
+  'NATCO CORIANDER POWDER 1KG.webp',
+  'NATCO CORIANDER POWDER 5KG.webp',
+  'NATCO CORIANDER SEEDS 750G.webp',
+  'NATCO CORN MEAL COASE 5KG.webp',
+  'NATCO CRUSHED CHILLI 3KG.webp',
+  'NATCO CRUSHED CHILLI 700G.webp',
+  'NATCO CUMIN SEEDS 1Kg.webp',
+  'NATCO CUMIN SEEDS 4KG.webp',
+  'NATCO DALCHINI 1.5 KG.webp',
+  'NATCO DALCHINI 400G.webp',
+  'NATCO EX HOT CHILLI POWDR 5KG.webp',
+  'NATCO FENNEL SEEDS 1 KG.webp',
+  'NATCO FENNEL SEEDS 400g.webp',
+  'NATCO GARLIC POWDER 1KG.webp',
+  'NATCO GARLIC&GINGER PASTE 1KG.webp',
+  'NATCO GOLDON RAISINS 700g.webp',
+  'NATCO GREEN CADAMOMS 700g.webp',
+  'NATCO GREENCARDMOMS 400g.webp',
+  'NATCO HALDI POWDER 1KG.webp',
+  'NATCO KALA CHANA 12X400 g.webp',
+  'NATCO MANGO CHUTNEY 5KG.webp',
+  'NATCO MILK POWDER750g.webp',
+  'NATCO ORANGE FOOD COLOUR.webp',
+  'NATCO PAPRIKA 1kg.webp',
+  'NATCO PAPRIKA 5KG.webp',
+  'NATCO PISTACHIO KERNELS 700g.webp',
+  'NATCO PLACK PEPPER COASE 1KG.webp',
+  'NATCO RED FOOD COLOUR.webp',
+  'NATCO ROSE WATER 6X310 ML.webp',
+  'NATCO SEMOLINA COARSE 5KG.webp',
+  'NATCO SESAME SEEDE 1.5KG.webp',
+  'NATCO SPINACH LEAF 12X765g.webp',
+  'NATCO SPINACH PUREE 12 X 795G.webp',
+  'NATCO SPINACH PUREE795G.webp',
+  'NATCO STAR ANISEED 300g.webp',
+  'NATCO TANDOORI MASALA 1kg.webp',
+  'NATCO WHITE PEPPER 400g.webp',
+  'PAPA GRAM FLOUR 6X2kg.webp',
+  'RED LENTIL 2KG.webp',
+  'RED LENTIL 5KG.webp',
+] as const;
+
+const OIL_FATS_FILES = [
+  'AVR60 12.5KG.webp',
+  'HEERA GHEE 2KG.webp',
+  'HEERA OLIVE OIL  5ltr.webp',
+  'HEERA SUNFLOWER OIL 3X5LT.webp',
+  'KHYBER GHEE 12.5KG.webp',
+  'KTC OIL 20 LITRE DRUM.webp',
+  'KTC OLIVE OIL 5 LITRE.webp',
+  'KTC PALMAX 12.5KG.webp',
+  'KTC RAPESEED EXTENDED OIL 20 LTR.webp',
+  'KTC SUNF OIL 1X6LTR.webp',
+  'KTC VEGETA OIL 5 LTR.webp',
+  'NATCO POM OILVE OIL 5 LTR.webp',
+  'NATCO SUNFLOWER OIL 1X5lt.webp',
+  'NATCO SUNFLOWER OIL 3X5lt.webp',
+  'PLOUGH BUTTER GHEE 1 X 2KG.webp',
+  'PLOUGH BUTTER GHEE 6X2KG CASE.webp',
+  'PREP MULTI PLUS 2x10litre.webp',
+  'PREP ULTRA long life tub 20 LITRE.webp',
+  'PRIDE OIL ECONOMY GREEN DRUM 20L.webp',
+  'WHIRL BUTTER 4LT .webp',
+  'WHITE PEARL OIL 20 LT (TIN).webp',
+] as const;
+
+const LION_SAUCES_FILES = [
+  'BROWN SAUCE 2X4.3KG.webp',
+  'BROWN SAUCE 4.3KG.webp',
+  'EAST BULL BURGER SAUCE 1LT.webp',
+  'EAST BULL BURGER SAUCE 6X1LT.webp',
+  'ENG MUSTARD 1 X 2.27LT.webp',
+  'ENG MUSTARD 2 X 2.27LT.webp',
+  'KTC CHILLI SAUCE 2X2.34 KG.webp',
+  'KTC CHILLI SAUCE2.34 KG.webp',
+  'KTC MINT SAUCE 2.34 KG.webp',
+  'KTC MINT SAUCE 2X2.34 KG.webp',
+  'LEMON && HERB PIRI SAUCE 1 X 2.27LT.webp',
+  'LEMON && HERB PIRI SAUCE 2 X 2.27LT.webp',
+  'LEMON&HERB PIRI 1X2.27LT.webp',
+  'LEMON&HERB PIRI 2X2.27LT.webp',
+  'LION GARLIC MAYONNAISE 1 X 2.27LT.webp',
+  'LION GARLIC MAYONNAISE 2 X 2.27LT (2).webp',
+  'LION GARLIC MAYONNAISE 2 X 2.27LT.webp',
+  'LION MEDIUM PIRI PIRI 2.27LIT.webp',
+  'LION MEDIUM PIRI PIRI 2X2.27 LIT.webp',
+  'LION MINIT SAUCE 1X2.27LTR.webp',
+  'LION MINT SAUCE 2X2.27LTR.webp',
+  'LION ORGINAL PIRI HOT SAUCE 1 X 2.27LT.webp',
+  'LION ORGINAL PIRI HOT SAUCE 2 X 2.27LT.webp',
+  'LION SALAD CREAM 1 X 2.27LT.webp',
+  'LION SALAD CREAM 2 X 2.27LT.webp',
+  'LION STICKY BBQ 1 X 2.27LT.webp',
+  'LION STICKY BBQ 2 X 2.27LT.webp',
+  'LION V.HOT CHLLI SAUCE 1 X 2.27LT.webp',
+  'LION V.HOT CHLLI SAUCE 2 X 2.27LT.webp',
+  'MANGO && LIME PIRI SAUCE 1 X 2.27LT.webp',
+  'MANGO && LIME PIRI SAUCE 2 X 2.27LT.webp',
+] as const;
+
+const MAYO_FILES = [
+  'DON VALLE MAYO 10 KG.jpeg',
+  'HEINZ MAYONNAISE 9.6 KG.jpeg',
+  'PAUWELS CLASSIC MAYO 9.4 KG.jpeg',
+  'W SUPER BLUE MAYO  10 KG.jpeg',
+  'WERNSING QUALITY MAYO 10 KG.jpeg',
+] as const;
+
+const SACTO_FILES = [
+  'ROLLS PLASTIC CONTAINER 500 ML(250).webp',
+  'ROLLS PLASTIC CONTAINER 650 ML(250).webp',
+  'SATCO 2oz CUP 800.webp',
+  'SATCO 650 ML CONTAINER .webp',
+  'SATCO CLEAR CUPS + LIDS 4oz BOX  (800).webp',
+  'SATCO CONTAINERS 750ML + LIDS 250.webp',
+  'SATCO CONTAINERS BOX 1000ML .webp',
+  'SATCO CONTAINERS BOX 500ML + LIDS.webp',
+  'SATCO CONTAINERS BOX 8oz + LIDS.webp',
+] as const;
+
+const GREASEPROOF_FILES = [
+  'BROWN BAG 10X10 MY .webp',
+  'BROWN BAG 12X12  MY .webp',
+  'BROWN FRUIT BAG 10 X 10 PACK.webp',
+  'BROWN KRAFT BAG 12.5 X 12.5.webp',
+  'BROWN KRAFT BAG 8.5 X 8.5 PACK.webp',
+  'BROWN KRAFT BAG 8X8 EP .webp',
+  'BWN KRAFT BAGE 12X12 EZ .webp',
+  'EP FOIL LINED BAGS 7X9X12 ( 440).webp',
+  'E-P GREASEPROOF 8.5 X 8.5.webp',
+  'E-P GREASEPROOF PAPER BAGS 10 X 10.webp',
+  'EP WHITE PAPER BAG 12  x 12.webp',
+  'FOIL LINED BAGS 7X9X12.webp',
+  'FOIL LINED PLAIN PAPER BAGS (MY).webp',
+  'G PROOF PAPER 9 X 14 E-P.webp',
+  'GREASE PAPER BAG 8.5 X 8.5 .webp',
+  'GREASE PRP BAG  6X6  MY .webp',
+  'GREASEPROOF BAGS  7x7.webp',
+  'GREASEPROOF PLAIN PBAGS 6 X 6.webp',
+  'MAJESTIC FOIL LINED BAG 500.webp',
+  'MY GREASEPROOF BAG 5X5.webp',
+  'SULPHITE FLAT PAPER BAG  5 X 5 PACK.webp',
+  'SULPHITE FLAT PAPER BAG  6 X 6 PACK.webp',
+  'SULPHITE FLAT PBAGS 8 X 8 MY.webp',
+  'WHITE PAPER BAGS 10X10  EZ .webp',
+  'WHITE PAPER BAGS 8X8  EZ .webp',
+] as const;
+
+const WRAPPING_FILES = [
+  'ALUMINIUM FOIL  1 X 300MM.webp',
+  'ALUMINIUM FOIL 1 X 300MM MY .webp',
+  'ALUMINIUM FOIL 1 X 450MM MY .webp',
+  'ALUMINIUM FOIL 450X60M EAZI .webp',
+  'ALUMINIUM FOIL BOX 6 X 300MM.webp',
+  'ALUMINIUM FOIL LARGE 450MM 1 X 1.webp',
+  'ALUMINIUM FOILEP 300MM.webp',
+  'BURGER WRAP 240X320 MM (2000).webp',
+  'EAZI- PACK CLING FILM 1X300 MM.webp',
+  'EP FOIL WRAP LINER 130 X 30 CM.webp',
+  'GREASEPROOF SHEETS 7 X 9 4KG.webp',
+  'M GREASEPROOF LINER 14 14X14.webp',
+  'MG  CLING FILM 450 MM.webp',
+  'MY PVC CLING LILM  45CM.webp',
+  'WRAPING PAPER 17X20 8kg EZ .webp',
+  'WRAPING PAPER 17X20 9kg EZ.webp',
+  'WRAPING PAPER 20X24 8kg EZ .webp',
+  'WRAPPING PAPER 18X20 MY .webp',
+  'WRAPPING PAPER 18X24 MY .webp',
+  'YELLOW GREASEPROOF PAPER 4KG .webp',
+] as const;
+
+const PLASTIC_BIN_BAG_FILES = [
+  'BLACK BIN BAG COMPACTOR .webp',
+  'BLACK BIN BAGS WEELLIE 1X100.webp',
+  'HD BLACK BIN BAGS 18 X29  X39 200 PCS.webp',
+  'M4 WHITE LARGE CARRIER BAGS.webp',
+  'S3 PLASTIC BAGS(my)  APX 1000.webp',
+  'S4 PLASTIC CARRIER BAGS.webp',
+  'WHITE JUMBO PLASTIC CARRIER BAGS.webp',
+  'WHITE M3 MEDIUM CARRIER BAGS.webp',
+  'WHITE M5 JAMBO CARRIER BAGS.webp',
+  'ZAFCO BLACK BIN B H 22X34X47.webp',
+] as const;
+
+const TISSUE_FILES = [
+  '1PLY SERVIRETTES NIPKEN 30cm.webp',
+  'BLUE ROLL 1X6.webp',
+  'BLUE WIPER ROLL 1X2 .webp',
+  'BRILLA BLUE ROLL 1X6.webp',
+  'ECO BLUE ROLL.webp',
+  'EZ WHITE NIPKIN 1PLY.webp',
+  'INDUSTRIAL WIPER ROLLS 1X2.webp',
+  'JUMBO TOILET ROLL 1X38.webp',
+  'KITCHEN TOWEL 1X12.webp',
+  'MAJESTIC NIPKEN 30X30 (500).webp',
+  'MAJESTIC NIPKEN 30X30 (5000).webp',
+  'MEDIUM TISSUE ROLL .webp',
+  'MY PACK NIPKIN 1PLY.webp',
+  'NAPKINS WHITE 1-PLY 30CM.webp',
+  'RELYON 12 FOLD NIPKINS 24X50.webp',
+  'SELECT PLY SOFT TISSUE BOX .webp',
+  'SKY TISSUE 1X6.webp',
+  'SMAL TISSUE ROLL 160150.webp',
+  'VORTEX NIPKEN 30X30 (500).webp',
+  'VORTEX NIPKEN 30X30 (5000).webp',
+  'WHITE JUMBO BIG ROLL X 6PACK.webp',
+  'WHITE WIPER ROLL 1X2 .webp',
 ] as const;
 
 const toProductName = (fileName: string) =>
@@ -613,6 +1085,30 @@ const PACKAGING_PRODUCTS: Product[] = createCategoryProducts(
   'Foodservice packaging essentials, takeaway boxes, and bag formats in bulk.'
 );
 
+const PACKAGING_ADDITIONAL_PRODUCTS: Product[] = [
+  ...createCategoryProducts(
+    'packaging-greaseproof',
+    '2',
+    GREASEPROOF_ASSET_BASE,
+    GREASEPROOF_FILES,
+    'Greaseproof, kraft, and paper bag formats for takeaway and foodservice packaging.'
+  ),
+  ...createCategoryProducts(
+    'packaging-wrapping',
+    '2',
+    WRAPPING_ASSET_BASE,
+    WRAPPING_FILES,
+    'Wrapping papers, foil, and cling products for kitchen prep and service.'
+  ),
+  ...createCategoryProducts(
+    'packaging-satco',
+    '2',
+    SACTO_ASSET_BASE,
+    SACTO_FILES,
+    'Disposable containers and lidded cup formats for takeaway and delivery operations.'
+  ),
+];
+
 const FROZEN_PRODUCTS: Product[] = [
   ...createCategoryProducts(
     'frozen-aviko',
@@ -662,6 +1158,13 @@ const FROZEN_PRODUCTS: Product[] = [
     FROZEN_PRODUCTS_2_ASSET_BASE,
     FROZEN_FILES_2,
     'Additional frozen stock lines for fast-moving foodservice demand.'
+  ),
+  ...createCategoryProducts(
+    'frozen-lamb-weston',
+    '3',
+    LAMB_WESTON_ASSET_BASE,
+    LAMB_WESTON_FILES,
+    'Lamb Weston frozen potato and side products for restaurant-grade service.'
   ),
 ];
 
@@ -715,6 +1218,60 @@ const FRESH_PRODUCTS: Product[] = createCategoryProducts(
   'Fresh and chilled product lines for restaurants and takeaway suppliers.'
 );
 
+const VEGETABLE_PRODUCTS: Product[] = createCategoryProducts(
+  'vegetable',
+  '7',
+  VEGETABLES_ASSET_BASE,
+  VEGETABLE_FILES,
+  'Fresh vegetable stock for wholesale buyers, food prep kitchens, and caterers.'
+);
+
+const SPICE_PRODUCTS: Product[] = [
+  ...createCategoryProducts(
+    'spice-general',
+    '8',
+    GENERAL_SPICES_ASSET_BASE,
+    GENERAL_SPICES_FILES,
+    'Spice blends, seasonings, and pantry flavors for commercial kitchens.'
+  ),
+  ...createCategoryProducts(
+    'spice-general-2',
+    '8',
+    GENERAL_SPICES_2_ASSET_BASE,
+    GENERAL_SPICES_2_FILES,
+    'Specialty coatings, spice mixes, and seasoning products in wholesale packs.'
+  ),
+  ...createCategoryProducts(
+    'spice-heera',
+    '8',
+    HEERA_SPICES_ASSET_BASE,
+    HEERA_SPICES_FILES,
+    'Heera brand herbs and spice staples for high-volume B2B kitchens.'
+  ),
+  ...createCategoryProducts(
+    'spice-herra-2',
+    '8',
+    HERRA_SPICES_2_ASSET_BASE,
+    HERRA_SPICES_2_FILES,
+    'Extended spice and dry ingredient range in foodservice-ready quantities.'
+  ),
+  ...createCategoryProducts(
+    'spice-natco',
+    '8',
+    NATCO_SPICES_ASSET_BASE,
+    NATCO_SPICES_FILES,
+    'Natco spice, paste, and dry ingredient range for bulk supply.'
+  ),
+];
+
+const OIL_FAT_PRODUCTS: Product[] = createCategoryProducts(
+  'oil-fat',
+  '9',
+  OIL_FATS_ASSET_BASE,
+  OIL_FATS_FILES,
+  'Cooking oils, fats, and ghee formats for commercial frying and prep.'
+);
+
 const SAUCE_BOTTLE_PRODUCTS: Product[] = createCategoryProducts(
   'sauce-bottle',
   '10',
@@ -732,21 +1289,60 @@ const SAUCE_PRODUCTS: Product[] = [
     SAUCE_FILES,
     'Sauce and condiment product range for burgers, pizza shops, and foodservice menus.'
   ),
+  ...createCategoryProducts(
+    'sauce-lion',
+    '10',
+    LION_SAUCES_ASSET_BASE,
+    LION_SAUCES_FILES,
+    'Lion and related branded sauces for takeaway, grill, and prep station use.'
+  ),
+  ...createCategoryProducts(
+    'sauce-mayo',
+    '10',
+    MAYO_ASSET_BASE,
+    MAYO_FILES,
+    'Bulk mayonnaise products for foodservice kitchens and sandwich operations.'
+  ),
 ];
+
+const CLEANING_PRODUCTS: Product[] = [
+  ...createCategoryProducts(
+    'cleaning-bin-bag',
+    '11',
+    PLASTIC_BIN_BAGS_ASSET_BASE,
+    PLASTIC_BIN_BAG_FILES,
+    'Bin liners, carrier bags, and waste-management essentials for businesses.'
+  ),
+  ...createCategoryProducts(
+    'cleaning-tissue',
+    '11',
+    TISSUES_ASSET_BASE,
+    TISSUE_FILES,
+    'Napkins, rolls, and tissue consumables for daily commercial operations.'
+  ),
+];
+
+const GENERAL_PRODUCTS: Product[] = createCategoryProducts(
+  'general',
+  '12',
+  GENERAL_ITEMS_ASSET_BASE,
+  GENERAL_ITEM_FILES,
+  'General-use wholesale items supporting day-to-day retail and kitchen operations.'
+);
 
 export const CATEGORIES: Category[] = [
   { id: '1', name: 'Drinks', slug: 'drinks', description: 'Premium beverages including sodas, artisanal juices, and mineral waters.', image: '/assets/Drink%20Cans%20processed/COKE%20CANS%2024X330ML.webp', icon: '🥤', subcategories: ['Canned Drinks', 'Bottled Drinks'] },
-  { id: '2', name: 'Packaging', slug: 'packaging', description: 'Sustainable and industrial strength wholesale packaging solutions.', image: 'https://images.unsplash.com/photo-1607166452427-7e4477079cb9?auto=format&fit=crop&q=80&w=800', icon: '📦', subcategories: ['Paper Bags with Handles', 'Paper Bags without Handles', 'Chicken Boxes', 'Wrapping Sheets'] },
+  { id: '2', name: 'Packaging', slug: 'packaging', description: 'Sustainable and industrial strength wholesale packaging solutions.', image: '/assets/external/cat-packaging.jpg', icon: '📦', subcategories: ['Paper Bags with Handles', 'Paper Bags without Handles', 'Chicken Boxes', 'Wrapping Sheets'] },
   { id: '3', name: 'Frozen Foods', slug: 'frozen-foods', description: 'IQF vegetables, premium meats, and ready-to-heat professional meals.', image: '/assets/Aviko%20-%20Processed%20incomp/AVIKO%20PREMIUM%20CR%207MM%2010%20KG.webp', icon: '❄️', subcategories: ['Frozen Chips', 'Frozen Buns', 'Frozen Meat', 'Frozen Chicken'] },
-  { id: '4', name: 'Desserts', slug: 'desserts', description: 'Wholesale sweets, cakes, ice cream and confectionery items.', image: 'https://images.unsplash.com/photo-1581798459219-318e76aecc7b?auto=format&fit=crop&q=80&w=800', icon: '🍰', subcategories: ['Cakes', 'Ice Cream', 'Confectionery'] },
-  { id: '5', name: 'Flour & Grains', slug: 'flour-grains', description: 'High-protein flours and premium grains for commercial baking.', image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800', icon: '🌾', subcategories: ['Pizza Flour', 'Rice', 'Other Grains'] },
+  { id: '4', name: 'Desserts', slug: 'desserts', description: 'Wholesale sweets, cakes, ice cream and confectionery items.', image: '/assets/external/cat-desserts.jpg', icon: '🍰', subcategories: ['Cakes', 'Ice Cream', 'Confectionery'] },
+  { id: '5', name: 'Flour & Grains', slug: 'flour-grains', description: 'High-protein flours and premium grains for commercial baking.', image: '/assets/external/cat-flour-grains.jpg', icon: '🌾', subcategories: ['Pizza Flour', 'Rice', 'Other Grains'] },
   { id: '6', name: 'Canned Products', slug: 'canned-products', description: 'Bulk preserved goods, legumes, and pantry staples.', image: '/assets/Canned%20food%202/CARTIER%20BLACK%20OLIVES%20TIN%2012X1KG.webp', icon: '🥫', subcategories: ['Olives', 'Pizza Sauces', 'Other Canned Items'] },
-  { id: '7', name: 'Fresh Products', slug: 'fresh-products', description: 'Daily-sourced produce from local farms and global suppliers.', image: 'https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&q=80&w=800', icon: '🍎', subcategories: ['Vegetables', 'Fresh Chicken'] },
-  { id: '8', name: 'Spices & Herbs', slug: 'spices-herbs', description: 'Authentic flavors sourced directly from origins worldwide.', image: 'https://images.unsplash.com/photo-1532336414038-cf19250c5757?auto=format&fit=crop&q=80&w=800', icon: '🌶️', subcategories: ['Breading', 'Spices', 'Herbs'] },
-  { id: '9', name: 'Oils & Fats', slug: 'oils-fats', description: 'Cooking oils, butter, and shortenings in industrial formats.', image: 'https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?auto=format&fit=crop&q=80&w=800', icon: '🫗', subcategories: ['Cooking Oil', 'Solid Fats'] },
-  { id: '10', name: 'Sauces', slug: 'sauces', description: 'Condiments and base sauces for commercial food service.', image: 'https://images.unsplash.com/photo-1472476443507-c7a5948772fc?auto=format&fit=crop&q=80&w=800', icon: '🍯', subcategories: ['Marinades', 'Mayonnaise', 'LION'] },
-  { id: '11', name: 'Cleaning Supplies', slug: 'cleaning-supplies', description: 'Industrial cleaning supplies and degreasers.', image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800', icon: '🧹', subcategories: ['Washing Up Liquids', 'Degreasers', 'Other Cleaning Items'] },
-  { id: '12', name: 'General Items', slug: 'general-items', description: 'Kitchen essentials and miscellaneous items.', image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800', icon: '🍴' }
+  { id: '7', name: 'Fresh Products', slug: 'fresh-products', description: 'Daily-sourced produce from local farms and global suppliers.', image: '/assets/external/cat-fresh-products.jpg', icon: '🍎', subcategories: ['Vegetables', 'Fresh Chicken'] },
+  { id: '8', name: 'Spices & Herbs', slug: 'spices-herbs', description: 'Authentic flavors sourced directly from origins worldwide.', image: '/assets/external/cat-spices-herbs.jpg', icon: '🌶️', subcategories: ['Breading', 'Spices', 'Herbs'] },
+  { id: '9', name: 'Oils & Fats', slug: 'oils-fats', description: 'Cooking oils, butter, and shortenings in industrial formats.', image: '/assets/external/cat-oils-fats.jpg', icon: '🫗', subcategories: ['Cooking Oil', 'Solid Fats'] },
+  { id: '10', name: 'Sauces', slug: 'sauces', description: 'Condiments and base sauces for commercial food service.', image: '/assets/external/cat-sauces.jpg', icon: '🍯', subcategories: ['Marinades', 'Mayonnaise', 'LION'] },
+  { id: '11', name: 'Cleaning Supplies', slug: 'cleaning-supplies', description: 'Industrial cleaning supplies and degreasers.', image: '/assets/external/cat-cleaning-general.jpg', icon: '🧹', subcategories: ['Washing Up Liquids', 'Degreasers', 'Other Cleaning Items'] },
+  { id: '12', name: 'General Items', slug: 'general-items', description: 'Kitchen essentials and miscellaneous items.', image: '/assets/external/cat-cleaning-general.jpg', icon: '🍴', subcategories: ['Dry Goods & Pantry', 'Kitchen Essentials', 'Till Rolls & Charcoal'] }
 ];
 
 export const PRODUCTS: Product[] = [
@@ -758,6 +1354,7 @@ export const PRODUCTS: Product[] = [
 
   // Packaging (Category 2)
   ...PACKAGING_PRODUCTS,
+  ...PACKAGING_ADDITIONAL_PRODUCTS,
 
   // Frozen Foods (Category 3)
   ...FROZEN_PRODUCTS,
@@ -773,9 +1370,22 @@ export const PRODUCTS: Product[] = [
 
   // Fresh Products (Category 7)
   ...FRESH_PRODUCTS,
+  ...VEGETABLE_PRODUCTS,
+
+  // Spices & Herbs (Category 8)
+  ...SPICE_PRODUCTS,
+
+  // Oils & Fats (Category 9)
+  ...OIL_FAT_PRODUCTS,
 
   // Sauces (Category 10)
   ...SAUCE_PRODUCTS,
+
+  // Cleaning Supplies (Category 11)
+  ...CLEANING_PRODUCTS,
+
+  // General Items (Category 12)
+  ...GENERAL_PRODUCTS,
 ];
 
 export const INDUSTRIES = [

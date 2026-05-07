@@ -12,7 +12,7 @@ interface Slide {
 
 const slides: Slide[] = [
   {
-    image: 'https://images.unsplash.com/photo-1768796373577-2e6e51351165?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    image: '/assets/external/hero-slide-1.jpg',
     title: 'Premium Wholesale Food & Grocery Solutions',
     subtitle: 'Good Luck Foods Ltd.',
     description: 'Premium B2B wholesale distribution of high-quality food and grocery essentials for professional retailers and hospitality leaders.',
@@ -20,7 +20,7 @@ const slides: Slide[] = [
     buttonLink: '/products',
   },
   {
-    image: 'https://images.unsplash.com/photo-1631856954655-966f97d809de?q=80&w=1146&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    image: '/assets/external/hero-slide-2.jpg',
     title: 'Quality Products You Can Trust',
     subtitle: 'Trusted by Industry Leaders',
     description: 'We work with many clients throughout UK and Europe, providing bespoke products from own label foods to innovative packaging solutions.',
@@ -28,7 +28,7 @@ const slides: Slide[] = [
     buttonLink: '/products',
   },
   {
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    image: '/assets/external/blog-wholesale.jpg',
     title: 'Fast & Reliable Delivery',
     subtitle: 'Efficient Logistics Network',
     description: 'Our state-of-the-art warehouse and distribution network ensures your orders reach you quickly and in perfect condition.',
@@ -36,7 +36,7 @@ const slides: Slide[] = [
     buttonLink: '/contact',
   },
   {
-    image: 'https://images.unsplash.com/photo-1684695749267-233af13276d0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    image: '/assets/external/hero-slide-4.jpg',
     title: 'Global Sourcing Excellence',
     subtitle: 'Worldwide Supply Chain',
     description: 'Access to premium products sourced from trusted suppliers around the globe, delivered to your business with reliability.',

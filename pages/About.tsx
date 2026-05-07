@@ -81,7 +81,7 @@ const About: React.FC = () => {
             <div className="relative">
               <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80&w=800"
+                  src="/assets/external/about-warehouse.jpg"
                   alt="Our Warehouse"
                   className="w-full h-full object-cover"
                 />
