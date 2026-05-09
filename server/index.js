@@ -35,7 +35,7 @@ const isAllowedOrigin = (origin) => {
         return true;
     }
 
-    if (process.env.NODE_ENV !== 'production' && isAllowedDevOrigin(origin)) {
+    if (isAllowedDevOrigin(origin)) {
         return true;
     }
 
