@@ -3,6 +3,7 @@ import connectDB from './config/db.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
+import debugRoutes from './routes/debug.js';
 import productRoutes from './routes/products.js';
 import contactRoutes from './routes/contact.js';
 
@@ -71,6 +72,7 @@ app.use(cors({
 
 // Define Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/debug', debugRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/contact', contactRoutes);
 
