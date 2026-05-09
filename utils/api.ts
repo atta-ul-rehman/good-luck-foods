@@ -26,13 +26,36 @@ async function request(endpoint: string, { data, token, headers: customHeaders, 
         config.body = JSON.stringify(data);
     }
 
-    const response = await fetch(`${API_URL}${endpoint}`, config);
-    const responseData = await response.json();
+    let response: Response;
+
+    try {
+        response = await fetch(`${API_URL}${endpoint}`, config);
+    } catch (error: any) {
+        return Promise.reject({
+            status: 0,
+            msg: 'Unable to reach the server. Please make sure backend is running on localhost:5000.',
+            error: error?.message || 'Network error',
+        });
+    }
+    const rawBody = await response.text();
+    let responseData: any = {};
+
+    if (rawBody) {
+        try {
+            responseData = JSON.parse(rawBody);
+        } catch {
+            responseData = { msg: rawBody };
+        }
+    }
 
     if (response.ok) {
         return responseData;
     } else {
-        return Promise.reject(responseData);
+        return Promise.reject({
+            status: response.status,
+            ...responseData,
+            msg: responseData.msg || `Request failed with status ${response.status}`,
+        });
     }
 }
 
@@ -40,6 +63,7 @@ async function request(endpoint: string, { data, token, headers: customHeaders, 
 export const authAPI = {
     login: async (credentials: any) => api.post('/auth/login', credentials),
     signup: async (userData: any) => api.post('/auth/signup', userData),
+    verifyEmail: async (token: string) => api.get(`/auth/verify-email?token=${encodeURIComponent(token)}`),
     getUser: async (token: string) => api.get('/auth/user', token),
     forgotPassword: async (email: string) => api.post('/auth/forgot-password', { email }),
 };

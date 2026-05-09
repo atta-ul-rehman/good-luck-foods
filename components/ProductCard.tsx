@@ -150,11 +150,11 @@ const ProductCard: React.FC<Props> = ({ product, layout = 'grid' }) => {
           className="bg-white rounded-2xl md:rounded-3xl overflow-hidden max-w-md w-full shadow-2xl"
           onClick={(event) => event.stopPropagation()}
         >
-          <div className="relative">
+          <div className="relative bg-[#ececec]">
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-52 md:h-64 object-cover"
+              className="w-full h-52 md:h-64 object-contain"
             />
             <button
               type="button"

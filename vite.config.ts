@@ -11,6 +11,11 @@ export default defineConfig(({ mode }) => {
         // Required for BrowserRouter: serve index.html for all unknown paths
         historyApiFallback: true,
       },
+      build: {
+        // Keep generated JS/CSS separate from /public/assets product images.
+        // This makes incremental deploys much smaller on shared hosting.
+        assetsDir: 'static',
+      },
       plugins: [react()],
       define: {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),

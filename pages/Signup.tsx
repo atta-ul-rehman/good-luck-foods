@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { authAPI } from '../utils/api';
-import { useAuth } from '../context/AuthContext';
 
 const Signup: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -12,11 +11,36 @@ const Signup: React.FC = () => {
         password: '',
         confirmPassword: ''
     });
-    const [error, setError] = useState('');
+    const [errors, setErrors] = useState<string[]>([]);
+    const [success, setSuccess] = useState('');
+    const [verificationLink, setVerificationLink] = useState('');
     const [loading, setLoading] = useState(false);
 
-    const navigate = useNavigate();
-    const { login } = useAuth();
+    const getPasswordValidationErrors = (password: string) => {
+        const validationErrors: string[] = [];
+
+        if (password.length < 8 || password.length > 72) {
+            validationErrors.push('Password must be between 8 and 72 characters');
+        }
+
+        if (!/[A-Z]/.test(password)) {
+            validationErrors.push('Password must include at least one uppercase letter');
+        }
+
+        if (!/[a-z]/.test(password)) {
+            validationErrors.push('Password must include at least one lowercase letter');
+        }
+
+        if (!/\d/.test(password)) {
+            validationErrors.push('Password must include at least one number');
+        }
+
+        if (!/[^A-Za-z\d]/.test(password)) {
+            validationErrors.push('Password must include at least one special character');
+        }
+
+        return validationErrors;
+    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -24,15 +48,36 @@ const Signup: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setError('');
+        setErrors([]);
+        setSuccess('');
+        setVerificationLink('');
 
-        if (formData.password !== formData.confirmPassword) {
-            setError('Passwords do not match');
-            return;
+        const validationErrors: string[] = [];
+
+        if (formData.fullName.trim().length < 2) {
+            validationErrors.push('Full name must be at least 2 characters');
         }
 
-        if (formData.password.length < 6) {
-            setError('Password must be at least 6 characters');
+        if (formData.companyName.trim().length < 2) {
+            validationErrors.push('Company name must be at least 2 characters');
+        }
+
+        if (!/^\S+@\S+\.\S+$/.test(formData.email.trim())) {
+            validationErrors.push('Please provide a valid email address');
+        }
+
+        if (formData.password !== formData.confirmPassword) {
+            validationErrors.push('Passwords do not match');
+        }
+
+        validationErrors.push(...getPasswordValidationErrors(formData.password));
+
+        if (formData.phone.trim().length < 7) {
+            validationErrors.push('Please provide a valid phone number');
+        }
+
+        if (validationErrors.length > 0) {
+            setErrors(validationErrors);
             return;
         }
 
@@ -41,11 +86,25 @@ const Signup: React.FC = () => {
         try {
             const { confirmPassword, ...signupData } = formData;
             const data = await authAPI.signup(signupData);
-            await login(data.token);
-            navigate('/');
+            setSuccess(data.msg || 'Signup successful. Please verify your email before logging in.');
+            // setVerificationLink(data.verificationLink || '');
+            setFormData({
+                fullName: '',
+                companyName: '',
+                email: '',
+                phone: '',
+                password: '',
+                confirmPassword: '',
+            });
+
+            if (data.verificationLink) {
+                console.info('Verification link (dev only):', data.verificationLink);
+            }
+
         } catch (err: any) {
             console.error('Signup error:', err);
-            setError(err.msg || 'Registration failed. Please try again.');
+            const apiErrors = Array.isArray(err?.errors) ? err.errors : [err?.msg || err?.message || 'Registration failed. Please try again.'];
+            setErrors(apiErrors.filter(Boolean));
         } finally {
             setLoading(false);
         }
@@ -93,12 +152,39 @@ const Signup: React.FC = () => {
                         <p className="text-slate-400 text-sm">or use your email for registration</p>
                     </div>
 
-                    {error && (
+                    {errors.length > 0 && (
                         <div className="mb-6 bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm font-medium flex items-center">
                             <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            {error}
+                            <div>
+                                {errors.map((item) => (
+                                    <div key={item}>{item}</div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {success && (
+                        <div className="mb-6 bg-emerald-50 border border-emerald-200 text-emerald-700 px-4 py-3 rounded-lg text-sm font-medium">
+                            <div className="flex items-center">
+                                <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                                {success}
+                            </div>
+                            {verificationLink && (
+                                <div className="mt-3 text-xs">
+                                    <a
+                                        href={verificationLink}
+                                        className="font-semibold underline break-all"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        Open verification link
+                                    </a>
+                                </div>
+                            )}
                         </div>
                     )}
 
@@ -191,6 +277,7 @@ const Signup: React.FC = () => {
                                 onChange={handleChange}
                                 disabled={loading}
                             />
+                            <p className="mt-2 text-xs text-slate-500">Use 8-72 characters with uppercase, lowercase, number, and special character.</p>
                         </div>
 
                         <div className="relative">

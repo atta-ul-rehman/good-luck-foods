@@ -292,12 +292,21 @@ const Header: React.FC = () => {
 
             {/* Login Button */}
             {!hideTopHeaderControls && (
-              <Link
-                to="/login"
-                className="hidden md:block bg-brand-red text-white px-6 py-2 rounded-lg text-sm font-black tracking-widest hover:brightness-110 transition-all active:scale-95"
-              >
-                Login
-              </Link>
+              isAuthenticated ? (
+                <div className="hidden md:flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 text-slate-700" title={user?.fullName || 'Logged in user'}>
+                  <svg className="w-5 h-5 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                  <span className="text-xs font-bold tracking-wide max-w-[140px] truncate">{user?.fullName || 'Account'}</span>
+                </div>
+              ) : (
+                <Link
+                  to="/login"
+                  className="hidden md:block bg-brand-red text-white px-6 py-2 rounded-lg text-sm font-black tracking-widest hover:brightness-110 transition-all active:scale-95"
+                >
+                  Login
+                </Link>
+              )
             )}
 
             {/* Menu Button */}

@@ -11,6 +11,7 @@ import Contact from './pages/Contact';
 import CategoryDetail from './pages/CategoryDetail';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import VerifyEmail from './pages/VerifyEmail';
 import ForgotPassword from './pages/ForgotPassword';
 import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
@@ -47,6 +48,7 @@ const AppLayout = () => {
           <Route path="/category/:slug" element={<CategoryDetail />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/coming-soon" element={<ComingSoon />} />
           <Route path="*" element={<Navigate to="/products" replace />} />
