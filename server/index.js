@@ -36,7 +36,7 @@ const isAllowedOrigin = (origin) => {
         return true;
     }
 
-    if (isAllowedDevOrigin(origin)) {
+    if (process.env.NODE_ENV !== 'production' && isAllowedDevOrigin(origin)) {
         return true;
     }
 
@@ -52,11 +52,6 @@ app.use((req, res, next) => {
     next();
 });
 
-// Connect Database
-connectDB().catch((err) => {
-    console.error('MongoDB connection failed:', err.message);
-});
-
 // Init Middleware
 app.use(express.json({ extended: false, limit: '100kb' }));
 app.use(cors({
@@ -69,6 +64,16 @@ app.use(cors({
     },
     credentials: true,
 }));
+
+app.use(async (req, res, next) => {
+    try {
+        await connectDB();
+        next();
+    } catch (err) {
+        console.error('MongoDB connection failed:', err.message);
+        return res.status(500).json({ msg: 'Database connection failed' });
+    }
+});
 
 // Define Routes
 app.use('/api/auth', authRoutes);
