@@ -8,13 +8,13 @@ import contactRoutes from './routes/contact.js';
 
 dotenv.config();
 
-// Guard: fail fast if critical env vars are missing
+// In Vercel/serverless, env vars are validated by the platform configuration.
+// Avoid killing the function at import time so the platform can surface a useful error.
 const REQUIRED_ENV = ['MONGO_URI', 'JWT_SECRET'];
 const missing = REQUIRED_ENV.filter((key) => !process.env[key]);
 if (missing.length > 0) {
     console.error(`\n❌ Missing required environment variables: ${missing.join(', ')}`);
-    console.error('   Copy .env.example to .env and fill in the values.\n');
-    process.exit(1);
+    console.error('   Set them in the Vercel project environment variables.\n');
 }
 
 const app = express();
@@ -52,7 +52,9 @@ app.use((req, res, next) => {
 });
 
 // Connect Database
-connectDB();
+connectDB().catch((err) => {
+    console.error('MongoDB connection failed:', err.message);
+});
 
 // Init Middleware
 app.use(express.json({ extended: false, limit: '100kb' }));

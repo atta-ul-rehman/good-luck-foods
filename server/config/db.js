@@ -24,7 +24,7 @@ const connectDB = async () => {
         return mongoose.connection;
     } catch (err) {
         console.error(err.message);
-        process.exit(1);
+        throw err;
     }
 };
 
