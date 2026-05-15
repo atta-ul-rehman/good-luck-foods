@@ -23,13 +23,20 @@ router.post('/', async (req, res) => {
                         pass: process.env.EMAIL_PASS,
                     },
                 })
-                : nodemailer.createTransport({
-                    service: process.env.EMAIL_SERVICE || 'gmail',
+                : process.env.EMAIL_SERVICE
+                ? nodemailer.createTransport({
+                    service: process.env.EMAIL_SERVICE,
                     auth: {
                         user: process.env.EMAIL_USER,
                         pass: process.env.EMAIL_PASS
                     }
-                });
+                })
+                : null;
+
+            if (!transporter) {
+                console.log('Skipping email: no EMAIL_HOST or EMAIL_SERVICE configured');
+                return res.status(500).json({ msg: 'Email transport is not configured.' });
+            }
 
             const mailOptions = {
                 from: process.env.EMAIL_FROM || `"Good Luck Foods Site" <${process.env.EMAIL_USER}>`,
@@ -51,6 +58,7 @@ router.post('/', async (req, res) => {
             console.log('Email sent successfully');
         } else {
             console.log('Skipping email: EMAIL_USER or EMAIL_PASS not set in .env');
+            return res.status(500).json({ msg: 'Email credentials are not configured.' });
         }
 
         // 2. Save document to Database
