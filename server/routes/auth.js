@@ -27,6 +27,7 @@ const getAppOrigin = () => {
 };
 
 const buildVerificationLink = (token) => `${getAppOrigin()}/verify-email?token=${encodeURIComponent(token)}`;
+const buildLogoUrl = () => `${getAppOrigin().replace(/\/$/, '')}/assets/logo1.jpg`;
 
 const createMailerTransport = () => {
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
@@ -68,17 +69,67 @@ const sendVerificationEmail = async ({ toEmail, fullName, verificationLink }) =>
         throw new Error('Email service is not configured');
     }
 
+    const logoUrl = buildLogoUrl();
+    const safeName = fullName || 'there';
+
     await transporter.sendMail({
         from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
         to: toEmail,
         subject: 'Verify your Good Luck Foods account',
-        text: `Hi ${fullName},\n\nPlease verify your account by clicking this link:\n${verificationLink}\n\nThis link will expire in 24 hours.\n\nIf you did not create this account, you can ignore this email.`,
+        text: `Hi ${safeName},\n\nPlease verify your account by clicking this link:\n${verificationLink}\n\nThis link will expire in 24 hours.\n\nIf you did not create this account, you can ignore this email.`,
         html: `
-            <p>Hi ${fullName},</p>
-            <p>Please verify your account by clicking the link below:</p>
-            <p><a href="${verificationLink}">Verify Email</a></p>
-            <p>This link will expire in 24 hours.</p>
-            <p>If you did not create this account, you can ignore this email.</p>
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:0;padding:0;background-color:#f4f8f4;font-family:Arial,Helvetica,sans-serif;color:#1f2937;">
+                <tr>
+                    <td align="center" style="padding:28px 12px;">
+                        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width:620px;background-color:#ffffff;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;">
+                            <tr>
+                                <td style="background:linear-gradient(135deg,#024804 0%,#00C801 100%);padding:22px 24px;">
+                                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                        <tr>
+                                            <td valign="middle" style="width:68px;">
+                                                <img src="${logoUrl}" alt="Good Luck Foods" width="56" style="display:block;width:56px;height:56px;border-radius:10px;border:1px solid rgba(255,255,255,0.35);background:#ffffff;object-fit:contain;" />
+                                            </td>
+                                            <td valign="middle" style="padding-left:12px;">
+                                                <p style="margin:0;font-size:20px;line-height:1.25;color:#ffffff;font-weight:700;">Good Luck Foods</p>
+                                                <p style="margin:4px 0 0;font-size:13px;line-height:1.4;color:#e5ffe6;">Wholesale Food & Catering Supplies</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:26px 24px 12px;">
+                                    <p style="margin:0 0 12px;font-size:18px;line-height:1.4;color:#111827;font-weight:700;">Verify your account</p>
+                                    <p style="margin:0 0 10px;font-size:15px;line-height:1.7;color:#374151;">Hi ${safeName},</p>
+                                    <p style="margin:0 0 18px;font-size:15px;line-height:1.7;color:#374151;">Thanks for signing up. Please confirm your email address to activate your Good Luck Foods account.</p>
+                                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 18px;">
+                                        <tr>
+                                            <td align="center" bgcolor="#00C801" style="border-radius:9px;">
+                                                <a href="${verificationLink}" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 22px;font-size:15px;line-height:1;color:#ffffff;text-decoration:none;font-weight:700;">Verify Email</a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <p style="margin:0 0 8px;font-size:14px;line-height:1.7;color:#4b5563;">This verification link will expire in 24 hours.</p>
+                                    <p style="margin:0;font-size:14px;line-height:1.7;color:#4b5563;">If you did not create this account, you can safely ignore this email.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:0 24px 22px;">
+                                    <div style="margin-top:16px;padding:12px;border-radius:8px;background:#FDECEC;border:1px solid #f7d0dc;">
+                                        <p style="margin:0;font-size:12px;line-height:1.6;color:#9f1239;word-break:break-word;">If the button does not work, copy and paste this link into your browser:<br /><a href="${verificationLink}" target="_blank" rel="noopener noreferrer" style="color:#9f1239;text-decoration:underline;">${verificationLink}</a></p>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:16px 24px;border-top:1px solid #e5e7eb;background:#f9fafb;">
+                                    <p style="margin:0;font-size:12px;line-height:1.6;color:#6b7280;">Good Luck Foods, United Kingdom</p>
+                                    <p style="margin:3px 0 0;font-size:12px;line-height:1.6;color:#6b7280;">Email: info@goodluckfoods.co.uk</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
         `,
     });
 };
