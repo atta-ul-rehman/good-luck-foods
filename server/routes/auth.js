@@ -28,6 +28,8 @@ const getAppOrigin = () => {
 
 const buildVerificationLink = (token) => `${getAppOrigin()}/verify-email?token=${encodeURIComponent(token)}`;
 const buildLogoUrl = () => `${getAppOrigin().replace(/\/$/, '')}/assets/logo1.jpg`;
+const getFromAddress = () => process.env.EMAIL_FROM_ADDRESS || process.env.EMAIL_USER;
+const getFromName = () => process.env.EMAIL_FROM_NAME || 'GoodLuckFoods.pvt';
 
 const createMailerTransport = () => {
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
@@ -73,7 +75,10 @@ const sendVerificationEmail = async ({ toEmail, fullName, verificationLink }) =>
     const safeName = fullName || 'there';
 
     await transporter.sendMail({
-        from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
+        from: {
+            name: getFromName(),
+            address: getFromAddress(),
+        },
         to: toEmail,
         subject: 'Verify your Good Luck Foods account',
         text: `Hi ${safeName},\n\nPlease verify your account by clicking this link:\n${verificationLink}\n\nThis link will expire in 24 hours.\n\nIf you did not create this account, you can ignore this email.`,
