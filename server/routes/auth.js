@@ -33,6 +33,21 @@ const createMailerTransport = () => {
         return null;
     }
 
+    if (process.env.EMAIL_HOST) {
+        const port = Number(process.env.EMAIL_PORT || 465);
+        const secure = String(process.env.EMAIL_SECURE || 'true').toLowerCase() !== 'false';
+
+        return nodemailer.createTransport({
+            host: process.env.EMAIL_HOST,
+            port,
+            secure,
+            auth: {
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS,
+            },
+        });
+    }
+
     return nodemailer.createTransport({
         service: process.env.EMAIL_SERVICE || 'gmail',
         auth: {
@@ -50,7 +65,7 @@ const sendVerificationEmail = async ({ toEmail, fullName, verificationLink }) =>
     }
 
     await transporter.sendMail({
-        from: process.env.EMAIL_USER,
+        from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
         to: toEmail,
         subject: 'Verify your Good Luck Foods account',
         text: `Hi ${fullName},\n\nPlease verify your account by clicking this link:\n${verificationLink}\n\nThis link will expire in 24 hours.\n\nIf you did not create this account, you can ignore this email.`,

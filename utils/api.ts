@@ -33,7 +33,7 @@ async function request(endpoint: string, { data, token, headers: customHeaders, 
     } catch (error: any) {
         return Promise.reject({
             status: 0,
-            msg: 'Unable to reach the server. Please make sure backend is running on localhost:5000.',
+            msg: `Unable to reach the server at ${API_URL}. Please check backend availability and CORS settings.`,
             error: error?.message || 'Network error',
         });
     }

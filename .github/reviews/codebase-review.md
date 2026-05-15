@@ -11,8 +11,10 @@ This file is the first-stop review snapshot for future chat sessions. Read this 
 - Stack: React 19, TypeScript, Vite.
 - Main app entry: index.tsx and App.tsx.
 - UI is mostly page/component driven under pages/ and components/.
+- Public content routes include catalog pages, blog routes, and placeholder legal pages for privacy policy, terms of service, and wholesale agreement.
 - Auth state is handled in context/AuthContext.tsx.
 - Frontend API access goes through utils/api.ts.
+- Blog content now attempts to load from WordPress REST (`VITE_WP_API_BASE_URL`), with fallback to local static data in data/blogs.ts.
 
 ### Backend
 

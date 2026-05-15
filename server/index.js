@@ -20,23 +20,39 @@ if (missing.length > 0) {
 
 const app = express();
 
-const configuredOrigins = (process.env.CLIENT_ORIGIN || 'http://localhost:5173')
+const DEFAULT_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+    'https://www.goodluckfoods.co.uk',
+    'https://goodluckfoods.co.uk',
+];
+
+const configuredOrigins = (process.env.CLIENT_ORIGIN || '')
     .split(',')
     .map((origin) => origin.trim())
     .filter(Boolean);
 
+const allowedOrigins = [...new Set([...DEFAULT_ALLOWED_ORIGINS, ...configuredOrigins])];
+
 const isAllowedDevOrigin = (origin) => /^http:\/\/(localhost|127\.0\.0\.1):\d+$/.test(origin);
+const isAllowedVercelPreviewOrigin = (origin) => /^https:\/\/[a-z0-9-]+\.vercel\.app$/i.test(origin);
+const allowVercelPreviewOrigins = String(process.env.ALLOW_VERCEL_PREVIEW_ORIGINS || 'true').toLowerCase() !== 'false';
+const allowLocalDevOrigins = String(process.env.ALLOW_LOCALHOST_CORS || 'true').toLowerCase() !== 'false';
 
 const isAllowedOrigin = (origin) => {
     if (!origin) {
         return true;
     }
 
-    if (configuredOrigins.includes(origin)) {
+    if (allowedOrigins.includes(origin)) {
         return true;
     }
 
-    if (process.env.NODE_ENV !== 'production' && isAllowedDevOrigin(origin)) {
+    if (allowLocalDevOrigins && isAllowedDevOrigin(origin)) {
+        return true;
+    }
+
+    if (allowVercelPreviewOrigins && isAllowedVercelPreviewOrigin(origin)) {
         return true;
     }
 
@@ -60,9 +76,11 @@ app.use(cors({
             return callback(null, true);
         }
 
-        return callback(new Error('Not allowed by CORS'));
+        // Return a non-throwing CORS denial to avoid 500 preflight responses.
+        return callback(null, false);
     },
     credentials: true,
+    optionsSuccessStatus: 204,
 }));
 
 app.use(async (req, res, next) => {

@@ -1,16 +1,57 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import SEO from '../components/SEO';
-import { getBlogPostBySlug } from '../data/blogs';
+import { BlogPost, getBlogPostBySlugWithFallback } from '../data/blogs';
 
 const BlogDetail: React.FC = () => {
   const { slug } = useParams();
+  const [post, setPost] = useState<BlogPost | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (!slug) {
+      setIsLoading(false);
+      setPost(null);
+      return;
+    }
+
+    let isMounted = true;
+
+    const loadPost = async () => {
+      const foundPost = await getBlogPostBySlugWithFallback(slug);
+
+      if (!isMounted) {
+        return;
+      }
+
+      setPost(foundPost || null);
+      setIsLoading(false);
+    };
+
+    loadPost();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [slug]);
 
   if (!slug) {
     return <Navigate to="/blog" replace />;
   }
 
-  const post = getBlogPostBySlug(slug);
+  if (isLoading) {
+    return (
+      <div className="bg-white min-h-screen">
+        <section className="py-20">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p className="text-sm font-semibold uppercase tracking-wider text-slate-500">
+              Loading article...
+            </p>
+          </div>
+        </section>
+      </div>
+    );
+  }
 
   if (!post) {
     return <Navigate to="/blog" replace />;
@@ -21,7 +62,7 @@ const BlogDetail: React.FC = () => {
     '@type': 'Article',
     headline: post.title,
     description: post.excerpt,
-    image: [post.image],
+    image: post.image ? [post.image] : [],
     datePublished: post.publishedAt,
     author: {
       '@type': 'Organization',
@@ -73,22 +114,31 @@ const BlogDetail: React.FC = () => {
 
       <section className="py-12 md:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl overflow-hidden border border-slate-200 mb-10">
-            <img src={post.image} alt={post.title} className="w-full h-auto object-cover" />
-          </div>
+          {post.image && (
+            <div className="rounded-2xl overflow-hidden border border-slate-200 mb-10">
+              <img src={post.image} alt={post.title} className="w-full h-auto object-cover" />
+            </div>
+          )}
 
-          <div className="prose prose-slate max-w-none">
-            {post.content.map((paragraph, index) => (
-              <p key={index} className="text-slate-700 text-lg leading-8 mb-6 font-light">
-                {paragraph}
-              </p>
-            ))}
-          </div>
+          {post.contentHtml ? (
+            <div
+              className="prose prose-slate max-w-none prose-p:text-slate-700 prose-p:text-lg prose-p:leading-8 prose-p:font-light"
+              dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+            />
+          ) : (
+            <div className="prose prose-slate max-w-none">
+              {post.content.map((paragraph, index) => (
+                <p key={index} className="text-slate-700 text-lg leading-8 mb-6 font-light">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          )}
 
           <div className="mt-10 pt-8 border-t border-slate-200">
             <h3 className="text-sm font-black uppercase tracking-[0.2em] text-slate-500 mb-4">Topics</h3>
             <div className="flex flex-wrap gap-2">
-              {post.tags.map((tag) => (
+              {(post.tags.length > 0 ? post.tags : ['General']).map((tag) => (
                 <span
                   key={tag}
                   className="inline-flex px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider"

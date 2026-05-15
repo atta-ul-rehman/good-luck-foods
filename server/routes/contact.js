@@ -13,16 +13,26 @@ router.post('/', async (req, res) => {
     try {
         // 1. Send Email to Admin
         if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
-            const transporter = nodemailer.createTransport({
-                service: process.env.EMAIL_SERVICE || 'gmail',
-                auth: {
-                    user: process.env.EMAIL_USER,
-                    pass: process.env.EMAIL_PASS
-                }
-            });
+            const transporter = process.env.EMAIL_HOST
+                ? nodemailer.createTransport({
+                    host: process.env.EMAIL_HOST,
+                    port: Number(process.env.EMAIL_PORT || 465),
+                    secure: String(process.env.EMAIL_SECURE || 'true').toLowerCase() !== 'false',
+                    auth: {
+                        user: process.env.EMAIL_USER,
+                        pass: process.env.EMAIL_PASS,
+                    },
+                })
+                : nodemailer.createTransport({
+                    service: process.env.EMAIL_SERVICE || 'gmail',
+                    auth: {
+                        user: process.env.EMAIL_USER,
+                        pass: process.env.EMAIL_PASS
+                    }
+                });
 
             const mailOptions = {
-                from: `"Good Luck Foods Site" <${process.env.EMAIL_USER}>`,
+                from: process.env.EMAIL_FROM || `"Good Luck Foods Site" <${process.env.EMAIL_USER}>`,
                 to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER,
                 subject: `New Inquiry from ${businessName}`,
                 html: `

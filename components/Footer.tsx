@@ -64,9 +64,9 @@ const Footer: React.FC = () => {
           <p>© 2026 Good Luck Foods Ltd. All Rights Reserved.</p>
           <div className="flex space-x-6">
             <Link to="/blog" className="hover:text-white transition-colors">Blog</Link>
-            <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</a>
-            <a href="/wholesale-agreement" className="hover:text-white transition-colors">Wholesale Agreement</a>
+            <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link to="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link to="/wholesale-agreement" className="hover:text-white transition-colors">Wholesale Agreement</Link>
           </div>
         </div>
       </div>

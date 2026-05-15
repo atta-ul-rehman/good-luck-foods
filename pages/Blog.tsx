@@ -1,9 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
-import { BLOG_POSTS } from '../data/blogs';
+import { BLOG_POSTS, BlogPost, getBlogPostsWithFallback } from '../data/blogs';
 
 const Blog: React.FC = () => {
+  const [posts, setPosts] = useState<BlogPost[]>(BLOG_POSTS);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadPosts = async () => {
+      const nextPosts = await getBlogPostsWithFallback();
+
+      if (!isMounted) {
+        return;
+      }
+
+      setPosts(nextPosts);
+      setIsLoading(false);
+    };
+
+    loadPosts();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   return (
     <div className="animate-in fade-in duration-500">
       <SEO
@@ -32,8 +56,14 @@ const Blog: React.FC = () => {
 
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {isLoading && (
+            <div className="mb-8 text-sm font-semibold uppercase tracking-wider text-slate-500">
+              Loading latest posts...
+            </div>
+          )}
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {BLOG_POSTS.map((post) => (
+            {posts.map((post) => (
               <article
                 key={post.id}
                 className="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all"
@@ -41,7 +71,7 @@ const Blog: React.FC = () => {
                 <Link to={`/blog/${post.slug}`} className="block">
                   <div className="aspect-[16/9] overflow-hidden">
                     <img
-                      src={post.image}
+                      src={post.image || '/assets/external/blog-wholesale.jpg'}
                       alt={post.title}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                     />
@@ -64,7 +94,7 @@ const Blog: React.FC = () => {
                   <p className="text-slate-600 font-light mb-6">{post.excerpt}</p>
 
                   <div className="flex flex-wrap gap-2 mb-6">
-                    {post.tags.map((tag) => (
+                    {(post.tags.length > 0 ? post.tags : ['General']).map((tag) => (
                       <span
                         key={tag}
                         className="inline-flex px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider"
