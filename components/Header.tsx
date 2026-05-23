@@ -173,7 +173,7 @@ const Header: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-[100] bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-2 sm:px-4">
+      <div className="site-shell px-2 sm:px-4">
         <div className="flex justify-between items-center h-20">
           {/* Logo Section - Left */}
           <Link to="/" className="flex items-center group flex-shrink-0 -ml-1 sm:ml-0">
@@ -331,7 +331,7 @@ const Header: React.FC = () => {
       {/* Sticky Product Sub-Nav */}
       {!hideSubNav && (
       <div className="bg-brand-red border-t border-b border-red-700 sticky-sub-nav">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="site-shell px-4 sm:px-6 lg:px-8 relative">
           {/* Left Arrow */}
           <button
             onClick={() => scrollCategories('left')}
@@ -409,7 +409,7 @@ const Header: React.FC = () => {
             {cat.subcategories.map((sub, idx) => (
               <Link
                 key={idx}
-                to={`/category/${cat.slug}?sub=${encodeURIComponent(sub)}`}
+                to={`/products?category=${cat.slug}&subcategory=${encodeURIComponent(sub)}`}
                 onClick={() => setHoveredCategory(null)}
                 className="block px-4 py-2 text-xs font-medium text-slate-700 hover:bg-red-50 hover:text-red-600 transition-colors"
               >

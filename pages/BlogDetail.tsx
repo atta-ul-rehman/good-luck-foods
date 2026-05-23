@@ -41,12 +41,27 @@ const BlogDetail: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="bg-white min-h-screen">
-        <section className="py-20">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p className="text-sm font-semibold uppercase tracking-wider text-slate-500">
-              Loading article...
-            </p>
+      <div className="bg-white min-h-screen animate-pulse">
+        <section className="bg-slate-900 py-12 md:py-16">
+          <div className="site-shell px-4 sm:px-6 lg:px-8">
+            <div className="h-4 w-32 bg-white/20 rounded mb-6" />
+            <div className="h-3 w-40 bg-white/20 rounded mb-4" />
+            <div className="h-10 md:h-14 w-full max-w-3xl bg-white/20 rounded" />
+          </div>
+        </section>
+        <section className="py-12 md:py-16">
+          <div className="site-shell px-4 sm:px-6 lg:px-8 space-y-4">
+            <div className="h-5 w-full bg-slate-200 rounded" />
+            <div className="h-5 w-11/12 bg-slate-200 rounded" />
+            <div className="h-5 w-10/12 bg-slate-200 rounded" />
+            <div className="h-5 w-9/12 bg-slate-200 rounded" />
+            <div className="pt-6">
+              <div className="h-3 w-24 bg-slate-200 rounded mb-3" />
+              <div className="flex gap-2">
+                <div className="h-6 w-20 bg-slate-200 rounded-full" />
+                <div className="h-6 w-16 bg-slate-200 rounded-full" />
+              </div>
+            </div>
           </div>
         </section>
       </div>
@@ -80,14 +95,13 @@ const BlogDetail: React.FC = () => {
       <SEO
         title={post.title}
         description={post.excerpt}
-        path={`/blog/${post.slug}`}
         image={post.image}
         type="article"
         schema={articleSchema}
       />
 
       <section className="bg-slate-900 py-12 md:py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="site-shell px-4 sm:px-6 lg:px-8">
           <Link
             to="/blog"
             className="inline-flex items-center gap-2 text-brand-green hover:text-lime-300 text-xs font-black uppercase tracking-wider mb-6"
@@ -102,8 +116,6 @@ const BlogDetail: React.FC = () => {
             <span>{new Date(post.publishedAt).toLocaleDateString('en-GB')}</span>
             <span className="w-1 h-1 rounded-full bg-white/40"></span>
             <span>{post.readTime}</span>
-            <span className="w-1 h-1 rounded-full bg-white/40"></span>
-            <span>{post.author}</span>
           </div>
 
           <h1 className="text-3xl md:text-5xl font-black text-white leading-tight">
@@ -113,16 +125,16 @@ const BlogDetail: React.FC = () => {
       </section>
 
       <section className="py-12 md:py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {post.image && (
+        <div className="site-shell px-4 sm:px-6 lg:px-8">
+          {/* {post.image && (
             <div className="rounded-2xl overflow-hidden border border-slate-200 mb-10">
               <img src={post.image} alt={post.title} className="w-full h-auto object-cover" />
             </div>
-          )}
+          )} */}
 
           {post.contentHtml ? (
-            <div
-              className="prose prose-slate max-w-none prose-p:text-slate-700 prose-p:text-lg prose-p:leading-8 prose-p:font-light"
+            <article
+              className="prose prose-slate max-w-none prose-headings:text-slate-900 prose-headings:font-black prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl prose-h4:text-xl prose-p:text-slate-700 prose-p:text-lg prose-p:leading-8 prose-a:text-brand-green prose-a:font-semibold hover:prose-a:text-lime-500 prose-blockquote:border-l-brand-green prose-strong:text-slate-900 prose-strong:font-bold prose-code:text-red-600 prose-pre:bg-slate-900 prose-pre:text-slate-100 prose-li:text-slate-700 prose-li:text-lg"
               dangerouslySetInnerHTML={{ __html: post.contentHtml }}
             />
           ) : (

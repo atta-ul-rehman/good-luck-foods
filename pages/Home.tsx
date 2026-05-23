@@ -278,7 +278,7 @@ const Home: React.FC = () => {
 
       {/* Trusted By */}
       <section className="py-8 md:py-10 bg-slate-900 border-y-4 border-slate-700 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className="site-shell px-4 md:px-6">
           <AnimatedSection animation="fadeSlideUp">
             <p className="text-center text-[10px] md:text-xs font-black text-white uppercase tracking-[0.2em] md:tracking-[0.3em] mb-6 md:mb-8">
               Well known brands
@@ -298,7 +298,7 @@ const Home: React.FC = () => {
 
       {/* Category Showcase Section */}
       <section className="py-12 md:py-20 bg-slate-100 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className="site-shell px-4 md:px-6">
           {/* Section Header */}
           <AnimatedSection animation="fadeSlideUp">
             <SectionHeader
@@ -525,7 +525,7 @@ const Home: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-emerald-700 via-emerald-700/95 to-emerald-700/80"></div>
         </div>
         <div className="relative z-10 py-12 md:py-20">
-          <div className="max-w-7xl mx-auto px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
+          <div className="site-shell px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
             <div className="text-center md:text-left">
               <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight">
                 Your Brand
@@ -551,7 +551,7 @@ const Home: React.FC = () => {
 
       {/* Featured Products */}
       <section className="py-16 md:py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className="site-shell px-4 md:px-6">
           <AnimatedSection animation="fadeSlideUp">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-12 gap-4 md:gap-8">
               <div>
@@ -578,7 +578,7 @@ const Home: React.FC = () => {
 
       {/* Industries Grid */}
       <section className="py-12 md:py-20 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className="site-shell px-4 md:px-6">
           <AnimatedSection animation="fadeSlideUp">
             <SectionHeader
               
@@ -601,7 +601,7 @@ const Home: React.FC = () => {
       {/* Final CTA */}
       <section className="py-12 md:py-20 bg-brand-dark text-white relative overflow-hidden">
         {/* Diagonal accent */}
-        <div className="max-w-7xl mx-auto px-4 md:px-6 flex flex-col lg:flex-row justify-between items-center gap-8 md:gap-10 relative z-10">
+        <div className="site-shell px-4 md:px-6 flex flex-col lg:flex-row justify-between items-center gap-8 md:gap-10 relative z-10">
           <div className="text-center lg:text-left">
             <h2 className="text-2xl md:text-5xl font-black tracking-tight mb-2 uppercase">Grow Your Margins</h2>
             <div className="w-16 md:w-24 h-1 bg-emerald-600 mb-4 md:mb-6 mx-auto lg:mx-0"></div>

@@ -114,7 +114,7 @@ const HeroSlider: React.FC = () => {
 
       {/* Content Box - Left Side (Static) */}
       <div className="absolute inset-0 z-20 flex items-center">
-        <div className="max-w-7xl mx-auto px-6 w-full">
+        <div className="max-w-[80%] mx-auto px-6 w-full">
           <div className="max-w-lg">
             {/* White content box */}
             <div className="bg-white/95 backdrop-blur-sm p-8 md:p-10 shadow-2xl rounded-lg">

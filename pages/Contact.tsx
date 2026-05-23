@@ -93,7 +93,7 @@ const Contact: React.FC = () => {
         <p className="text-slate-400 text-lg max-w-xl mx-auto">Request pricing, custom catalogs, or a logistics consultation.</p>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 pb-24">
+      <div className="site-shell px-4 sm:px-6 lg:px-8 -mt-10 pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
 
           {/* Info Card */}

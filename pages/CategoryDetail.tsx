@@ -108,9 +108,9 @@ const SUBCATEGORY_IMAGE_MAP: Record<string, Record<string, string>> = {
     LION: '/assets/Lion%20Sauces/LION%20ORGINAL%20PIRI%20HOT%20SAUCE%201%20X%202.27LT.webp',
   },
   'cleaning-supplies': {
-    'Washing Up Liquids': '/assets/Tissues/BLUE%20WIPER%20ROLL%201X2%20.webp',
-    Degreasers: '/assets/Plasctic%20%26%20Bin%20Bags/BLACK%20BIN%20BAG%20COMPACTOR%20.webp',
-    'Other Cleaning Items': '/assets/Tissues/WHITE%20JUMBO%20BIG%20ROLL%20X%206PACK.webp',
+    Tissues: '/assets/Tissues/WHITE%20JUMBO%20BIG%20ROLL%20X%206PACK.webp',
+    Detergents: '/assets/external/cat-cleaning-general.jpg',
+    Hygine: '/assets/General%20Items/FACE%20MASK%20X10.webp',
   },
   'general-items': {
     'Dry Goods & Pantry': '/assets/General%20Items/TRS%20CHANA%20DAL%206x2kg.webp',
@@ -356,7 +356,7 @@ const CategoryDetail: React.FC = () => {
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent"></div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="relative z-10 site-shell px-4 sm:px-6 lg:px-8 w-full">
           <Link
             to="/products"
             className="text-brand-green text-xs font-semibold tracking-widest flex items-center mb-6 hover:-translate-x-1 transition-transform"
@@ -383,7 +383,7 @@ const CategoryDetail: React.FC = () => {
 
       {/* Overview + Subcategories */}
       <section className="py-12 md:py-28 bg-white border-b border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="site-shell px-4 sm:px-6 lg:px-8">
           <div className="space-y-12">
             {/* Overview */}
             <div>

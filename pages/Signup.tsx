@@ -14,6 +14,8 @@ const Signup: React.FC = () => {
     const [errors, setErrors] = useState<string[]>([]);
     const [success, setSuccess] = useState('');
     const [verificationLink, setVerificationLink] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const getPasswordValidationErrors = (password: string) => {
@@ -129,12 +131,11 @@ const Signup: React.FC = () => {
                 <div className="relative z-10 text-center px-12">
                     <h1 className="text-4xl md:text-5xl font-black text-white mb-6">Hello, Friend!</h1>
                     <p className="text-slate-400 text-lg max-w-sm mx-auto mb-10">Enter your personal details and start journey with us</p>
-                    <Link 
-                        to="/login"
-                        className="inline-block border-2 border-white text-white px-12 py-3 rounded-full font-bold uppercase tracking-widest hover:bg-white hover:text-slate-900 transition-all"
+                    <p
+                        className="inline-block border-2 bg-white text-black px-10 py-2 rounded-full font-bold uppercase tracking-widest transition-all"
                     >
-                        Sign In
-                    </Link>
+                        Sign Up
+                    </p>
                 </div>
             </div>
 
@@ -261,22 +262,42 @@ const Signup: React.FC = () => {
                             />
                         </div>
 
-                        <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                                </svg>
-                            </span>
-                            <input
-                                id="password"
-                                type="password"
-                                required
-                                className="w-full pl-12 pr-4 py-4 bg-white lg:bg-slate-50 border-0 rounded-lg focus:ring-2 focus:ring-emerald-600/20 focus:bg-white transition-all outline-none text-base"
-                                placeholder="Password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                disabled={loading}
-                            />
+                        <div>
+                            <div className="relative">
+                                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                    </svg>
+                                </span>
+                                <input
+                                    id="password"
+                                    type={showPassword ? 'text' : 'password'}
+                                    required
+                                    className="w-full pl-12 pr-12 py-4 bg-white lg:bg-slate-50 border-0 rounded-lg focus:ring-2 focus:ring-emerald-600/20 focus:bg-white transition-all outline-none text-base"
+                                    placeholder="Password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    disabled={loading}
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword((current) => !current)}
+                                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 transition-colors"
+                                    disabled={loading}
+                                >
+                                    {showPassword ? (
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13.875 18.825A10.05 10.05 0 0112 19c-5 0-9.27-3.11-11-7.5a11.9 11.9 0 012.423-3.568M6.223 6.223A10.97 10.97 0 0112 4.5c5 0 9.27 3.11 11 7.5a11.88 11.88 0 01-4.307 5.396M9.88 9.88A3 3 0 0012 14a3 3 0 002.12-.88M3 3l18 18" />
+                                        </svg>
+                                    ) : (
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.25 12s3.75-7.5 9.75-7.5 9.75 7.5 9.75 7.5-3.75 7.5-9.75 7.5S2.25 12 2.25 12z" />
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        </svg>
+                                    )}
+                                </button>
+                            </div>
                             <p className="mt-2 text-xs text-slate-500">Use 8-72 characters with uppercase, lowercase, number, and special character.</p>
                         </div>
 
@@ -288,14 +309,32 @@ const Signup: React.FC = () => {
                             </span>
                             <input
                                 id="confirmPassword"
-                                type="password"
+                                type={showConfirmPassword ? 'text' : 'password'}
                                 required
-                                className="w-full pl-12 pr-4 py-4 bg-white lg:bg-slate-50 border-0 rounded-lg focus:ring-2 focus:ring-emerald-600/20 focus:bg-white transition-all outline-none text-base"
+                                className="w-full pl-12 pr-12 py-4 bg-white lg:bg-slate-50 border-0 rounded-lg focus:ring-2 focus:ring-emerald-600/20 focus:bg-white transition-all outline-none text-base"
                                 placeholder="Confirm Password"
                                 value={formData.confirmPassword}
                                 onChange={handleChange}
                                 disabled={loading}
                             />
+                            <button
+                                type="button"
+                                onClick={() => setShowConfirmPassword((current) => !current)}
+                                aria-label={showConfirmPassword ? 'Hide confirm password' : 'Show confirm password'}
+                                className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 transition-colors"
+                                disabled={loading}
+                            >
+                                {showConfirmPassword ? (
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13.875 18.825A10.05 10.05 0 0112 19c-5 0-9.27-3.11-11-7.5a11.9 11.9 0 012.423-3.568M6.223 6.223A10.97 10.97 0 0112 4.5c5 0 9.27 3.11 11 7.5a11.88 11.88 0 01-4.307 5.396M9.88 9.88A3 3 0 0012 14a3 3 0 002.12-.88M3 3l18 18" />
+                                    </svg>
+                                ) : (
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.25 12s3.75-7.5 9.75-7.5 9.75 7.5 9.75 7.5-3.75 7.5-9.75 7.5S2.25 12 2.25 12z" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                )}
+                            </button>
                         </div>
 
                         <button

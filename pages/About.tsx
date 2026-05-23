@@ -13,7 +13,7 @@ const About: React.FC = () => {
 
       {/* Hero */}
       <section className="bg-slate-900 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="site-shell px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center space-x-2 mb-6">
             <span className="w-10 h-px bg-brand-green"></span>
             <span className="text-brand-green text-xs font-black uppercase tracking-[0.25em]">
@@ -31,7 +31,7 @@ const About: React.FC = () => {
       </section>
 
       {/* Story */}
-      <section className="bg-transparent -mt-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-transparent -mt-10 site-shell px-4 sm:px-6 lg:px-8">
         <div className="">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div>
@@ -105,7 +105,7 @@ const About: React.FC = () => {
 
       {/* Values */}
       <section className="py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="site-shell px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900">
               Our Core Principles

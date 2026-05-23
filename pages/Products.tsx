@@ -66,9 +66,9 @@ const Products: React.FC = () => {
       LION: ['sauce-lion-'],
     },
     'cleaning-supplies': {
-      'Washing Up Liquids': ['cleaning-tissue-', 'cleaning-bin-bag-'],
-      Degreasers: ['cleaning-bin-bag-', 'cleaning-tissue-'],
-      'Other Cleaning Items': ['cleaning-tissue-', 'cleaning-bin-bag-'],
+      Tissues: ['cleaning-tissue-'],
+      Detergents: ['cleaning-detergent-'],
+      Hygine: ['cleaning-hygine-'],
     },
     'general-items': {
       'Dry Goods & Pantry': ['general-'],
@@ -277,21 +277,9 @@ const Products: React.FC = () => {
             }
           }
         } else if (categoryFromUrl === 'cleaning-supplies') {
-          const isTissueLikeItem = /TISSUE|NAPKIN|NIPKEN|ROLL|WIPER|TOWEL|SERVIRETTES|TOILET/i.test(p.name);
-          const isBagLikeItem = /BAG|BAGS|CARRIER|BIN|COMPACTOR|JUMBO/i.test(p.name);
-          const isCleaningFamily = p.id.startsWith('cleaning-tissue-') || p.id.startsWith('cleaning-bin-bag-');
-
-          if (subcategoryFromUrl === 'Washing Up Liquids') {
-            matchesSubcategory = isCleaningFamily && isTissueLikeItem;
-          } else if (subcategoryFromUrl === 'Degreasers') {
-            matchesSubcategory = isCleaningFamily && isBagLikeItem;
-          } else if (subcategoryFromUrl === 'Other Cleaning Items') {
-            matchesSubcategory = isCleaningFamily && !isTissueLikeItem && !isBagLikeItem;
-          } else {
-            const subcategoryPrefixes = subcategoryProductPrefixMap[categoryFromUrl]?.[subcategoryFromUrl];
-            if (subcategoryPrefixes && subcategoryPrefixes.length > 0) {
-              matchesSubcategory = subcategoryPrefixes.some(prefix => p.id.startsWith(prefix));
-            }
+          const subcategoryPrefixes = subcategoryProductPrefixMap[categoryFromUrl]?.[subcategoryFromUrl];
+          if (subcategoryPrefixes && subcategoryPrefixes.length > 0) {
+            matchesSubcategory = subcategoryPrefixes.some(prefix => p.id.startsWith(prefix));
           }
         } else if (categoryFromUrl === 'general-items') {
           const isGeneralItem = p.id.startsWith('general-');
@@ -425,7 +413,7 @@ const Products: React.FC = () => {
         />
       )}
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="site-shell px-4 py-8">
         {/* Grid Header */}
         <div className="bg-slate-50 border border-slate-100 rounded-2xl md:rounded-3xl p-4 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div className="flex items-center space-x-4 md:space-x-6">
@@ -529,7 +517,7 @@ const Products: React.FC = () => {
 
       {/* Bottom Newsletter (Bacola Style) */}
       <section className="bg-brand-dark py-16 md:py-24 mt-16 md:mt-24 relative overflow-hidden dot-pattern">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row justify-between items-center gap-8 md:gap-12 relative z-10">
+        <div className="site-shell px-4 flex flex-col lg:flex-row justify-between items-center gap-8 md:gap-12 relative z-10">
           <div className="text-white text-center lg:text-left">
             <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter mb-3 md:mb-4 leading-none italic underline decoration-brand-green decoration-4 underline-offset-8">Join the Supply Network</h2>
             <p className="text-slate-400 font-medium text-base md:text-lg">Subscribe to our wholesale inventory alerts and regional market reports.</p>

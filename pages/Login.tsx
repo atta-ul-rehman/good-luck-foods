@@ -6,6 +6,7 @@ import { useAuth } from '../context/AuthContext';
 const Login: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -48,12 +49,11 @@ const Login: React.FC = () => {
                 <div className="relative z-10 text-center px-12">
                     <h1 className="text-4xl md:text-5xl font-black text-white mb-6">Welcome Back!</h1>
                     <p className="text-slate-400 text-lg max-w-sm mx-auto mb-10">To keep connected with us please login with your personal info</p>
-                    <Link 
-                        to="/signup"
-                        className="inline-block border-2 border-white text-white px-12 py-3 rounded-full font-bold uppercase tracking-widest hover:bg-white hover:text-slate-900 transition-all"
+                    <p 
+                        className="inline-block border-2 border-white bg-white text-black px-10 py-2 rounded-full font-bold uppercase tracking-widest transition-all"
                     >
-                        Sign Up
-                    </Link>
+                        Sign In
+                    </p>
                 </div>
             </div>
 
@@ -107,14 +107,32 @@ const Login: React.FC = () => {
                             </span>
                             <input
                                 id="password"
-                                type="password"
+                                type={showPassword ? 'text' : 'password'}
                                 required
-                                className="w-full pl-12 pr-4 py-4 bg-white lg:bg-slate-50 border-0 rounded-lg focus:ring-2 focus:ring-emerald-600/20 focus:bg-white transition-all outline-none text-base"
+                                className="w-full pl-12 pr-12 py-4 bg-white lg:bg-slate-50 border-0 rounded-lg focus:ring-2 focus:ring-emerald-600/20 focus:bg-white transition-all outline-none text-base"
                                 placeholder="Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 disabled={loading}
                             />
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword((current) => !current)}
+                                aria-label={showPassword ? 'Hide password' : 'Show password'}
+                                className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 transition-colors"
+                                disabled={loading}
+                            >
+                                {showPassword ? (
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13.875 18.825A10.05 10.05 0 0112 19c-5 0-9.27-3.11-11-7.5a11.9 11.9 0 012.423-3.568M6.223 6.223A10.97 10.97 0 0112 4.5c5 0 9.27 3.11 11 7.5a11.88 11.88 0 01-4.307 5.396M9.88 9.88A3 3 0 0012 14a3 3 0 002.12-.88M3 3l18 18" />
+                                    </svg>
+                                ) : (
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.25 12s3.75-7.5 9.75-7.5 9.75 7.5 9.75 7.5-3.75 7.5-9.75 7.5S2.25 12 2.25 12z" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                )}
+                            </button>
                         </div>
 
                         <div className="text-right">

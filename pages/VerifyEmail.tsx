@@ -45,7 +45,11 @@ const VerifyEmail: React.FC = () => {
                 <p className="text-sm text-slate-600 mb-6">{message}</p>
 
                 {state === 'loading' && (
-                    <div className="text-slate-500 text-sm">Please wait a moment...</div>
+                    <div className="animate-pulse space-y-3" aria-hidden="true">
+                        <div className="h-3 bg-slate-200 rounded w-full" />
+                        <div className="h-3 bg-slate-200 rounded w-4/5" />
+                        <div className="h-10 bg-slate-200 rounded-full w-40 mt-4" />
+                    </div>
                 )}
 
                 {state === 'success' && (

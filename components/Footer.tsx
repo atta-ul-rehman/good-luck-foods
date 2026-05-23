@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer className={`bg-slate-900 text-slate-300 ${isAuthPage ? 'pt-6 pb-6' : 'pt-16 pb-8'}`}>
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="site-shell px-4">
         {!isAuthPage && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-4">
           {/* Brand Info */}

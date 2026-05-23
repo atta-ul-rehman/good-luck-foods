@@ -33,6 +33,7 @@ const NATCO_SPICES_ASSET_BASE = '/assets/Nacto Spices';
 const OIL_FATS_ASSET_BASE = '/assets/Oil & Fats';
 const PLASTIC_BIN_BAGS_ASSET_BASE = '/assets/Plasctic & Bin Bags';
 const TISSUES_ASSET_BASE = '/assets/Tissues';
+const CLEANING_GENERIC_ASSET_BASE = '/assets/external';
 
 const DRINK_CAN_FILES = [
   '7UP CANS 24X330ML.webp',
@@ -993,26 +994,18 @@ const PLASTIC_BIN_BAG_FILES = [
 ] as const;
 
 const TISSUE_FILES = [
-  '1PLY SERVIRETTES NIPKEN 30cm.webp',
   'BLUE ROLL 1X6.webp',
   'BLUE WIPER ROLL 1X2 .webp',
-  'BRILLA BLUE ROLL 1X6.webp',
-  'ECO BLUE ROLL.webp',
   'EZ WHITE NIPKIN 1PLY.webp',
   'INDUSTRIAL WIPER ROLLS 1X2.webp',
   'JUMBO TOILET ROLL 1X38.webp',
   'KITCHEN TOWEL 1X12.webp',
-  'MAJESTIC NIPKEN 30X30 (500).webp',
-  'MAJESTIC NIPKEN 30X30 (5000).webp',
   'MEDIUM TISSUE ROLL .webp',
   'MY PACK NIPKIN 1PLY.webp',
   'NAPKINS WHITE 1-PLY 30CM.webp',
   'RELYON 12 FOLD NIPKINS 24X50.webp',
-  'SELECT PLY SOFT TISSUE BOX .webp',
   'SKY TISSUE 1X6.webp',
   'SMAL TISSUE ROLL 160150.webp',
-  'VORTEX NIPKEN 30X30 (500).webp',
-  'VORTEX NIPKEN 30X30 (5000).webp',
   'WHITE JUMBO BIG ROLL X 6PACK.webp',
   'WHITE WIPER ROLL 1X2 .webp',
 ] as const;
@@ -1305,21 +1298,114 @@ const SAUCE_PRODUCTS: Product[] = [
   ),
 ];
 
+const CLEANING_GENERIC_IMAGE = '/assets/external/cat-cleaning-general.jpg';
+
 const CLEANING_PRODUCTS: Product[] = [
-  ...createCategoryProducts(
-    'cleaning-bin-bag',
-    '11',
-    PLASTIC_BIN_BAGS_ASSET_BASE,
-    PLASTIC_BIN_BAG_FILES,
-    'Bin liners, carrier bags, and waste-management essentials for businesses.'
-  ),
-  ...createCategoryProducts(
-    'cleaning-tissue',
-    '11',
-    TISSUES_ASSET_BASE,
-    TISSUE_FILES,
-    'Napkins, rolls, and tissue consumables for daily commercial operations.'
-  ),
+  {
+    id: 'cleaning-tissue-blue-roll',
+    categoryId: '11',
+    name: 'Blue Roll',
+    description: 'Absorbent blue roll tissue for cleaning, wiping, and foodservice use.',
+    image: toProductImage(TISSUES_ASSET_BASE, 'BLUE ROLL 1X6.webp'),
+  },
+  {
+    id: 'cleaning-tissue-jumbo-rolls',
+    categoryId: '11',
+    name: 'Big Tissue / Jumbo Rolls',
+    description: 'Large tissue rolls for high-volume commercial washrooms and kitchens.',
+    image: toProductImage(TISSUES_ASSET_BASE, 'WHITE JUMBO BIG ROLL X 6PACK.webp'),
+  },
+  {
+    id: 'cleaning-tissue-toilet-roll',
+    categoryId: '11',
+    name: 'Toilet Roll',
+    description: 'Bulk toilet roll supply for hospitality, retail, and workplace washrooms.',
+    image: toProductImage(TISSUES_ASSET_BASE, 'JUMBO TOILET ROLL 1X38.webp'),
+  },
+  {
+    id: 'cleaning-tissue-napkins',
+    categoryId: '11',
+    name: 'Napkins',
+    description: 'Disposable napkins for catering, takeaway service, and table settings.',
+    image: toProductImage(TISSUES_ASSET_BASE, 'NAPKINS WHITE 1-PLY 30CM.webp'),
+  },
+  {
+    id: 'cleaning-tissue-wet-wipes',
+    categoryId: '11',
+    name: 'Wet Wipes',
+    description: 'Convenient wet wipes for quick cleaning and hygiene care.',
+    image: CLEANING_GENERIC_IMAGE,
+  },
+  {
+    id: 'cleaning-detergent-de-greaser',
+    categoryId: '11',
+    name: 'De Greaser',
+    description: 'Heavy-duty degreaser for kitchens, equipment, and food prep surfaces.',
+    image: CLEANING_GENERIC_IMAGE,
+  },
+  {
+    id: 'cleaning-detergent-washing-up',
+    categoryId: '11',
+    name: 'Washing Up',
+    description: 'Dishwashing liquid for everyday commercial cleaning tasks.',
+    image: CLEANING_GENERIC_IMAGE,
+  },
+  {
+    id: 'cleaning-detergent-bleach',
+    categoryId: '11',
+    name: 'Bleach',
+    description: 'Bulk bleach for sanitation, surface cleaning, and washroom hygiene.',
+    image: CLEANING_GENERIC_IMAGE,
+  },
+  {
+    id: 'cleaning-detergent-lemon-floor-gels',
+    categoryId: '11',
+    name: 'Lemon Floor Gels',
+    description: 'Fragranced floor gel cleaners for routine maintenance and freshness.',
+    image: CLEANING_GENERIC_IMAGE,
+  },
+  {
+    id: 'cleaning-detergent-hand-wash',
+    categoryId: '11',
+    name: 'Hand Wash',
+    description: 'Liquid hand wash for workplace and hospitality hygiene stations.',
+    image: CLEANING_GENERIC_IMAGE,
+  },
+  {
+    id: 'cleaning-detergent-anti-bacterial-spray',
+    categoryId: '11',
+    name: 'Anti Bacterial Spray',
+    description: 'Surface spray for rapid disinfection and hygiene support.',
+    image: CLEANING_GENERIC_IMAGE,
+  },
+  {
+    id: 'cleaning-hygine-gloves',
+    categoryId: '11',
+    name: 'Gloves',
+    description: 'Disposable gloves for food handling, cleaning, and general hygiene.',
+    image: CLEANING_GENERIC_IMAGE,
+  },
+  {
+    id: 'cleaning-hygine-bin-bags',
+    categoryId: '11',
+    name: 'Bin Bags',
+    description: 'Waste bags and bin liners for commercial cleaning and disposal.',
+    image: toProductImage(PLASTIC_BIN_BAGS_ASSET_BASE, 'BLACK BIN BAG COMPACTOR .webp'),
+  },
+  {
+    id: 'cleaning-hygine-face-masks',
+    categoryId: '11',
+    name: 'Face Masks',
+    description: 'Disposable face masks for hygiene, safety, and front-of-house use.',
+    image: toProductImage(GENERAL_ITEMS_ASSET_BASE, 'FACE MASK X10.webp'),
+  },
+  {
+    id: 'cleaning-hygine-apron',
+    categoryId: '11',
+    name: 'Apron',
+    description: 'Protective aprons for food prep, serving, and cleaning tasks.',
+    image: toProductImage(GENERAL_ITEMS_ASSET_BASE, 'APRON.webp'),
+  },
 ];
 
 const GENERAL_PRODUCTS: Product[] = createCategoryProducts(
@@ -1341,7 +1427,7 @@ export const CATEGORIES: Category[] = [
   { id: '8', name: 'Spices & Herbs', slug: 'spices-herbs', description: 'Authentic flavors sourced directly from origins worldwide.', image: '/assets/external/cat-spices-herbs.jpg', icon: '🌶️', subcategories: ['Breading', 'Spices', 'Herbs'] },
   { id: '9', name: 'Oils & Fats', slug: 'oils-fats', description: 'Cooking oils, butter, and shortenings in industrial formats.', image: '/assets/external/cat-oils-fats.jpg', icon: '🫗', subcategories: ['Cooking Oil', 'Solid Fats'] },
   { id: '10', name: 'Sauces', slug: 'sauces', description: 'Condiments and base sauces for commercial food service.', image: '/assets/external/cat-sauces.jpg', icon: '🍯', subcategories: ['Marinades', 'Mayonnaise', 'LION'] },
-  { id: '11', name: 'Cleaning Supplies', slug: 'cleaning-supplies', description: 'Industrial cleaning supplies and degreasers.', image: '/assets/external/cat-cleaning-general.jpg', icon: '🧹', subcategories: ['Washing Up Liquids', 'Degreasers', 'Other Cleaning Items'] },
+  { id: '11', name: 'Cleaning Supplies', slug: 'cleaning-supplies', description: 'Tissues, detergents, and hygiene essentials for commercial cleaning.', image: '/assets/external/cat-cleaning-general.jpg', icon: '🧹', subcategories: ['Tissues', 'Detergents', 'Hygine'] },
   { id: '12', name: 'General Items', slug: 'general-items', description: 'Kitchen essentials and miscellaneous items.', image: '/assets/external/cat-cleaning-general.jpg', icon: '🍴', subcategories: ['Dry Goods & Pantry', 'Kitchen Essentials', 'Till Rolls & Charcoal'] }
 ];
 

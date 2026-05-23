@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .site-shell {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: clamp(1rem, 2vw, 2rem);
+    padding-right: clamp(1rem, 2vw, 2rem);
+  }
+}
+
 /* Global Typography & Styles based on Premium Design System */
 
 /* 1. Font Families */
