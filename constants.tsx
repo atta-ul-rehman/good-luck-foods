@@ -1,3 +1,4 @@
+import { MISSING_PRODUCTS } from './data/missingProducts';
 import { Category, Product } from './types';
 
 const DRINK_CAN_ASSET_BASE = '/assets/Drink Cans processed';
@@ -360,7 +361,7 @@ const FROZEN_MEAT_FILES = [
   'MEATZON DONER 10KG.webp',
   'MEATZON DONER 20KG.webp',
   'MV 24 H&SPICY FILLETS 1KG.webp',
-  'MV BATTERED CKH NUGGETS 1KG.webp',
+  'MV Battered Chicken Nuggets.jpeg',
   'MV BBQ WINGS 3X1K.webp',
   'MV CHICHEN STEAKE 1.02 KG.webp',
   'MV CHICKEN STRIP 1KG.webp',
@@ -368,16 +369,16 @@ const FROZEN_MEAT_FILES = [
   'MV CRISPY BAT FILLETS 4x2.4KG.webp',
   'MV CRISPY HOT WINGS 1KG.webp',
   'MV CRISPY HOT WINGS 3  X 1KG.webp',
-  'MV FILLET BITES 1KG.webp',
+  'MV Battered Chicken Fillet Bites.jpeg',
   'MV FRIED MINI FILLETS 1KG.webp',
-  'MV HOT & SPICY FILLET 1.98 KG.webp',
+  'MV Hot & Spicy Chicken Fillets.jpeg',
   'MV HOT & SPICY FILLET 5X1.98 KG.webp',
   'MV HOT & SPICY WING 1 X 2KG.webp',
   'MV HOT & SPICY WINGS 5 X 2KG BOX.webp',
-  'MV HOT&SPICY WINGS 1KG.webp',
-  'MV MINI FILLETS BITES 1X10 KG.webp',
+  'MV Hot & Spicy Coated Wings.jpeg',
+  'MV Mini Chicken Fillet Bites.jpeg',
   'MV PICKIN CHICKEN 1KG.webp',
-  'MV SOUTHERN FRIED CH3X27 KG.webp',
+  'MV The Original Southern Fried Chicken Strips.jpeg',
   'PANGASIUS 120- 170(45KG)20x500g.webp',
   'PANGASIUS 120-170(45KG)1x500g.webp',
   'PANGASIUS 270-340 (45KG).webp',
@@ -1021,7 +1022,8 @@ const toProductImage = (assetBase: string, fileName: string) =>
     .split('/')
     .map(segment => encodeURIComponent(segment))
     .join('/')
-    .replace('%2F', '/');
+    .replace('%2F', '/')
+    .replace(/%26/g, '&');
 
 const createAssetProduct = (
   id: string,
@@ -1472,6 +1474,9 @@ export const PRODUCTS: Product[] = [
 
   // General Items (Category 12)
   ...GENERAL_PRODUCTS,
+
+  // Imported products without source imagery yet
+  ...MISSING_PRODUCTS,
 ];
 
 export const INDUSTRIES = [

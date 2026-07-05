@@ -34,7 +34,7 @@ interface WordPressPost {
   };
 }
 
-const DEFAULT_WP_API_BASE = 'https://darkgreen-louse-200218.hostingersite.com/wp-json/wp/v2';
+  const DEFAULT_WP_API_BASE = 'https://darkgreen-louse-200218.hostingersite.com/wp-json/wp/v2';
 const WORDPRESS_API_BASE =
   (import.meta.env.VITE_WP_API_BASE_URL || DEFAULT_WP_API_BASE).replace(/\/$/, '');
 const FALLBACK_BLOG_IMAGE = '/assets/external/blog-wholesale.jpg';

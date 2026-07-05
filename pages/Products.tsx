@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { CATEGORIES, PRODUCTS } from '../constants';
 import ProductCard from '../components/ProductCard';
 import SEO from '../components/SEO';
+import { getMergedProducts, getWooCommerceProductsWithFallback } from '../data/wooCommerceProducts';
 
 const INITIAL_LOAD = 50;
 const LOAD_MORE_COUNT = 10;
@@ -78,6 +79,7 @@ const Products: React.FC = () => {
   };
   
   const [searchQuery, setSearchQuery] = useState(searchFromUrl);
+  const [allProducts, setAllProducts] = useState(PRODUCTS);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(() => {
     if (categoryFromUrl) {
       const cat = CATEGORIES.find(c => c.slug === categoryFromUrl);
@@ -112,8 +114,29 @@ const Products: React.FC = () => {
     setSearchQuery(searchFromUrl);
   }, [searchFromUrl]);
 
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadWooProducts = async () => {
+      const wooProducts = await getWooCommerceProductsWithFallback();
+      const mergedProducts = getMergedProducts(wooProducts);
+
+      if (!isMounted) {
+        return;
+      }
+
+      setAllProducts(mergedProducts);
+    };
+
+    loadWooProducts();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const filteredProducts = useMemo(() => {
-    return PRODUCTS.filter(p => {
+    return allProducts.filter(p => {
       const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
       const matchesCategory = selectedCategory ? p.categoryId === selectedCategory : true;
 
@@ -158,13 +181,14 @@ const Products: React.FC = () => {
         } else if (categoryFromUrl === 'desserts') {
           const isCakeItem = /CAKE|PIE|DONUT|COOKIE|BISCOFF|OREO|BROWNIE|VELVET|MATILDA/i.test(p.name);
           const isIceCreamItem = /ICE|SLUSH|TOPPING|CREAM|MILK|ANGELITO|VANILLA|STRAWBERRY|CHOCOLATE/i.test(p.name);
+          const subcategorySlug = subcategoryFromUrl ? subcategoryFromUrl.toLowerCase() : '';
 
           if (subcategoryFromUrl === 'Cakes') {
-            matchesSubcategory = p.id.startsWith('dessert-') && isCakeItem;
+            matchesSubcategory = (p.id.startsWith('dessert-') && isCakeItem) || p.subcategorySlug === 'cakes';
           } else if (subcategoryFromUrl === 'Ice Cream') {
-            matchesSubcategory = p.id.startsWith('dessert-') && isIceCreamItem && !isCakeItem;
+            matchesSubcategory = (p.id.startsWith('dessert-') && isIceCreamItem && !isCakeItem) || p.subcategorySlug === 'ice-cream';
           } else if (subcategoryFromUrl === 'Confectionery') {
-            matchesSubcategory = p.id.startsWith('confectionery-');
+            matchesSubcategory = p.id.startsWith('confectionery-') || p.subcategorySlug === 'confectionery';
           } else {
             const subcategoryPrefixes = subcategoryProductPrefixMap[categoryFromUrl]?.[subcategoryFromUrl];
             if (subcategoryPrefixes && subcategoryPrefixes.length > 0) {
@@ -309,7 +333,7 @@ const Products: React.FC = () => {
 
       return matchesSearch && matchesCategory && matchesSubcategory;
     });
-  }, [searchQuery, selectedCategory, categoryFromUrl, subcategoryFromUrl]);
+  }, [allProducts, searchQuery, selectedCategory, categoryFromUrl, subcategoryFromUrl]);
 
   // Reset visible range when filters change
   useEffect(() => {
@@ -439,11 +463,25 @@ const Products: React.FC = () => {
           <div className="flex flex-wrap items-center gap-4 md:gap-6 w-full md:w-auto">
             <div className="flex items-center">
               <span className="text-[10px] md:text-[11px] font-black text-slate-400 uppercase tracking-widest mr-2 md:mr-3">Sort:</span>
-              <select className="bg-transparent text-slate-900 font-bold text-xs focus:outline-none cursor-pointer">
-                <option>Latest</option>
-                <option>High Demand</option>
-                <option>A-Z</option>
-              </select>
+              <div className="relative inline-flex items-center">
+                <select
+                  className="sort-select appearance-none w-[108px] sm:w-[124px] bg-white border border-slate-200 text-slate-900 font-bold text-xs rounded-lg pl-3 pr-6 py-1.5 shadow-sm hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red cursor-pointer"
+                  defaultValue="Latest"
+                >
+                  <option value="Latest">Latest</option>
+                  <option value="High Demand">High Demand</option>
+                  <option value="A-Z">A-Z</option>
+                </select>
+                <svg
+                  className="w-4 h-4 text-slate-700 pointer-events-none absolute right-1.5 top-1/2 -translate-y-1/2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
             </div>
             <div className="hidden sm:flex items-center">
               <span className="text-[10px] md:text-[11px] font-black text-slate-400 uppercase tracking-widest">

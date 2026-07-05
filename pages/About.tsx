@@ -31,7 +31,7 @@ const About: React.FC = () => {
       </section>
 
       {/* Story */}
-      <section className="bg-transparent -mt-10 site-shell px-4 sm:px-6 lg:px-8">
+      <section className="bg-transparent sm:mt-[-10px] pt-10 sm:pt-0 site-shell px-4 sm:px-6 lg:px-8">
         <div className="">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div>

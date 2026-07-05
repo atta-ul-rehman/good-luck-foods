@@ -11,6 +11,7 @@ interface Props {
 const ProductCard: React.FC<Props> = ({ product, layout = 'grid' }) => {
   const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
   const category = CATEGORIES.find(c => c.id === product.categoryId);
+  const isListLayout = layout === 'list';
 
   const quantityText = useMemo(() => {
     const patterns = [
@@ -65,7 +66,7 @@ const ProductCard: React.FC<Props> = ({ product, layout = 'grid' }) => {
   return (
     <>
     <div
-      className={`bg-white rounded-lg md:rounded-xl overflow-hidden transition-all duration-300 flex ${layout === 'grid' ? 'flex-col' : 'flex-row'} h-full group relative border border-slate-200 hover:border-brand-green hover:shadow-lg cursor-pointer`}
+      className={`bg-white rounded-lg md:rounded-xl overflow-hidden transition-all duration-300 flex ${isListLayout ? 'flex-col sm:flex-row' : 'flex-col'} h-full group relative border border-slate-200 hover:border-brand-green hover:shadow-lg cursor-pointer`}
       onClick={handleCardClick}
       onKeyDown={handleCardKeyDown}
       role="button"
@@ -74,8 +75,8 @@ const ProductCard: React.FC<Props> = ({ product, layout = 'grid' }) => {
     >
       
       {/* Image Area */}
-      <div className="relative overflow-hidden bg-slate-50">
-        <div className="aspect-[5/3] md:aspect-[4/3]">
+      <div className={`relative overflow-hidden bg-slate-50 ${isListLayout ? 'sm:w-[42%] sm:flex-shrink-0' : ''}`}>
+        <div className={`${isListLayout ? 'aspect-[16/10] sm:aspect-[4/3]' : 'aspect-[5/3] md:aspect-[4/3]'}`}>
           <img
             src={product.image}
             alt={product.name}
@@ -140,7 +141,7 @@ const ProductCard: React.FC<Props> = ({ product, layout = 'grid' }) => {
 
     {isQuickViewOpen && (
       <div
-        className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+        className="fixed inset-0 z-[1000] bg-black/60 backdrop-blur-sm grid place-items-center p-4"
         onClick={closeQuickView}
         role="dialog"
         aria-modal="true"

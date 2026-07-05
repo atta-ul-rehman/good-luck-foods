@@ -43,14 +43,14 @@ const Offers: React.FC = () => {
             Offers are being refreshed
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto mb-8">
-            The offers section is currently under maintenance. We’re updating it with new promotions, so please visit our coming soon page for the latest status.
+            No current offer is active right now. Offers coming soon.
           </p>
 
           <Link
             to="/coming-soon"
-            className="inline-flex items-center gap-3 bg-brand-green text-white px-8 py-4 rounded-full font-black uppercase tracking-widest hover:brightness-110 transition-all active:scale-95"
+            className="inline-flex items-center gap-3 bg-brand-green text-white px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base rounded-full font-black uppercase tracking-widest hover:brightness-110 transition-all active:scale-95"
           >
-            Go to Coming Soon
+            Coming Soon
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>

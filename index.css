@@ -10,6 +10,12 @@
     padding-left: clamp(1rem, 2vw, 2rem);
     padding-right: clamp(1rem, 2vw, 2rem);
   }
+
+  @media (max-width: 479px) {
+    .site-shell {
+      width: 98%;
+    }
+  }
 }
 
 /* Global Typography & Styles based on Premium Design System */
@@ -41,6 +47,16 @@ select {
 .font-serif,
 .font-display {
   font-family: 'Playfair Display', serif;
+}
+
+.sort-select {
+  color-scheme: light;
+}
+
+.sort-select option {
+  background-color: #ffffff;
+  color: #0f172a;
+  font-weight: 600;
 }
 
 /* 2. Font Weights */
