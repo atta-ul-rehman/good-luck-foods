@@ -334,15 +334,32 @@ const CategoryDetail: React.FC = () => {
       }
     : null;
 
+  const categoryCollectionSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: `Wholesale ${category.name}`,
+    description: `Wholesale ${category.name.toLowerCase()} supply for UK restaurants, takeaways and retailers.`,
+    url: `https://www.goodluckfoods.co.uk/category/${category.slug}`,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'Good Luck Foods Ltd.',
+      url: 'https://www.goodluckfoods.co.uk',
+    },
+    about: {
+      '@type': 'Thing',
+      name: category.name,
+    },
+  };
+
   const schemas = faqSchema
-    ? [breadcrumbSchema, faqSchema]
-    : [breadcrumbSchema];
+    ? [breadcrumbSchema, categoryCollectionSchema, faqSchema]
+    : [breadcrumbSchema, categoryCollectionSchema];
 
   return (
     <div className="animate-in fade-in duration-500">
       <SEO
-        title={`Wholesale ${category.name} – Bulk ${category.name} Supply UK`}
-        description={`${category.description} Good Luck Foods Ltd. supplies wholesale ${category.name.toLowerCase()} to restaurants, takeaways and retailers across the UK. Request bulk pricing today.`}
+        title={`Wholesale ${category.name} Supplier UK – Bulk ${category.name}`}
+        description={`${category.description} Good Luck Foods Ltd. supplies wholesale ${category.name.toLowerCase()} for restaurants, takeaways and retailers across the UK. Request bulk pricing support.`}
         path={`/category/${category.slug}`}
         image={category.image.startsWith('http') ? category.image : `https://www.goodluckfoods.co.uk${category.image}`}
         schema={schemas}

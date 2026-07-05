@@ -14,6 +14,8 @@ interface SEOProps {
   image?: string;
   /** Set to "article" for blog posts, default is "website" */
   type?: string;
+  /** Mark page as noindex,nofollow */
+  noindex?: boolean;
   /** JSON-LD schema objects to inject into the page */
   schema?: object | object[];
 }
@@ -24,6 +26,7 @@ const SEO: React.FC<SEOProps> = ({
   path = '/',
   image = DEFAULT_IMAGE,
   type = 'website',
+  noindex = false,
   schema,
 }) => {
   const canonical = `${SITE_URL}${path}`;
@@ -40,6 +43,7 @@ const SEO: React.FC<SEOProps> = ({
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={canonical} />
+      {noindex && <meta name="robots" content="noindex,nofollow" />}
 
       {/* Open Graph */}
       <meta property="og:title" content={fullTitle} />

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { authAPI } from '../utils/api';
 import { useAuth } from '../context/AuthContext';
+import SEO from '../components/SEO';
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -32,6 +33,12 @@ const Login: React.FC = () => {
 
     return (
         <div className="animate-fade-in min-h-[calc(100vh-80px)] flex">
+            <SEO
+                title="Login"
+                description="Sign in to your Good Luck Foods account to manage wholesale inquiries and access account features."
+                path="/login"
+                noindex
+            />
             {/* Left Side - Banner */}
             <div className="hidden lg:flex lg:w-1/2 bg-slate-900 relative overflow-hidden items-center justify-center">
                 {/* Background Decorations */}

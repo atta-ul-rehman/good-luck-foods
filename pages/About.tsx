@@ -6,8 +6,8 @@ const About: React.FC = () => {
   return (
     <div className="animate-in fade-in duration-500">
       <SEO
-        title="About Us – B2B Wholesale Food Distributor Since 2008"
-        description="Learn about Good Luck Foods Ltd., a Manchester-based B2B wholesale food distributor supplying restaurants, takeaways and retailers across the UK since 2008. 5,000+ product lines across 12 categories."
+        title="About Good Luck Foods Ltd. – UK Wholesale Food Supplier"
+        description="Learn about Good Luck Foods Ltd., a Manchester-based wholesale food supplier supporting restaurants, takeaways and retailers across the UK since 2008."
         path="/about"
       />
 
@@ -25,7 +25,7 @@ const About: React.FC = () => {
           </h1>
           <p className="text-white/70 max-w-2xl mx-auto font-light">
             Good Luck Foods Ltd. is a premier B2B distributor dedicated to supplying
-            high-quality food products to businesses across the region.
+            high-quality food, packaging and catering essentials to UK businesses.
           </p>
         </div>
       </section>
@@ -47,8 +47,8 @@ const About: React.FC = () => {
               <div className="space-y-4 text-slate-600 font-light">
                 <p>
                   What started as a small local supplier of fresh produce has evolved into a
-                  multi-category wholesale powerhouse. Today, Good Luck Foods manages over 5,000
-                  product lines across 11 key categories.
+                  multi-category wholesale powerhouse. Today, Good Luck Foods manages an extensive
+                  product range across 12 key categories.
                 </p>
                 <p>
                   Our mission remains unchanged: deliver seamless supply chains, competitive
@@ -62,7 +62,7 @@ const About: React.FC = () => {
 
               <div className="mt-12 flex flex-wrap gap-8 md:gap-14">
                 {[
-                  { label: 'Years Active', value: '15+' },
+                  { label: 'Years Active', value: '18+' },
                   { label: 'Hub Centers', value: '3' },
                   { label: 'B2B Focused', value: '100%' }
                 ].map((stat, i) => (

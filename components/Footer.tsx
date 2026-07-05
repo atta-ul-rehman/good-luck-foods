@@ -28,23 +28,35 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Quick Links */}
-         
+          <div>
+            <h4 className="text-white font-bold mb-6">Quick Links</h4>
+            <ul className="space-y-3 text-sm">
+              <li><Link to="/products" className="hover:text-white transition-colors">All Products</Link></li>
+              <li><Link to="/category/frozen-foods" className="hover:text-white transition-colors">Frozen Food Wholesale</Link></li>
+              <li><Link to="/category/drinks" className="hover:text-white transition-colors">Drinks Wholesale</Link></li>
+              <li><Link to="/category/spices-herbs" className="hover:text-white transition-colors">Wholesale Spices</Link></li>
+              <li><Link to="/category/cleaning-supplies" className="hover:text-white transition-colors">Cleaning Supplies</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">Services</Link></li>
+              <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
+              <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+            </ul>
+          </div>
 
           {/* Contact */}
           <div>
             <h4 className="text-white font-bold mb-6">Contact Us</h4>
             <ul className="space-y-4 text-sm">
               <li className="flex items-start">
-                <span className="mr-3 text-emerald-500">📍</span>
-                <span>Unit 5, Viva Centre, Coverdale Cres,<br />Manchester M12 4AP</span>
+                <span className="mr-3 text-emerald-500" aria-hidden="true">📍</span>
+                <span><span className="sr-only">Address:</span> Unit 5, Viva Centre, Coverdale Cres,<br />Manchester M12 4AP</span>
               </li>
               <li className="flex items-start">
-                <span className="mr-3 text-emerald-500">📞</span>
-                <span>+44 161 273 1399<br />+44 745 937 9180</span>
+                <span className="mr-3 text-emerald-500" aria-hidden="true">📞</span>
+                <span><span className="sr-only">Phone:</span> +44 161 273 1399<br />+44 745 937 9180</span>
               </li>
               <li className="flex items-center">
-                <span className="mr-3 text-emerald-500">✉️</span>
-                <span>sales@goodluckfoods.com</span>
+                <span className="mr-3 text-emerald-500" aria-hidden="true">✉️</span>
+                <a href="mailto:sales@goodluckfoods.com" className="hover:text-white transition-colors"><span className="sr-only">Email:</span> sales@goodluckfoods.com</a>
               </li>
             </ul>
           </div>
@@ -64,6 +76,7 @@ const Footer: React.FC = () => {
           <p>© 2026 Good Luck Foods Ltd. All Rights Reserved.</p>
           <div className="flex space-x-6">
             <Link to="/blog" className="hover:text-white transition-colors">Blog</Link>
+            <Link to="/services" className="hover:text-white transition-colors">Services</Link>
             <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link to="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link>
             <Link to="/wholesale-agreement" className="hover:text-white transition-colors">Wholesale Agreement</Link>

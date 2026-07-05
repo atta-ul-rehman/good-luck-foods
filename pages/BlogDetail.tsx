@@ -90,14 +90,40 @@ const BlogDetail: React.FC = () => {
     mainEntityOfPage: `https://www.goodluckfoods.co.uk/blog/${post.slug}`
   };
 
+  const blogBreadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.goodluckfoods.co.uk/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: 'https://www.goodluckfoods.co.uk/blog',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.title,
+        item: `https://www.goodluckfoods.co.uk/blog/${post.slug}`,
+      },
+    ],
+  };
+
   return (
     <div className="animate-in fade-in duration-500 bg-white min-h-screen">
       <SEO
         title={post.title}
         description={post.excerpt}
+        path={`/blog/${post.slug}`}
         image={post.image}
         type="article"
-        schema={articleSchema}
+        schema={[articleSchema, blogBreadcrumbSchema]}
       />
 
       <section className="bg-slate-900 py-12 md:py-16">

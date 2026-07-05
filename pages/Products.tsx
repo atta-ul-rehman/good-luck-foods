@@ -417,12 +417,45 @@ const Products: React.FC = () => {
 
   const hasMoreProducts = visibleEnd < filteredProducts.length;
 
+  const productsPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Wholesale Products',
+    description: 'Wholesale food and grocery products for UK restaurants, takeaways and retailers.',
+    url: 'https://www.goodluckfoods.co.uk/products',
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'Good Luck Foods Ltd.',
+      url: 'https://www.goodluckfoods.co.uk',
+    },
+  };
+
+  const productsBreadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.goodluckfoods.co.uk/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Products',
+        item: 'https://www.goodluckfoods.co.uk/products',
+      },
+    ],
+  };
+
   return (
     <div className="bg-white min-h-screen">
       <SEO
-        title="Wholesale Products – Drinks, Frozen Foods, Packaging & More"
-        description="Browse 800+ wholesale food and grocery products at Good Luck Foods Ltd. Categories include drinks, frozen foods, packaging, sauces, spices, oils and cleaning supplies. Bulk pricing available for UK businesses."
+        title="Wholesale Food Products UK – Drinks, Frozen, Packaging & More"
+        description="Browse wholesale food products for UK restaurants, takeaways and retailers. Explore drinks, frozen foods, packaging, sauces, spices, oils, cleaning supplies and more with bulk pricing support."
         path="/products"
+        schema={[productsPageSchema, productsBreadcrumbSchema]}
       />
      
 
@@ -438,6 +471,15 @@ const Products: React.FC = () => {
       )}
 
       <div className="site-shell px-4 py-8">
+        <div className="mb-6">
+          <h1 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">
+            Wholesale Food Products for UK Businesses
+          </h1>
+          <p className="mt-2 text-sm md:text-base text-slate-600 max-w-3xl">
+            Compare high-demand wholesale food and catering lines by category, then request pricing for your restaurant, takeaway or retail operation.
+          </p>
+        </div>
+
         {/* Grid Header */}
         <div className="bg-slate-50 border border-slate-100 rounded-2xl md:rounded-3xl p-4 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div className="flex items-center space-x-4 md:space-x-6">

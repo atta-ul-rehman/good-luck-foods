@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { authAPI } from '../utils/api';
+import SEO from '../components/SEO';
 
 type VerifyState = 'loading' | 'success' | 'error';
 
@@ -40,6 +41,12 @@ const VerifyEmail: React.FC = () => {
 
     return (
         <div className="min-h-[calc(100vh-80px)] flex items-center justify-center bg-[#f8f7f4] px-6 py-12">
+            <SEO
+                title="Verify Email"
+                description="Verify your Good Luck Foods account email address to activate login access."
+                path="/verify-email"
+                noindex
+            />
             <div className="max-w-lg w-full bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
                 <h1 className="text-2xl font-black text-slate-900 mb-4">Email Verification</h1>
                 <p className="text-sm text-slate-600 mb-6">{message}</p>

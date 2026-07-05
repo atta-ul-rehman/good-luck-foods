@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { authAPI } from '../utils/api';
+import SEO from '../components/SEO';
 
 const ForgotPassword: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -31,6 +32,12 @@ const ForgotPassword: React.FC = () => {
     if (submitted) {
         return (
             <div className="animate-fade-in">
+                <SEO
+                    title="Forgot Password"
+                    description="Reset your Good Luck Foods account password using your registered email address."
+                    path="/forgot-password"
+                    noindex
+                />
                 {/* Hero Header */}
                 <div className="relative bg-slate-900 py-20 text-center overflow-hidden">
                     <div className="absolute inset-0 opacity-10">
@@ -79,6 +86,12 @@ const ForgotPassword: React.FC = () => {
 
     return (
         <div className="animate-fade-in">
+            <SEO
+                title="Forgot Password"
+                description="Reset your Good Luck Foods account password using your registered email address."
+                path="/forgot-password"
+                noindex
+            />
             {/* Hero Header */}
             <div className="relative bg-slate-900 py-20 text-center overflow-hidden">
                 <div className="absolute inset-0 opacity-10">

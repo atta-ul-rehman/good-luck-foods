@@ -5,5 +5,9 @@ Allow: /
 Disallow: /login
 Disallow: /signup
 Disallow: /forgot-password
+Disallow: /verify-email
+
+# Block placeholder / utility pages
+Disallow: /coming-soon
 
 Sitemap: https://www.goodluckfoods.co.uk/sitemap.xml

@@ -41,6 +41,37 @@ const Contact: React.FC = () => {
     },
   };
 
+  const contactFaqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How do I request wholesale pricing?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Use the contact form to share your business details and product needs. Our team reviews each request and responds with wholesale pricing support.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do you supply restaurants and takeaways across the UK?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Good Luck Foods Ltd. supports restaurants, takeaways and retailers with wholesale food and grocery supply from our Manchester base.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I ask for category-specific wholesale quotes?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Select an area of interest in the contact form and include your required product categories to receive the most relevant quote response.',
+        },
+      },
+    ],
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -83,10 +114,10 @@ const Contact: React.FC = () => {
   return (
     <div className="animate-fade-in">
       <SEO
-        title="Contact Us – Request Wholesale Pricing"
-        description="Contact Good Luck Foods Ltd. to request wholesale pricing, bulk order quotes, or a logistics consultation. Based in Manchester, serving businesses across the UK."
+        title="Contact Wholesale Food Supplier UK – Request Pricing"
+        description="Contact Good Luck Foods Ltd. to request wholesale food pricing, bulk supply quotes and category-specific support for restaurants, takeaways and retailers across the UK."
         path="/contact"
-        schema={contactPageSchema}
+        schema={[contactPageSchema, contactFaqSchema]}
       />
       <div className="bg-slate-900 py-16 text-center">
         <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">Contact Us</h1>
@@ -148,7 +179,7 @@ const Contact: React.FC = () => {
             </div>
 
             <div className="bg-brand-dark p-8 rounded-3xl text-white shadow-xl relative overflow-hidden">
-              <h4 className="text-xl font-bold mb-4 relative z-10">Benefints of choosing us</h4>
+              <h4 className="text-xl font-bold mb-4 relative z-10">Benefits of choosing us</h4>
               <ul className="space-y-4 text-sm relative z-10 font-medium">
                 <li className="flex items-start space-x-3"><span className="opacity-50">•</span> <span>Immediate access to bulk price tiers</span></li>
                 <li className="flex items-start space-x-3"><span className="opacity-50">•</span> <span>Dedicated regional account manager</span></li>

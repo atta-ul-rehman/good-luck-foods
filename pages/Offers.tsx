@@ -9,6 +9,7 @@ const Offers: React.FC = () => {
         title="Coming Soon | Good Luck Foods Ltd."
         description="Our special offers page is being updated. Check back soon for new wholesale deals and promotions from Good Luck Foods Ltd."
         path="/offers"
+        noindex={true}
       />
       <section className="relative h-[280px] bg-slate-900 flex items-center overflow-hidden">
         <img

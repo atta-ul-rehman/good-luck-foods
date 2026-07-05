@@ -1,8 +1,4 @@
 {
   "name": "Good Luck Foods Ltd. - B2B Wholesale Food & Grocery Supplier Manchester",
-  "description": "Good Luck Foods Ltd. is a Manchester-based B2B wholesale food distributor supplying restaurants, takeaways and retailers across the UK. 800+ products across 12 categories including drinks, frozen foods, sauces, spices, packaging and more.",
-  "requestFramePermissions": [
-    "camera",
-    "microphone"
-  ]
+  "description": "Good Luck Foods Ltd. is a Manchester-based B2B wholesale food distributor supplying restaurants, takeaways and retailers across the UK. 800+ products across 12 categories including drinks, frozen foods, sauces, spices, packaging and more."
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { authAPI } from '../utils/api';
+import SEO from '../components/SEO';
 
 const Signup: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -114,6 +115,12 @@ const Signup: React.FC = () => {
 
     return (
         <div className="animate-fade-in min-h-[calc(100vh-80px)] flex">
+            <SEO
+                title="Sign Up"
+                description="Create your Good Luck Foods account for wholesale ordering support and business account access."
+                path="/signup"
+                noindex
+            />
             {/* Left Side - Banner */}
             <div className="hidden lg:flex lg:w-1/2 bg-slate-900 relative overflow-hidden items-center justify-center">
                 {/* Background Decorations */}

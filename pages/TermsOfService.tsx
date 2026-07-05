@@ -6,7 +6,7 @@ const TermsOfService: React.FC = () => {
     <div className="min-h-[40vh] bg-white animate-in fade-in duration-500">
       <SEO
         title="Terms of Service"
-        description="Terms of service page for Good Luck Foods Ltd."
+        description="Read the Good Luck Foods Ltd. terms of service for website use, account responsibilities and business terms."
         path="/terms-of-service"
       />
 

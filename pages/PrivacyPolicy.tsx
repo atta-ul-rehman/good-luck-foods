@@ -6,7 +6,7 @@ const PrivacyPolicy: React.FC = () => {
     <div className="min-h-[40vh] bg-white animate-in fade-in duration-500">
       <SEO
         title="Privacy Policy"
-        description="Privacy policy page for Good Luck Foods Ltd."
+        description="Read the Good Luck Foods Ltd. privacy policy covering data handling, inquiries and business account information."
         path="/privacy-policy"
       />
 

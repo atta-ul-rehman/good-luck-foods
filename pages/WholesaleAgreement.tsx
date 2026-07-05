@@ -6,7 +6,7 @@ const WholesaleAgreement: React.FC = () => {
     <div className="min-h-[40vh] bg-white animate-in fade-in duration-500">
       <SEO
         title="Wholesale Agreement"
-        description="Wholesale agreement page for Good Luck Foods Ltd."
+        description="Review the Good Luck Foods Ltd. wholesale agreement terms for business supply, ordering and account expectations."
         path="/wholesale-agreement"
       />
 

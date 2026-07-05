@@ -205,6 +205,21 @@ const ProductsSlider: React.FC<{ products: Product[] }> = ({ products }) => {
 };
 
 const Home: React.FC = () => {
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Good Luck Foods Ltd.',
+    url: 'https://www.goodluckfoods.co.uk',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://www.goodluckfoods.co.uk/products?search={search_term_string}',
+      },
+      'query-input': 'required name=search_term_string',
+    },
+  };
+
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -228,12 +243,14 @@ const Home: React.FC = () => {
     foundingDate: '2008',
     description:
       'B2B wholesale food and grocery distributor based in Manchester, UK. Supplying restaurants, takeaways, hotels and retailers since 2008.',
-    sameAs: [],
+    sameAs: [
+      'https://www.linkedin.com/company/good-luck-foods',
+    ],
   };
 
   const localBusinessSchema = {
     '@context': 'https://schema.org',
-    '@type': 'FoodEstablishment',
+    '@type': 'WholesaleStore',
     name: 'Good Luck Foods Ltd.',
     image: 'https://www.goodluckfoods.co.uk/assets/logo1.jpg',
     url: 'https://www.goodluckfoods.co.uk',
@@ -267,10 +284,10 @@ const Home: React.FC = () => {
   return (
     <div className="animate-in fade-in duration-500">
       <SEO
-        title="Wholesale B2B Food & Grocery Supplier"
-        description="Good Luck Foods Ltd. is a Manchester-based B2B wholesale food and grocery distributor. Supplying drinks, frozen foods, packaging, spices, sauces and more to restaurants, takeaways and retailers across the UK since 2008."
+        title="Wholesale Food Suppliers UK for B2B Restaurants & Retail"
+        description="Good Luck Foods Ltd. is a Manchester-based wholesale food supplier and catering food supplier serving restaurants, takeaways and retailers across the UK. We supply drinks, frozen food, packaging, spices, sauces, cooking oil and cleaning essentials in bulk."
         path="/"
-        schema={[organizationSchema, localBusinessSchema]}
+        schema={[websiteSchema, organizationSchema, localBusinessSchema]}
       />
 
       {/* Hero Slider Section */}
@@ -281,11 +298,11 @@ const Home: React.FC = () => {
         <div className="site-shell px-4 md:px-6">
           <AnimatedSection animation="fadeSlideUp">
             <p className="text-center text-[10px] md:text-xs font-black text-white uppercase tracking-[0.2em] md:tracking-[0.3em] mb-6 md:mb-8">
-              Well known brands
+              Brands We Supply
             </p>
           </AnimatedSection>
           <div className="flex flex-wrap justify-center gap-x-6 sm:gap-x-10 md:gap-x-16 gap-y-4 md:gap-y-6">
-            {['RETAILMAX', 'FOODMART', 'CITYDISTRO', 'HOSPITALITY CO', 'GLOBALFOODS'].map((brand, index) => (
+            {['AVIKO', 'COCA-COLA', 'RED BULL', 'MONSTER', 'PEPSI'].map((brand, index) => (
               <AnimatedSection key={brand} animation="scaleUp" delay={index * 100}>
                 <span className="text-sm md:text-lg font-black text-slate-400 uppercase tracking-wider md:tracking-widest hover:text-emerald-500 transition-colors cursor-default">
                   {brand}
@@ -443,7 +460,7 @@ const Home: React.FC = () => {
                 </span>
                 <h3 className="text-xl md:text-2xl font-black text-white mb-3 uppercase tracking-wide">Households</h3>
                 <p className="text-slate-400 leading-relaxed mb-5 text-sm">
-                  Essential household products for commercial and domestic use. From cleaning supplies to everyday essentials, we provide quality products at competitive prices.
+                  Commercial cleaning and household essentials for takeaway, catering and retail teams. We supply dependable stock lines at wholesale prices across the UK.
                 </p>
                 <Link 
                   to="/products" 

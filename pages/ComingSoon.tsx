@@ -7,7 +7,7 @@ const ComingSoon: React.FC = () => {
       <SEO
         title="Coming Soon"
         description="Good Luck Foods is preparing a new website experience. Our updated platform is launching soon."
-        path="/"
+        path="/coming-soon"
       />
 
       <div className="pointer-events-none absolute inset-0">
